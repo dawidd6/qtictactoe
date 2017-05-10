@@ -8,6 +8,9 @@
 #include <QFont>
 #include <QMenuBar>
 #include <QAction>
+#include <QRect>
+#include <QPainter>
+#include <QPicture>
 
 void markDisabledAll(QPushButton buttons[])
 {
@@ -66,6 +69,9 @@ int main(int argc, char *argv[])
 	QPushButton button[9];
 	char button_str[9];
 
+	QFrame line[4];
+	QFrame line_win[4];
+
 	QPushButton restart("Restart");
 
 	QIcon x_icon("data/x/x.svg");
@@ -82,9 +88,27 @@ int main(int argc, char *argv[])
 	QIcon o_icon_slash_left("data/o/o_slash_left.svg");
 	QSize o_size(96, 96);
 
-	QLabel turn("Whose turn:");
+	QLabel turn("Whose Turn:");
 	QLabel current_icon;
 	QSize current_size(30, 30);
+
+	//hline.setFrameShape(QFrame::HLine);
+	//vline.setFrameShape(QFrame::HLine);
+	//hline.setFrameShadow(QFrame::Sunken);
+	//vline.setFrameShadow(QFrame::Sunken);
+
+	QPicture pi;
+	QPainter painter(&pi);
+	painter.setPen(QPen(Qt::black, 2));
+	painter.setRenderHint(QPainter::Antialiasing);
+	QLineF li(10.0, 80.0, 90.0, 20.0);
+	QLineF angleline;
+	angleline.setP1(QPointF(80,80));
+	angleline.setAngle(45);
+	angleline.setLength(50);
+	painter.drawLine(angleline);
+	painter.end();
+	turn.setPicture(pi);
 
 	int rows = 0;
 	int columns = 0;
@@ -92,7 +116,7 @@ int main(int argc, char *argv[])
 	char win = 'n';
 
 	mainwindow.setCentralWidget(&window);
-	mainwindow.setWindowIcon(x_icon);
+	mainwindow.setWindowIcon(QIcon("data/icon.svg"));
 	window.setLayout(&grid);
 	window.setWindowTitle("QTicTacToe");
 	window.setWindowFlags(Qt::Window);
@@ -110,7 +134,7 @@ int main(int argc, char *argv[])
 		qDebug("language");
 	});
 
-	QObject::connect(&restart, &QPushButton::clicked, [&button, &button_str, &xnow, &win, &current_icon, &x_icon, &current_size]
+	QObject::connect(&restart, &QPushButton::clicked, [&button, &button_str, &xnow, &win, &current_icon, &x_icon, &current_size, &line_win, &grid]
 	{
 		xnow = true;
 		win = 'n';
@@ -121,20 +145,53 @@ int main(int argc, char *argv[])
 			button[i].setEnabled(true);
 			button[i].setIcon(QIcon());
 		}
+		for(int i = 0; i < 4; i++)
+		{
+			grid.removeWidget(&line_win[i]);
+			line_win[i].hide();
+		}
 	});
+
+
+	line[0].setFrameShape(QFrame::HLine);
+	line[1].setFrameShape(QFrame::HLine);
+	line[2].setFrameShape(QFrame::VLine);
+	line[3].setFrameShape(QFrame::VLine);
+	line[0].setLineWidth(3);
+	line[1].setLineWidth(3);
+	line[2].setLineWidth(3);
+	line[3].setLineWidth(3);
+	grid.addWidget(&line[0], 1, 0, 1, 5);
+	grid.addWidget(&line[1], 3, 0, 1, 5);
+	grid.addWidget(&line[2], 0, 1, 5, 1);
+	grid.addWidget(&line[3], 0, 3, 5, 1);
+
+	line_win[0].setFrameShape(QFrame::HLine);
+	line_win[1].setFrameShape(QFrame::VLine);
+	line_win[0].setFixedHeight(20);
+	line_win[0].setLineWidth(20);
+	line_win[1].setFixedWidth(20);
+	line_win[1].setLineWidth(20);
 
 	for(int i = 0; i < 9; i++)
 	{
-		if(columns == 3)
+		if(columns == 5)
 		{
 			rows++;
 			columns = 0;
 		}
+
+		if(rows == 1 || rows == 3)
+			rows++;
+		if(columns == 1 || columns == 3)
+			columns++;
+
 		button[i].setFixedSize(100, 100);
-		//button[i].setFlat(true);
+		button[i].setFlat(true);
 		button[i].setFocusPolicy(Qt::NoFocus);
+
 		QObject::connect(&button[i], &QPushButton::clicked,
-		[&button, &button_str, i, &xnow, &o_icon, &o_size, &x_icon, &x_size, &current_icon, &current_size,
+		[&grid, &line_win, &button, &button_str, i, &xnow, &o_icon, &o_size, &x_icon, &x_size, &current_icon, &current_size,
 		&x_icon_horizon, &x_icon_vertical, &x_icon_slash_right, &x_icon_slash_left,
 		&o_icon_horizon, &o_icon_vertical, &o_icon_slash_right, &o_icon_slash_left]
 		{
@@ -156,26 +213,30 @@ int main(int argc, char *argv[])
 			}
 			button[i].setDisabled(true);
 
-			/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+			//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 			if(button_str[0] == 'x' && button_str[1] == 'x' && button_str[2] == 'x')
 			{
-				button[0].setIcon(x_icon_horizon);
+				/*button[0].setIcon(x_icon_horizon);
 				button[1].setIcon(x_icon_horizon);
 				button[2].setIcon(x_icon_horizon);
 				button[0].setIconSize(x_size);
 				button[1].setIconSize(x_size);
-				button[2].setIconSize(x_size);
+				button[2].setIconSize(x_size);*/
 				markDisabledAll(button);
+				grid.addWidget(&line_win[0], 0, 0, 1, 5);
+				line_win[0].show();
 			}
 			else if(button_str[3] == 'x' && button_str[4] == 'x' && button_str[5] == 'x')
 			{
-				button[3].setIcon(x_icon_horizon);
+				/*button[3].setIcon(x_icon_horizon);
 				button[4].setIcon(x_icon_horizon);
 				button[5].setIcon(x_icon_horizon);
 				button[3].setIconSize(x_size);
 				button[4].setIconSize(x_size);
-				button[5].setIconSize(x_size);
+				button[5].setIconSize(x_size);*/
 				markDisabledAll(button);
+				grid.addWidget(&line_win[0], 2, 0, 1, 5);
+				line_win[0].show();
 			}
 			else if(button_str[6] == 'x' && button_str[7] == 'x' && button_str[8] == 'x')
 			{
@@ -189,13 +250,9 @@ int main(int argc, char *argv[])
 			}
 			else if(button_str[0] == 'x' && button_str[3] == 'x' && button_str[6] == 'x')
 			{
-				button[0].setIcon(x_icon_vertical);
-				button[3].setIcon(x_icon_vertical);
-				button[6].setIcon(x_icon_vertical);
-				button[0].setIconSize(x_size);
-				button[3].setIconSize(x_size);
-				button[6].setIconSize(x_size);
 				markDisabledAll(button);
+				grid.addWidget(&line_win[1], 0, 0, 5, 1, Qt::AlignJustify);
+				line_win[1].show();
 			}
 			else if(button_str[1] == 'x' && button_str[4] == 'x' && button_str[7] == 'x')
 			{
@@ -237,7 +294,7 @@ int main(int argc, char *argv[])
 				button[6].setIconSize(x_size);
 				markDisabledAll(button);
 			}
-			/* OOOOOOOOOOOOOOOOOOOOOOOOOOO */
+			// OOOOOOOOOOOOOOOOOOOOOOOOOOO
 			if(button_str[0] == 'o' && button_str[1] == 'o' && button_str[2] == 'o')
 			{
 				button[0].setIcon(o_icon_horizon);
@@ -324,9 +381,10 @@ int main(int argc, char *argv[])
 		columns++;
 	}
 
-	grid.addWidget(&turn, 3, 0, Qt::AlignCenter);
-	grid.addWidget(&current_icon, 3, 1, Qt::AlignCenter);
-	grid.addWidget(&restart, 3, 2, Qt::AlignRight);
+	grid.setRowMinimumHeight(5, 50);
+	grid.addWidget(&turn, 6, 0);
+	grid.addWidget(&current_icon, 6, 2);
+	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
 	window.show();
 	return a.exec();
 }
