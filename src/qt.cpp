@@ -55,7 +55,9 @@ int main(int argc, char *argv[])
 {
 	/* IMPORTANT */
 	//order of variables DO matter
+	//QCoreApplication::addLibraryPath(".");
 	QApplication a(argc, argv);
+	a.addLibraryPath(".");
 	QMainWindow mainwindow;
 	QWidget window;
 
