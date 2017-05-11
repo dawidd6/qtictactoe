@@ -1,14 +1,9 @@
 #include <QApplication>
-#include <QMainWindow>
 #include <QPushButton>
-#include <QAbstractButton>
 #include <QGridLayout>
-#include <QString>
 #include <QLabel>
-#include <QFont>
 #include <QMenuBar>
 #include <QAction>
-#include <QRect>
 #include <QPainter>
 #include <QPicture>
 
@@ -20,25 +15,77 @@ void Game::markDisabledAll()
 		button[i].setDisabled(true);
 }
 
-void paintLine(QLabel &label, int angle, int len)
+void Game::paintLine(QLabel &label, int angle, int len, QPointF point)
 {
+	QPicture pic;
+	QLineF angleline;
+	QPainter painter(&pic);
 
+	painter.setPen(QPen(Qt::black, 8));
+	painter.setRenderHint(QPainter::Antialiasing);
+
+	angleline.setP1(point);
+	angleline.setAngle(angle);
+	angleline.setLength(len);
+
+	painter.drawLine(angleline);
+	painter.end();
+
+	label.setPicture(pic);
 }
 
-Game::Game() : window(&mainwindow), grid(&window), menu_options("Options"), action_language("Language", &menu_options), restart("Restart"), turn("Whose turn"), current_size(30, 30), xnow(true), win('n'), o_icon("data/o.svg"), o_size(96, 96), x_icon("data/x.svg"), x_size(96, 96), rows(0), columns(0), right_painter(&right_pi), left_painter(&left_pi), horizon_painter(&horizon_pi), vertical_painter(&vertical_pi)
+void Game::setWindowDetails()
 {
-	mainwindow.setCentralWidget(&window);
-	mainwindow.setWindowIcon(QIcon("data/icon.svg"));
+	window.setWindowIcon(QIcon("data/icon.svg"));
 	window.setWindowTitle("QTicTacToe");
 	window.setWindowFlags(Qt::Window);
 	window.setFixedSize(0, 0);
 	window.setLayout(&grid);
+}
+
+void Game::setMenuDetails()
+{
+	menu_options.addAction(&action_language);
+	menu_bar.addMenu(&menu_options);
+}
+
+void Game::setGridDetails()
+{
 	grid.setSpacing(0);
 	grid.setRowMinimumHeight(5, 50);
-
-	menu_options.addAction(&action_language);
 	grid.setMenuBar(&menu_bar);
-	menu_bar.addMenu(&menu_options);
+}
+
+void Game::setLineDetails()
+{
+	line[0].setFrameShape(QFrame::HLine);
+	line[1].setFrameShape(QFrame::HLine);
+	line[2].setFrameShape(QFrame::VLine);
+	line[3].setFrameShape(QFrame::VLine);
+	line[0].setLineWidth(2);
+	line[1].setLineWidth(2);
+	line[2].setLineWidth(2);
+	line[3].setLineWidth(2);
+}
+
+void Game::addToGrid()
+{
+	grid.addWidget(&turn, 6, 0);
+	grid.addWidget(&current_icon, 6, 2);
+	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
+	grid.addWidget(&line[0], 1, 0, 1, 5);
+	grid.addWidget(&line[1], 3, 0, 1, 5);
+	grid.addWidget(&line[2], 0, 1, 5, 1);
+	grid.addWidget(&line[3], 0, 3, 5, 1);
+}
+
+Game::Game() : grid(&window), menu_options("Options"), action_language("Language", &menu_options), restart("Restart"), turn("Whose turn"), current_size(30, 30), xnow(true), win('n'), o_icon("data/o.svg"), o_size(96, 96), x_icon("data/x.svg"), x_size(96, 96), rows(0), columns(0), right_painter(&right_pi), left_painter(&left_pi), horizon_painter(&horizon_pi), vertical_painter(&vertical_pi)
+{
+	setWindowDetails();
+	setGridDetails();
+	setMenuDetails();
+	setLineDetails();
+	addToGrid();
 
 	QObject::connect(&action_language, &QAction::triggered, []
 	{
@@ -47,42 +94,12 @@ Game::Game() : window(&mainwindow), grid(&window), menu_options("Options"), acti
 
 	current_icon.setPixmap(x_icon.pixmap(current_size));
 
-	left_painter.setRenderHint(QPainter::Antialiasing);
-	right_painter.setPen(QPen(Qt::black, 8));
-	right_painter.setRenderHint(QPainter::Antialiasing);
-	horizon_painter.setPen(QPen(Qt::black, 8));
-	horizon_painter.setRenderHint(QPainter::Antialiasing);
-	vertical_painter.setPen(QPen(Qt::black, 8));
-	vertical_painter.setRenderHint(QPainter::Antialiasing);
+	paintLine(vertical_line, 90, 298, QPointF(112, 0));
+	paintLine(horizon_line, 0, 298, QPointF(0, 100));
+	paintLine(left_line, 45, 420, QPointF(0, 100));
+	paintLine(right_line, -45, 420, QPointF(0, 100));
 
-	right_angle.setP1(QPointF(0, 100));
-	right_angle.setAngle(-45);
-	right_angle.setLength(420);
-	left_angle.setP1(QPointF(0, 100));
-	left_angle.setAngle(45);
-	left_angle.setLength(420);
-	horizon_angle.setP1(QPointF(0, 100));
-	horizon_angle.setAngle(0);
-	horizon_angle.setLength(298);
-	vertical_angle.setP1(QPointF(100, 1));
-	vertical_angle.setAngle(90);
-	vertical_angle.setLength(298);
-
-	right_painter.drawLine(right_angle);
-	left_painter.drawLine(left_angle);
-	horizon_painter.drawLine(horizon_angle);
-	vertical_painter.drawLine(vertical_angle);
-	right_painter.end();
-	left_painter.end();
-	horizon_painter.end();
-	vertical_painter.end();
-
-	left_line.setPicture(left_pi);
-	right_line.setPicture(right_pi);
-	horizon_line.setPicture(horizon_pi);
-	vertical_line.setPicture(vertical_pi);
-
-
+	restart.setFocusPolicy(Qt::NoFocus);
 	QObject::connect(&restart, &QPushButton::clicked, [&]
 	{
 		xnow = true;
@@ -103,23 +120,6 @@ Game::Game() : window(&mainwindow), grid(&window), menu_options("Options"), acti
 		horizon_line.hide();
 		vertical_line.hide();
 	});
-
-	grid.addWidget(&turn, 6, 0);
-	grid.addWidget(&current_icon, 6, 2);
-	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
-
-	line[0].setFrameShape(QFrame::HLine);
-	line[1].setFrameShape(QFrame::HLine);
-	line[2].setFrameShape(QFrame::VLine);
-	line[3].setFrameShape(QFrame::VLine);
-	line[0].setLineWidth(2);
-	line[1].setLineWidth(2);
-	line[2].setLineWidth(2);
-	line[3].setLineWidth(2);
-	grid.addWidget(&line[0], 1, 0, 1, 5);
-	grid.addWidget(&line[1], 3, 0, 1, 5);
-	grid.addWidget(&line[2], 0, 1, 5, 1);
-	grid.addWidget(&line[3], 0, 3, 5, 1);
 
 	for(int i = 0; i < 9; i++)
 	{
@@ -262,5 +262,9 @@ Game::Game() : window(&mainwindow), grid(&window), menu_options("Options"), acti
 		grid.addWidget(&button[i], rows, columns);
 		columns++;
 	}
+}
+
+void Game::show()
+{
 	window.show();
 }

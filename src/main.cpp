@@ -1,14 +1,9 @@
 #include <QApplication>
-#include <QMainWindow>
 #include <QPushButton>
-#include <QAbstractButton>
 #include <QGridLayout>
-#include <QString>
 #include <QLabel>
-#include <QFont>
 #include <QMenuBar>
 #include <QAction>
-#include <QRect>
 #include <QPainter>
 #include <QPicture>
 
@@ -16,7 +11,8 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication *a = new QApplication(argc, argv);
+	QApplication a(argc, argv);
 	Game game;
-	return a->exec();
+	game.show();
+	return a.exec();
 }

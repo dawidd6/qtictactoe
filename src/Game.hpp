@@ -4,7 +4,6 @@
 class Game
 {
 	protected:
-		QMainWindow mainwindow;
 		QWidget window;
 		QGridLayout grid;
 		QMenuBar menu_bar;
@@ -50,6 +49,13 @@ class Game
 	public:
 		Game();
 		void markDisabledAll();
+		void show();
+		void setWindowDetails();
+		void setMenuDetails();
+		void setGridDetails();
+		void setLineDetails();
+		void addToGrid();
+		void paintLine(QLabel &label, int angle, int len, QPointF point);
 };
 
 #endif
