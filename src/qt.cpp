@@ -70,45 +70,74 @@ int main(int argc, char *argv[])
 	char button_str[9];
 
 	QFrame line[4];
-	QFrame line_win[4];
 
 	QPushButton restart("Restart");
 
-	QIcon x_icon("data/x/x.svg");
-	QIcon x_icon_horizon("data/x/x_horizon.svg");
-	QIcon x_icon_vertical("data/x/x_vertical.svg");
-	QIcon x_icon_slash_right("data/x/x_slash_right.svg");
-	QIcon x_icon_slash_left("data/x/x_slash_left.svg");
+	QIcon x_icon("data/x.svg");
 	QSize x_size(96, 96);
 
-	QIcon o_icon("data/o/o.svg");
-	QIcon o_icon_horizon("data/o/o_horizon.svg");
-	QIcon o_icon_vertical("data/o/o_vertical.svg");
-	QIcon o_icon_slash_right("data/o/o_slash_right.svg");
-	QIcon o_icon_slash_left("data/o/o_slash_left.svg");
+	QIcon o_icon("data/o.svg");
 	QSize o_size(96, 96);
 
 	QLabel turn("Whose Turn:");
 	QLabel current_icon;
 	QSize current_size(30, 30);
 
-	//hline.setFrameShape(QFrame::HLine);
-	//vline.setFrameShape(QFrame::HLine);
-	//hline.setFrameShadow(QFrame::Sunken);
-	//vline.setFrameShadow(QFrame::Sunken);
+	QPicture left_pi;
+	QPicture right_pi;
+	QPicture horizon_pi;
+	QPicture vertical_pi;
 
-	QPicture pi;
-	QPainter painter(&pi);
-	painter.setPen(QPen(Qt::black, 2));
-	painter.setRenderHint(QPainter::Antialiasing);
-	QLineF li(10.0, 80.0, 90.0, 20.0);
-	QLineF angleline;
-	angleline.setP1(QPointF(80,80));
-	angleline.setAngle(45);
-	angleline.setLength(50);
-	painter.drawLine(angleline);
-	painter.end();
-	turn.setPicture(pi);
+	QLineF right_angle;
+	QLineF left_angle;
+	QLineF horizon_angle;
+	QLineF vertical_angle;
+	
+	QLabel left_line;
+	QLabel right_line;
+	QLabel horizon_line;
+	QLabel vertical_line;
+	
+	QPainter right_painter(&right_pi);
+	QPainter left_painter(&left_pi);
+	QPainter horizon_painter(&horizon_pi);
+	QPainter vertical_painter(&vertical_pi);
+
+	left_painter.setPen(QPen(Qt::black, 8));
+	left_painter.setRenderHint(QPainter::Antialiasing);
+	right_painter.setPen(QPen(Qt::black, 8));
+	right_painter.setRenderHint(QPainter::Antialiasing);
+	horizon_painter.setPen(QPen(Qt::black, 8));
+	horizon_painter.setRenderHint(QPainter::Antialiasing);
+	vertical_painter.setPen(QPen(Qt::black, 8));
+	vertical_painter.setRenderHint(QPainter::Antialiasing);
+
+	right_angle.setP1(QPointF(0, 100));
+	right_angle.setAngle(-45);
+	right_angle.setLength(420);
+	left_angle.setP1(QPointF(0, 100));
+	left_angle.setAngle(45);
+	left_angle.setLength(420);
+	horizon_angle.setP1(QPointF(0, 100));
+	horizon_angle.setAngle(0);
+	horizon_angle.setLength(298);
+	vertical_angle.setP1(QPointF(100, 1));
+	vertical_angle.setAngle(90);
+	vertical_angle.setLength(298);
+
+	right_painter.drawLine(right_angle);
+	left_painter.drawLine(left_angle);
+	horizon_painter.drawLine(horizon_angle);
+	vertical_painter.drawLine(vertical_angle);
+	right_painter.end();
+	left_painter.end();
+	horizon_painter.end();
+	vertical_painter.end();
+
+	left_line.setPicture(left_pi);
+	right_line.setPicture(right_pi);
+	horizon_line.setPicture(horizon_pi);
+	vertical_line.setPicture(vertical_pi);
 
 	int rows = 0;
 	int columns = 0;
@@ -134,7 +163,8 @@ int main(int argc, char *argv[])
 		qDebug("language");
 	});
 
-	QObject::connect(&restart, &QPushButton::clicked, [&button, &button_str, &xnow, &win, &current_icon, &x_icon, &current_size, &line_win, &grid]
+	QObject::connect(&restart, &QPushButton::clicked,
+	[&button, &button_str, &xnow, &win, &current_icon, &x_icon, &current_size, &grid, &left_line, &right_line, &horizon_line, &vertical_line]
 	{
 		xnow = true;
 		win = 'n';
@@ -145,11 +175,14 @@ int main(int argc, char *argv[])
 			button[i].setEnabled(true);
 			button[i].setIcon(QIcon());
 		}
-		for(int i = 0; i < 4; i++)
-		{
-			grid.removeWidget(&line_win[i]);
-			line_win[i].hide();
-		}
+		grid.removeWidget(&left_line);
+		grid.removeWidget(&right_line);
+		grid.removeWidget(&horizon_line);
+		grid.removeWidget(&vertical_line);
+		left_line.hide();
+		right_line.hide();
+		horizon_line.hide();
+		vertical_line.hide();
 	});
 
 
@@ -157,21 +190,14 @@ int main(int argc, char *argv[])
 	line[1].setFrameShape(QFrame::HLine);
 	line[2].setFrameShape(QFrame::VLine);
 	line[3].setFrameShape(QFrame::VLine);
-	line[0].setLineWidth(3);
-	line[1].setLineWidth(3);
-	line[2].setLineWidth(3);
-	line[3].setLineWidth(3);
+	line[0].setLineWidth(2);
+	line[1].setLineWidth(2);
+	line[2].setLineWidth(2);
+	line[3].setLineWidth(2);
 	grid.addWidget(&line[0], 1, 0, 1, 5);
 	grid.addWidget(&line[1], 3, 0, 1, 5);
 	grid.addWidget(&line[2], 0, 1, 5, 1);
 	grid.addWidget(&line[3], 0, 3, 5, 1);
-
-	line_win[0].setFrameShape(QFrame::HLine);
-	line_win[1].setFrameShape(QFrame::VLine);
-	line_win[0].setFixedHeight(20);
-	line_win[0].setLineWidth(20);
-	line_win[1].setFixedWidth(20);
-	line_win[1].setLineWidth(20);
 
 	for(int i = 0; i < 9; i++)
 	{
@@ -191,9 +217,7 @@ int main(int argc, char *argv[])
 		button[i].setFocusPolicy(Qt::NoFocus);
 
 		QObject::connect(&button[i], &QPushButton::clicked,
-		[&grid, &line_win, &button, &button_str, i, &xnow, &o_icon, &o_size, &x_icon, &x_size, &current_icon, &current_size,
-		&x_icon_horizon, &x_icon_vertical, &x_icon_slash_right, &x_icon_slash_left,
-		&o_icon_horizon, &o_icon_vertical, &o_icon_slash_right, &o_icon_slash_left]
+		[&grid, &button, &button_str, i, &xnow, &o_icon, &o_size, &x_icon, &x_size, &current_icon, &current_size, &right_line, &left_line, &horizon_line, &vertical_line]
 		{
 			if(xnow)
 			{
@@ -216,163 +240,99 @@ int main(int argc, char *argv[])
 			//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 			if(button_str[0] == 'x' && button_str[1] == 'x' && button_str[2] == 'x')
 			{
-				/*button[0].setIcon(x_icon_horizon);
-				button[1].setIcon(x_icon_horizon);
-				button[2].setIcon(x_icon_horizon);
-				button[0].setIconSize(x_size);
-				button[1].setIconSize(x_size);
-				button[2].setIconSize(x_size);*/
+				grid.addWidget(&horizon_line, 0, 0, 1, 5, Qt::AlignJustify);
+				horizon_line.show();
 				markDisabledAll(button);
-				grid.addWidget(&line_win[0], 0, 0, 1, 5);
-				line_win[0].show();
 			}
 			else if(button_str[3] == 'x' && button_str[4] == 'x' && button_str[5] == 'x')
 			{
-				/*button[3].setIcon(x_icon_horizon);
-				button[4].setIcon(x_icon_horizon);
-				button[5].setIcon(x_icon_horizon);
-				button[3].setIconSize(x_size);
-				button[4].setIconSize(x_size);
-				button[5].setIconSize(x_size);*/
+				grid.addWidget(&horizon_line, 2, 0, 1, 5, Qt::AlignJustify);
+				horizon_line.show();
 				markDisabledAll(button);
-				grid.addWidget(&line_win[0], 2, 0, 1, 5);
-				line_win[0].show();
 			}
 			else if(button_str[6] == 'x' && button_str[7] == 'x' && button_str[8] == 'x')
 			{
-				button[6].setIcon(x_icon_horizon);
-				button[7].setIcon(x_icon_horizon);
-				button[8].setIcon(x_icon_horizon);
-				button[6].setIconSize(x_size);
-				button[7].setIconSize(x_size);
-				button[8].setIconSize(x_size);
+				grid.addWidget(&horizon_line, 4, 0, 1, 5, Qt::AlignJustify);
+				horizon_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[0] == 'x' && button_str[3] == 'x' && button_str[6] == 'x')
 			{
+				grid.addWidget(&vertical_line, 0, 0, 5, 1, Qt::AlignJustify);
+				vertical_line.show();
 				markDisabledAll(button);
-				grid.addWidget(&line_win[1], 0, 0, 5, 1, Qt::AlignJustify);
-				line_win[1].show();
 			}
 			else if(button_str[1] == 'x' && button_str[4] == 'x' && button_str[7] == 'x')
 			{
-				button[1].setIcon(x_icon_vertical);
-				button[4].setIcon(x_icon_vertical);
-				button[7].setIcon(x_icon_vertical);
-				button[1].setIconSize(x_size);
-				button[4].setIconSize(x_size);
-				button[7].setIconSize(x_size);
+				grid.addWidget(&vertical_line, 0, 2, 5, 1, Qt::AlignJustify);
+				vertical_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[2] == 'x' && button_str[5] == 'x' && button_str[8] == 'x')
 			{
-				button[2].setIcon(x_icon_vertical);
-				button[5].setIcon(x_icon_vertical);
-				button[8].setIcon(x_icon_vertical);
-				button[2].setIconSize(x_size);
-				button[5].setIconSize(x_size);
-				button[8].setIconSize(x_size);
+				grid.addWidget(&vertical_line, 0, 4, 5, 1, Qt::AlignJustify);
+				vertical_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[0] == 'x' && button_str[4] == 'x' && button_str[8] == 'x')
 			{
-				button[0].setIcon(x_icon_slash_left);
-				button[4].setIcon(x_icon_slash_left);
-				button[8].setIcon(x_icon_slash_left);
-				button[0].setIconSize(x_size);
-				button[4].setIconSize(x_size);
-				button[8].setIconSize(x_size);
+				grid.addWidget(&right_line, 0, 0, 5, 5, Qt::AlignJustify);
+				right_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[2] == 'x' && button_str[4] == 'x' && button_str[6] == 'x')
 			{
-				button[2].setIcon(x_icon_slash_right);
-				button[4].setIcon(x_icon_slash_right);
-				button[6].setIcon(x_icon_slash_right);
-				button[2].setIconSize(x_size);
-				button[4].setIconSize(x_size);
-				button[6].setIconSize(x_size);
+				grid.addWidget(&left_line, 0, 0, 5, 5, Qt::AlignJustify);
+				left_line.show();
 				markDisabledAll(button);
 			}
 			// OOOOOOOOOOOOOOOOOOOOOOOOOOO
 			if(button_str[0] == 'o' && button_str[1] == 'o' && button_str[2] == 'o')
 			{
-				button[0].setIcon(o_icon_horizon);
-				button[1].setIcon(o_icon_horizon);
-				button[2].setIcon(o_icon_horizon);
-				button[0].setIconSize(o_size);
-				button[1].setIconSize(o_size);
-				button[2].setIconSize(o_size);
+				grid.addWidget(&horizon_line, 0, 0, 1, 5, Qt::AlignJustify);
+				horizon_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[3] == 'o' && button_str[4] == 'o' && button_str[5] == 'o')
 			{
-				button[3].setIcon(o_icon_horizon);
-				button[4].setIcon(o_icon_horizon);
-				button[5].setIcon(o_icon_horizon);
-				button[3].setIconSize(o_size);
-				button[4].setIconSize(o_size);
-				button[5].setIconSize(o_size);
+				grid.addWidget(&horizon_line, 2, 0, 1, 5, Qt::AlignJustify);
+				horizon_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[6] == 'o' && button_str[7] == 'o' && button_str[8] == 'o')
 			{
-				button[6].setIcon(o_icon_horizon);
-				button[7].setIcon(o_icon_horizon);
-				button[8].setIcon(o_icon_horizon);
-				button[6].setIconSize(o_size);
-				button[7].setIconSize(o_size);
-				button[8].setIconSize(o_size);
+				grid.addWidget(&horizon_line, 4, 0, 1, 5, Qt::AlignJustify);
+				horizon_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[0] == 'o' && button_str[3] == 'o' && button_str[6] == 'o')
 			{
-				button[0].setIcon(o_icon_vertical);
-				button[3].setIcon(o_icon_vertical);
-				button[6].setIcon(o_icon_vertical);
-				button[0].setIconSize(o_size);
-				button[3].setIconSize(o_size);
-				button[6].setIconSize(o_size);
+				grid.addWidget(&vertical_line, 0, 0, 5, 1, Qt::AlignJustify);
+				vertical_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[1] == 'o' && button_str[4] == 'o' && button_str[7] == 'o')
 			{
-				button[1].setIcon(o_icon_vertical);
-				button[4].setIcon(o_icon_vertical);
-				button[7].setIcon(o_icon_vertical);
-				button[1].setIconSize(o_size);
-				button[4].setIconSize(o_size);
-				button[7].setIconSize(o_size);
+				grid.addWidget(&vertical_line, 0, 2, 5, 1, Qt::AlignJustify);
+				vertical_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[2] == 'o' && button_str[5] == 'o' && button_str[8] == 'o')
 			{
-				button[2].setIcon(o_icon_vertical);
-				button[5].setIcon(o_icon_vertical);
-				button[8].setIcon(o_icon_vertical);
-				button[2].setIconSize(o_size);
-				button[5].setIconSize(o_size);
-				button[8].setIconSize(o_size);
+				grid.addWidget(&vertical_line, 0, 4, 5, 1, Qt::AlignJustify);
+				vertical_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[0] == 'o' && button_str[4] == 'o' && button_str[8] == 'o')
 			{
-				button[0].setIcon(o_icon_slash_left);
-				button[4].setIcon(o_icon_slash_left);
-				button[8].setIcon(o_icon_slash_left);
-				button[0].setIconSize(o_size);
-				button[4].setIconSize(o_size);
-				button[8].setIconSize(o_size);
+				grid.addWidget(&right_line, 0, 0, 5, 5, Qt::AlignJustify);
+				right_line.show();
 				markDisabledAll(button);
 			}
 			else if(button_str[2] == 'o' && button_str[4] == 'o' && button_str[6] == 'o')
 			{
-				button[2].setIcon(o_icon_slash_right);
-				button[4].setIcon(o_icon_slash_right);
-				button[6].setIcon(o_icon_slash_right);
-				button[2].setIconSize(o_size);
-				button[4].setIconSize(o_size);
-				button[6].setIconSize(o_size);
+				grid.addWidget(&left_line, 0, 0, 5, 5, Qt::AlignJustify);
+				left_line.show();
 				markDisabledAll(button);
 			}
 
