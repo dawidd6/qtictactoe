@@ -12,100 +12,41 @@
 #include <QPainter>
 #include <QPicture>
 
-void markDisabledAll(QPushButton buttons[])
+#include "Game.hpp"
+
+void Game::markDisabledAll()
 {
 	for(int i = 0; i < 9; i++)
-		buttons[i].setDisabled(true);
+		button[i].setDisabled(true);
 }
 
-namespace tictac
+void paintLine(QLabel &label, int angle, int len)
 {
-	class Window
-	{
 
-	};
-
-	class Board
-	{
-
-	};
-
-	class Circle
-	{
-
-	};
-
-	class Cross
-	{
-
-	};
-
-	class MenuBar
-	{
-
-	};
-
-	class Game
-	{
-
-	};
 }
 
-int main(int argc, char *argv[])
+Game::Game() : window(&mainwindow), grid(&window), menu_options("Options"), action_language("Language", &menu_options), restart("Restart"), turn("Whose turn"), current_size(30, 30), xnow(true), win('n'), o_icon("data/o.svg"), o_size(96, 96), x_icon("data/x.svg"), x_size(96, 96), rows(0), columns(0), right_painter(&right_pi), left_painter(&left_pi), horizon_painter(&horizon_pi), vertical_painter(&vertical_pi)
 {
-	/* IMPORTANT */
-	//order of variables DO matter
-	//QCoreApplication::addLibraryPath(".");
-	QApplication a(argc, argv);
-	a.addLibraryPath(".");
-	QMainWindow mainwindow;
-	QWidget window;
+	mainwindow.setCentralWidget(&window);
+	mainwindow.setWindowIcon(QIcon("data/icon.svg"));
+	window.setWindowTitle("QTicTacToe");
+	window.setWindowFlags(Qt::Window);
+	window.setFixedSize(0, 0);
+	window.setLayout(&grid);
+	grid.setSpacing(0);
+	grid.setRowMinimumHeight(5, 50);
 
-	QMenuBar menu_bar;
-	QMenu menu_options("Options");
+	menu_options.addAction(&action_language);
+	grid.setMenuBar(&menu_bar);
+	menu_bar.addMenu(&menu_options);
 
-	QAction action_language("Language", &menu_options);
+	QObject::connect(&action_language, &QAction::triggered, []
+	{
+		qDebug("language");
+	});
 
-	QGridLayout grid;
+	current_icon.setPixmap(x_icon.pixmap(current_size));
 
-	QPushButton button[9];
-	char button_str[9];
-
-	QFrame line[4];
-
-	QPushButton restart("Restart");
-
-	QIcon x_icon("data/x.svg");
-	QSize x_size(96, 96);
-
-	QIcon o_icon("data/o.svg");
-	QSize o_size(96, 96);
-
-	QLabel turn("Whose Turn:");
-	QLabel current_icon;
-	QSize current_size(30, 30);
-
-	QPicture left_pi;
-	QPicture right_pi;
-	QPicture horizon_pi;
-	QPicture vertical_pi;
-
-	QLineF right_angle;
-	QLineF left_angle;
-	QLineF horizon_angle;
-	QLineF vertical_angle;
-	
-	QLabel left_line;
-	QLabel right_line;
-	QLabel horizon_line;
-	QLabel vertical_line;
-	
-	QPainter right_painter(&right_pi);
-	QPainter left_painter(&left_pi);
-	QPainter horizon_painter(&horizon_pi);
-	QPainter vertical_painter(&vertical_pi);
-
-	left_painter.setPen(QPen(Qt::black, 8));
 	left_painter.setRenderHint(QPainter::Antialiasing);
 	right_painter.setPen(QPen(Qt::black, 8));
 	right_painter.setRenderHint(QPainter::Antialiasing);
@@ -141,32 +82,8 @@ int main(int argc, char *argv[])
 	horizon_line.setPicture(horizon_pi);
 	vertical_line.setPicture(vertical_pi);
 
-	int rows = 0;
-	int columns = 0;
-	bool xnow = true;
-	char win = 'n';
 
-	mainwindow.setCentralWidget(&window);
-	mainwindow.setWindowIcon(QIcon("data/icon.svg"));
-	window.setLayout(&grid);
-	window.setWindowTitle("QTicTacToe");
-	window.setWindowFlags(Qt::Window);
-	window.setFixedSize(0, 0);
-	grid.setSpacing(0);
-	current_icon.setPixmap(x_icon.pixmap(current_size));
-
-	menu_options.addAction(&action_language);
-
-	grid.setMenuBar(&menu_bar);
-	menu_bar.addMenu(&menu_options);
-
-	QObject::connect(&action_language, &QAction::triggered, []
-	{
-		qDebug("language");
-	});
-
-	QObject::connect(&restart, &QPushButton::clicked,
-	[&button, &button_str, &xnow, &win, &current_icon, &x_icon, &current_size, &grid, &left_line, &right_line, &horizon_line, &vertical_line]
+	QObject::connect(&restart, &QPushButton::clicked, [&]
 	{
 		xnow = true;
 		win = 'n';
@@ -187,6 +104,9 @@ int main(int argc, char *argv[])
 		vertical_line.hide();
 	});
 
+	grid.addWidget(&turn, 6, 0);
+	grid.addWidget(&current_icon, 6, 2);
+	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
 
 	line[0].setFrameShape(QFrame::HLine);
 	line[1].setFrameShape(QFrame::HLine);
@@ -219,7 +139,7 @@ int main(int argc, char *argv[])
 		button[i].setFocusPolicy(Qt::NoFocus);
 
 		QObject::connect(&button[i], &QPushButton::clicked,
-		[&grid, &button, &button_str, i, &xnow, &o_icon, &o_size, &x_icon, &x_size, &current_icon, &current_size, &right_line, &left_line, &horizon_line, &vertical_line]
+		[&, i]
 		{
 			if(xnow)
 			{
@@ -244,109 +164,103 @@ int main(int argc, char *argv[])
 			{
 				grid.addWidget(&horizon_line, 0, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[3] == 'x' && button_str[4] == 'x' && button_str[5] == 'x')
 			{
 				grid.addWidget(&horizon_line, 2, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[6] == 'x' && button_str[7] == 'x' && button_str[8] == 'x')
 			{
 				grid.addWidget(&horizon_line, 4, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[0] == 'x' && button_str[3] == 'x' && button_str[6] == 'x')
 			{
 				grid.addWidget(&vertical_line, 0, 0, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[1] == 'x' && button_str[4] == 'x' && button_str[7] == 'x')
 			{
 				grid.addWidget(&vertical_line, 0, 2, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[2] == 'x' && button_str[5] == 'x' && button_str[8] == 'x')
 			{
 				grid.addWidget(&vertical_line, 0, 4, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[0] == 'x' && button_str[4] == 'x' && button_str[8] == 'x')
 			{
 				grid.addWidget(&right_line, 0, 0, 5, 5, Qt::AlignJustify);
 				right_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[2] == 'x' && button_str[4] == 'x' && button_str[6] == 'x')
 			{
 				grid.addWidget(&left_line, 0, 0, 5, 5, Qt::AlignJustify);
 				left_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			// OOOOOOOOOOOOOOOOOOOOOOOOOOO
 			if(button_str[0] == 'o' && button_str[1] == 'o' && button_str[2] == 'o')
 			{
 				grid.addWidget(&horizon_line, 0, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[3] == 'o' && button_str[4] == 'o' && button_str[5] == 'o')
 			{
 				grid.addWidget(&horizon_line, 2, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[6] == 'o' && button_str[7] == 'o' && button_str[8] == 'o')
 			{
 				grid.addWidget(&horizon_line, 4, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[0] == 'o' && button_str[3] == 'o' && button_str[6] == 'o')
 			{
 				grid.addWidget(&vertical_line, 0, 0, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[1] == 'o' && button_str[4] == 'o' && button_str[7] == 'o')
 			{
 				grid.addWidget(&vertical_line, 0, 2, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[2] == 'o' && button_str[5] == 'o' && button_str[8] == 'o')
 			{
 				grid.addWidget(&vertical_line, 0, 4, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[0] == 'o' && button_str[4] == 'o' && button_str[8] == 'o')
 			{
 				grid.addWidget(&right_line, 0, 0, 5, 5, Qt::AlignJustify);
 				right_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 			else if(button_str[2] == 'o' && button_str[4] == 'o' && button_str[6] == 'o')
 			{
 				grid.addWidget(&left_line, 0, 0, 5, 5, Qt::AlignJustify);
 				left_line.show();
-				markDisabledAll(button);
+				markDisabledAll();
 			}
 
 		});
 		grid.addWidget(&button[i], rows, columns);
 		columns++;
 	}
-
-	grid.setRowMinimumHeight(5, 50);
-	grid.addWidget(&turn, 6, 0);
-	grid.addWidget(&current_icon, 6, 2);
-	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
 	window.show();
-	return a.exec();
 }
