@@ -7,6 +7,8 @@
 #include <QPainter>
 #include <QPicture>
 
+#include "Window.hpp"
+#include "Board.hpp"
 #include "Game.hpp"
 
 int main(int argc, char *argv[])

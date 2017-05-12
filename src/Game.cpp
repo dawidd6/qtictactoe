@@ -7,109 +7,32 @@
 #include <QPainter>
 #include <QPicture>
 
+#include "Window.hpp"
+#include "Board.hpp"
 #include "Game.hpp"
 
-void Game::markDisabledAll()
+Game::Game() : xnow(true), win('n'), restart("Restart"), turn("Whose turn"), current_size(30, 30)
 {
-	for(int i = 0; i < 9; i++)
-		button[i].setDisabled(true);
-}
-
-void Game::paintLine(QLabel &label, int angle, int len, QPointF point)
-{
-	QPicture pic;
-	QLineF angleline;
-	QPainter painter(&pic);
-
-	painter.setPen(QPen(Qt::black, 8));
-	painter.setRenderHint(QPainter::Antialiasing);
-
-	angleline.setP1(point);
-	angleline.setAngle(angle);
-	angleline.setLength(len);
-
-	painter.drawLine(angleline);
-	painter.end();
-
-	label.setPicture(pic);
-}
-
-void Game::setWindowDetails()
-{
-	window.setWindowIcon(QIcon("data/icon.svg"));
-	window.setWindowTitle("QTicTacToe");
-	window.setWindowFlags(Qt::Window);
-	window.setFixedSize(0, 0);
-	window.setLayout(&grid);
-}
-
-void Game::setMenuDetails()
-{
-	menu_options.addAction(&action_language);
-	menu_bar.addMenu(&menu_options);
-}
-
-void Game::setGridDetails()
-{
-	grid.setSpacing(0);
-	grid.setRowMinimumHeight(5, 50);
-	grid.setMenuBar(&menu_bar);
-}
-
-void Game::setLineDetails()
-{
-	line[0].setFrameShape(QFrame::HLine);
-	line[1].setFrameShape(QFrame::HLine);
-	line[2].setFrameShape(QFrame::VLine);
-	line[3].setFrameShape(QFrame::VLine);
-	line[0].setLineWidth(2);
-	line[1].setLineWidth(2);
-	line[2].setLineWidth(2);
-	line[3].setLineWidth(2);
-}
-
-void Game::addToGrid()
-{
-	grid.addWidget(&turn, 6, 0);
-	grid.addWidget(&current_icon, 6, 2);
-	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
-	grid.addWidget(&line[0], 1, 0, 1, 5);
-	grid.addWidget(&line[1], 3, 0, 1, 5);
-	grid.addWidget(&line[2], 0, 1, 5, 1);
-	grid.addWidget(&line[3], 0, 3, 5, 1);
-}
-
-Game::Game() : grid(&window), menu_options("Options"), action_language("Language", &menu_options), restart("Restart"), turn("Whose turn"), current_size(30, 30), xnow(true), win('n'), o_icon("data/o.svg"), o_size(96, 96), x_icon("data/x.svg"), x_size(96, 96), rows(0), columns(0), right_painter(&right_pi), left_painter(&left_pi), horizon_painter(&horizon_pi), vertical_painter(&vertical_pi)
-{
-	setWindowDetails();
-	setGridDetails();
-	setMenuDetails();
-	setLineDetails();
-	addToGrid();
-
-	QObject::connect(&action_language, &QAction::triggered, []
-	{
-		qDebug("language");
-	});
-
 	current_icon.setPixmap(x_icon.pixmap(current_size));
+	restart.setFocusPolicy(Qt::NoFocus);
+
+	Game::addToGrid();
 
 	paintLine(vertical_line, 90, 298, QPointF(112, 0));
 	paintLine(horizon_line, 0, 298, QPointF(0, 100));
 	paintLine(left_line, 45, 420, QPointF(0, 100));
 	paintLine(right_line, -45, 420, QPointF(0, 100));
 
-	restart.setFocusPolicy(Qt::NoFocus);
 	QObject::connect(&restart, &QPushButton::clicked, [&]
 	{
 		xnow = true;
 		win = 'n';
 		current_icon.setPixmap(x_icon.pixmap(current_size));
-		for(int i = 0; i < 9; i++)
+		for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		{
-			button_str[i] = '0';
-			button[i].setEnabled(true);
-			button[i].setIcon(QIcon());
+			button_str[x][y] = '0';
+			button[x][y].setEnabled(true);
+			button[x][y].setIcon(QIcon());
 		}
 		grid.removeWidget(&left_line);
 		grid.removeWidget(&right_line);
@@ -121,64 +44,48 @@ Game::Game() : grid(&window), menu_options("Options"), action_language("Language
 		vertical_line.hide();
 	});
 
-	for(int i = 0; i < 9; i++)
+	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
-		if(columns == 5)
-		{
-			rows++;
-			columns = 0;
-		}
-
-		if(rows == 1 || rows == 3)
-			rows++;
-		if(columns == 1 || columns == 3)
-			columns++;
-
-		button[i].setFixedSize(100, 100);
-		button[i].setFlat(true);
-		button[i].setFocusPolicy(Qt::NoFocus);
-
-		QObject::connect(&button[i], &QPushButton::clicked,
-		[&, i]
+		QObject::connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
 			if(xnow)
 			{
-				button[i].setIcon(x_icon);
-				button[i].setIconSize(x_size);
-				button_str[i] = 'x';
+				button[x][y].setIcon(x_icon);
+				button[x][y].setIconSize(x_size);
+				button_str[x][y] = 'x';
 				current_icon.setPixmap(o_icon.pixmap(current_size));
 				xnow = false;
 			}
 			else
 			{
-				button[i].setIcon(o_icon);
-				button[i].setIconSize(o_size);
-				button_str[i] = 'o';
+				button[x][y].setIcon(o_icon);
+				button[x][y].setIconSize(o_size);
+				button_str[x][y] = 'o';
 				current_icon.setPixmap(x_icon.pixmap(current_size));
 				xnow = true;
 			}
-			button[i].setDisabled(true);
+			button[x][y].setDisabled(true);
 
 			//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			if(button_str[0] == 'x' && button_str[1] == 'x' && button_str[2] == 'x')
+			if(button_str[0][0] == 'x' && button_str[0][1] == 'x' && button_str[0][2] == 'x')
 			{
 				grid.addWidget(&horizon_line, 0, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
 				markDisabledAll();
 			}
-			else if(button_str[3] == 'x' && button_str[4] == 'x' && button_str[5] == 'x')
+			else if(button_str[1][0] == 'x' && button_str[1][1] == 'x' && button_str[1][2] == 'x')
 			{
 				grid.addWidget(&horizon_line, 2, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
 				markDisabledAll();
 			}
-			else if(button_str[6] == 'x' && button_str[7] == 'x' && button_str[8] == 'x')
+			else if(button_str[2][0] == 'x' && button_str[2][1] == 'x' && button_str[2][2] == 'x')
 			{
 				grid.addWidget(&horizon_line, 4, 0, 1, 5, Qt::AlignJustify);
 				horizon_line.show();
 				markDisabledAll();
 			}
-			else if(button_str[0] == 'x' && button_str[3] == 'x' && button_str[6] == 'x')
+			/*else if(button_str[0] == 'x' && button_str[3] == 'x' && button_str[6] == 'x')
 			{
 				grid.addWidget(&vertical_line, 0, 0, 5, 1, Qt::AlignJustify);
 				vertical_line.show();
@@ -256,15 +163,41 @@ Game::Game() : grid(&window), menu_options("Options"), action_language("Language
 				grid.addWidget(&left_line, 0, 0, 5, 5, Qt::AlignJustify);
 				left_line.show();
 				markDisabledAll();
-			}
+			}*/
 
 		});
-		grid.addWidget(&button[i], rows, columns);
-		columns++;
 	}
+
 }
 
-void Game::show()
+void Game::addToGrid()
 {
-	window.show();
+	grid.addWidget(&turn, 6, 0);
+	grid.addWidget(&current_icon, 6, 2);
+	grid.addWidget(&restart, 6, 4, Qt::AlignRight);
+}
+
+void Game::markDisabledAll()
+{
+	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
+		button[x][y].setDisabled(true);
+}
+
+void Game::paintLine(QLabel &label, int angle, int len, QPointF point)
+{
+	QPicture pic;
+	QLineF angleline;
+	QPainter painter(&pic);
+
+	painter.setPen(QPen(Qt::black, 8));
+	painter.setRenderHint(QPainter::Antialiasing);
+
+	angleline.setP1(point);
+	angleline.setAngle(angle);
+	angleline.setLength(len);
+
+	painter.drawLine(angleline);
+	painter.end();
+
+	label.setPicture(pic);
 }
