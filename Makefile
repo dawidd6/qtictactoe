@@ -1,6 +1,6 @@
 #Assembled by dawidd6
 COMPILER=g++
-CXXFLAGS=$(shell pkg-config --cflags --libs Qt5Widgets) -Wall -fPIC -std=c++11
+CXXFLAGS=$(shell pkg-config --cflags --libs Qt5Widgets) -Wall -fPIC -std=c++11 -Iinclude
 PROGRAM=qtictactoe
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
