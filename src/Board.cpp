@@ -1,4 +1,3 @@
-#include <QApplication>
 #include <QPushButton>
 #include <QGridLayout>
 #include <QStackedLayout>
@@ -9,14 +8,13 @@
 #include <QPicture>
 #include <QMessageBox>
 
-#include "Board.h"
 #include "Window.h"
+#include "Board.h"
 
 Board::Board(Window *window)
 {
 	window->layout.addWidget(&widget);
 	widget.setLayout(&layout);
-	return_to_menu.setText("Return");
 	restart.setText("Restart");
 	restart.setFocusPolicy(Qt::NoFocus);
 	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
@@ -79,9 +77,18 @@ Board::Board(Window *window)
 	layout.addWidget(&turn, 6, 0);
 	layout.addWidget(&label_current, 6, 2);
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
-	layout.addWidget(&return_to_menu, 7, 4, Qt::AlignRight);
 
 	setupConnections();
+}
+
+void Board::run()
+{
+	widget.show();
+}
+
+void Board::stop()
+{
+	widget.hide();
 }
 
 void Board::markDisabledAll()
@@ -180,11 +187,6 @@ void Board::setupConnections()
 		right_line.hide();
 		horizon_line.hide();
 		vertical_line.hide();
-	});
-
-	QObject::connect(&return_to_menu, &QPushButton::clicked, [&]
-	{
-		//TODO
 	});
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)

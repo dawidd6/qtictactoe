@@ -1,16 +1,17 @@
 #ifndef QTICTACTOE_WINDOW_H
 #define QTICTACTOE_WINDOW_H
 
-#include "Board.h"
-
 class Window : public QWidget
 {
-	private:
+	public:
 		QStackedLayout layout;
 		QMenuBar menubar;
+		QMenu help;
+		QMenu game;
+		QAction about;
+		QAction return_to_menu;
 	public:
 		Window();
-		friend class Board;
 };
 
 #endif
