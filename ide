@@ -1,3 +1,3 @@
 #!/bin/bash
 
-vim src/{*.cpp,*.h}
+vim src/*.cpp include/*.h
