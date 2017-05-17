@@ -6,8 +6,7 @@ class Window : public QWidget
 	public:
 		QStackedLayout layout;
 		QMenuBar menubar;
-		QMenu help;
-		QMenu game;
+		QMenu menu;
 		QAction about;
 		QAction return_to_menu;
 	public:

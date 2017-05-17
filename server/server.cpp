@@ -2,6 +2,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QDateTime>
+#include <QByteArray>
 
 #include "server.h"
 
@@ -23,6 +24,13 @@ Server::Server()
 				if(!isListening()) listen(QHostAddress::Any, 60000);
 			});
 			qDebug().noquote().nospace() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] a connected";
+			connect(connection_a, &QTcpSocket::readyRead, [&]
+			{
+				msg = connection_a->readAll();
+				qDebug("message received from a: %s", msg.data());
+				msg.prepend("received from a: ");
+				msg = "";
+			});
 		}
 		else if(connection_b == nullptr)
 		{
@@ -34,6 +42,7 @@ Server::Server()
 				if(!isListening()) listen(QHostAddress::Any, 60000);
 			});
 			qDebug().noquote().nospace() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] b connected";
+			connection_b->write(msg);
 		}
 		else if(connection_a != nullptr && connection_b != nullptr)
 		{
@@ -47,5 +56,5 @@ int main(int argc, char **argv)
 {
 	QApplication a(argc, argv);
 	Server server;
-	a.exec();
+	return a.exec();
 }

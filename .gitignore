@@ -1,2 +1,3 @@
-qtictactoe
-*.o
+bin
+obj
+*qmake*

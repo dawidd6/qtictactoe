@@ -7,6 +7,7 @@ class Server : public QTcpServer
 		QTcpSocket *connection_a;
 		QTcpSocket *connection_b;
 		QDateTime date;
+		QByteArray msg;
 	public:
 		Server();
 };

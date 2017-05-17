@@ -3,6 +3,8 @@
 
 class Client : public QTcpSocket
 {
+	private:
+		QByteArray msg;
 	public:
 		Client();
 };

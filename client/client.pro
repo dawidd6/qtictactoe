@@ -7,6 +7,8 @@ TARGET = client
 INCLUDEPATH += .
 QT += widgets network
 CONFIG += c++11
+OBJECTS_DIR = ../obj
+DESTDIR = ../bin
 
 # Input
 HEADERS += client.h

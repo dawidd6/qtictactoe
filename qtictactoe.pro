@@ -4,10 +4,13 @@
 
 TEMPLATE = app
 TARGET = qtictactoe
-INCLUDEPATH += . include
+INCLUDEPATH += include
 QT += widgets gui core
 CONFIG += c++11
+OBJECTS_DIR = obj
+DESTDIR = bin
+MOC_DIR = obj
 
 # Input
-HEADERS += include/Board.hpp include/Game.hpp include/Window.hpp
-SOURCES += src/Board.cpp src/Game.cpp src/main.cpp src/Window.cpp
+HEADERS += include/Board.h include/Game.h include/Window.h include/Menu.h
+SOURCES += src/Board.cpp src/Game.cpp src/main.cpp src/Window.cpp src/Menu.cpp

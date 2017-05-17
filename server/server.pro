@@ -7,6 +7,8 @@ TARGET = server
 INCLUDEPATH += .
 QT += widgets network core
 CONFIG += c++11
+OBJECTS_DIR = ../obj
+DESTDIR = ../bin
 
 # Input
 HEADERS += server.h

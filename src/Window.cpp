@@ -12,7 +12,7 @@
 #include "Board.h"
 #include "Menu.h"
 
-Window::Window() : about("About", &help), return_to_menu("Return to menu", &game)
+Window::Window() : about("About", &menu), return_to_menu("Return to menu", &menu)
 {
 	setWindowTitle("QTicTacToe");
 	setWindowFlags(Qt::Window);
@@ -20,14 +20,12 @@ Window::Window() : about("About", &help), return_to_menu("Return to menu", &game
 	setLayout(&layout);
 	move(300, 200);
 
-	help.setTitle("Help");
-	game.setTitle("Game");
+	menu.setTitle("Menu");
 	layout.setMenuBar(&menubar);
-	menubar.addMenu(&help);
-	menubar.addMenu(&game);
+	menubar.addMenu(&menu);
 
-	help.addAction(&about);
-	game.addAction(&return_to_menu);
+	menu.addAction(&return_to_menu);
+	menu.addAction(&about);
 
 	QObject::connect(&about, &QAction::triggered, [&]
 	{
