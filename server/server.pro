@@ -8,6 +8,7 @@ INCLUDEPATH += .
 QT += widgets network core
 CONFIG += c++11
 OBJECTS_DIR = ../obj
+MOC_DIR = ../obj
 DESTDIR = ../bin
 
 # Input
