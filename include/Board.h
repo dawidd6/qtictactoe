@@ -1,12 +1,20 @@
 #ifndef QTICTACTOE_BOARD_H
 #define QTICTACTOE_BOARD_H
 
-class Board
+#include <QPushButton>
+#include <QGridLayout>
+#include <QStackedLayout>
+#include <QLabel>
+#include <QMenuBar>
+#include <QAction>
+#include <QPainter>
+#include <QPicture>
+#include <QMessageBox>
+
+class Board : public QWidget
 {
 	protected:
-		QWidget widget;
 		QGridLayout layout;
-	protected:
 		QPushButton restart;
 		QPushButton button[3][3];
 		QIcon icon_x;
@@ -30,8 +38,6 @@ class Board
 		bool xnow;
 	public:
 		Board(Window *window);
-		void run();
-		void stop();
 		void setupConnections();
 		void markDisabledAll();
 		void paintCross();

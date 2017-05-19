@@ -1,10 +1,5 @@
 #include <QPushButton>
-#include <QGridLayout>
-#include <QStackedLayout>
-#include <QLabel>
-#include <QMenuBar>
 #include <QAction>
-#include <QPainter>
 
 #include "Window.h"
 #include "Board.h"
@@ -16,46 +11,47 @@ Game::Game()
 	window = new Window;
 	menu = new Menu(window);
 
-	menu->run();
+	menu->show();
 	window->show();
 
-	hookUpButtonConnections();
-
-	QObject::connect(&window->return_to_menu, &QAction::triggered, [&]
-	{
-		qDebug("return to menu");
-		if(menu == nullptr)
-		{
-			vs->stop();
-			delete vs;
-			vs = nullptr;
-			menu = new Menu(window);
-			menu->run();
-			hookUpButtonConnections();
-		}
-	});
+	connect(&window->return_to_menu, SIGNAL(triggered()), this, SLOT(handleReturn()));
+	connect(&menu->play_2v2, SIGNAL(clicked()), this, SLOT(handlePlay2v2()));
+	connect(this, SIGNAL(signalReturn()), this, SLOT(handleRestore()));
 }
-
 
 Game::~Game()
 {
 	if(menu != nullptr) delete menu;
-	if(vs != nullptr) delete vs;
+	if(board != nullptr) delete board;
 	if(window != nullptr) delete window;
 }
 
-void Game::hookUpButtonConnections()
+void Game::handleReturn()
 {
-	QObject::connect(&menu->play_2v2, &QPushButton::clicked, [&]
+	if(menu == nullptr)
 	{
-		qDebug("play 2v2");
-		if(menu != nullptr)
-		{
-			menu->stop();
-			delete menu;
-			menu = nullptr;
-			vs = new Board(window);
-			vs->run();
-		}
-	});
+		board->hide();
+		delete board;
+		board = nullptr;
+		menu = new Menu(window);
+		menu->show();
+		emit signalReturn();
+	}
+}
+
+void Game::handlePlay2v2()
+{
+	if(menu != nullptr)
+	{
+		menu->hide();
+		delete menu;
+		menu = nullptr;
+		board = new Board(window);
+		board->show();
+	}
+}
+
+void Game::handleRestore()
+{
+	connect(&menu->play_2v2, SIGNAL(clicked()), this, SLOT(handlePlay2v2()));
 }

@@ -1,10 +1,6 @@
 #include <QPushButton>
 #include <QGridLayout>
-#include <QStackedLayout>
 #include <QLabel>
-#include <QMenuBar>
-#include <QAction>
-#include <QPainter>
 
 #include "Window.h"
 #include "Board.h"
@@ -12,7 +8,7 @@
 
 Menu::Menu(Window *window)
 {
-	window->layout.addWidget(&widget);
+	window->layout.addWidget(this);
 
 	play_single.setText("Play Singleplayer");
 	play_2v2.setText("Play 2v2");
@@ -22,21 +18,11 @@ Menu::Menu(Window *window)
 	play_single.setFixedSize(305, 40);
 	play_multi.setFixedSize(305, 40);
 
-	widget.setLayout(&layout);
+	setLayout(&layout);
 	layout.setAlignment(Qt::AlignTop);
 	layout.setSpacing(150);
 	
 	layout.addWidget(&play_2v2);
 	layout.addWidget(&play_single);
 	layout.addWidget(&play_multi);
-}
-
-void Menu::run()
-{
-	widget.show();
-}
-
-void Menu::stop()
-{
-	widget.hide();
 }

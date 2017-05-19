@@ -11,12 +11,10 @@ class Client : public QTcpSocket
 		QChar symbol;
 		bool isFirst;
 	signals:
-		
 	public slots:
 		void handleConnection();
 		void handleDisconnection();
 		void handleRead();
-		
 	public:
 		void logger(QString msg);
 		void sendMessage();

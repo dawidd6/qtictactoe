@@ -1,11 +1,7 @@
 #include <QPushButton>
-#include <QGridLayout>
 #include <QStackedLayout>
-#include <QLabel>
 #include <QMenuBar>
 #include <QAction>
-#include <QPainter>
-#include <QPicture>
 #include <QMessageBox>
 
 #include "Window.h"
@@ -27,8 +23,10 @@ Window::Window() : about("About", &menu), return_to_menu("Return to menu", &menu
 	menu.addAction(&return_to_menu);
 	menu.addAction(&about);
 
-	QObject::connect(&about, &QAction::triggered, [&]
-	{
-		QMessageBox::about(this, "About", "QTicTacToe");
-	});
+	connect(&about, SIGNAL(triggered()), this, SLOT(handleAbout()));
+}
+
+void Window::handleAbout()
+{
+	QMessageBox::about(this, "About", "QTicTacToe");
 }

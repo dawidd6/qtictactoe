@@ -1,20 +1,17 @@
 #include <QPushButton>
 #include <QGridLayout>
-#include <QStackedLayout>
 #include <QLabel>
-#include <QMenuBar>
-#include <QAction>
 #include <QPainter>
 #include <QPicture>
-#include <QMessageBox>
 
 #include "Window.h"
 #include "Board.h"
+#include "Client.h"
 
 Board::Board(Window *window)
 {
-	window->layout.addWidget(&widget);
-	widget.setLayout(&layout);
+	window->layout.addWidget(this);
+	setLayout(&layout);
 	restart.setText("Restart");
 	restart.setFocusPolicy(Qt::NoFocus);
 	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
@@ -79,16 +76,6 @@ Board::Board(Window *window)
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
 
 	setupConnections();
-}
-
-void Board::run()
-{
-	widget.show();
-}
-
-void Board::stop()
-{
-	widget.hide();
 }
 
 void Board::markDisabledAll()

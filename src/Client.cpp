@@ -3,7 +3,7 @@
 #include <QByteArray>
 #include <QDateTime>
 
-#include "client.h"
+#include "Client.h"
 
 void Client::logger(QString msg)
 {
@@ -48,11 +48,4 @@ Client::Client()
 	connect(this, SIGNAL(connected()), this, SLOT(handleConnection()));
 	connect(this, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
 	connect(this, SIGNAL(readyRead()), this, SLOT(handleRead()));
-}
-
-int main(int argc, char **argv)
-{
-	QCoreApplication a(argc, argv);
-	Client client;
-	return a.exec();
 }

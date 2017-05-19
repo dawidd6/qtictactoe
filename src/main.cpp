@@ -1,11 +1,4 @@
 #include <QApplication>
-#include <QPushButton>
-#include <QGridLayout>
-#include <QStackedLayout>
-#include <QLabel>
-#include <QMenuBar>
-#include <QAction>
-#include <QPainter>
 
 #include "Window.h"
 #include "Board.h"
