@@ -10,7 +10,7 @@ addons:
   - qtbase5-dev
 
 script:
-- qmake && make
+- /usr/lib/x86_64-linux-gnu/qt5/bin/qmake && make
 
 notifications:
  email: false
