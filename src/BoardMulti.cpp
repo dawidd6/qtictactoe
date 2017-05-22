@@ -68,7 +68,7 @@ BoardMulti::~BoardMulti()
 void BoardMulti::logger(QString msg)
 {
 	QDateTime date;
-	qDebug().noquote().nospace() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] " << msg;
+	qDebug() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] " << msg;
 }
 
 void BoardMulti::handleRead()
