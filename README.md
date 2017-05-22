@@ -1,4 +1,4 @@
-# QTicTacToe [![Build Status](https://travis-ci.org/dawidd6/qtictactoe.svg?branch=master)](https://travis-ci.org/dawidd6/qtictactoe)
+# QTicTacToe [![Build Status](https://travis-ci.org/dawidd6/qtictactoe.svg?branch=devel)](https://travis-ci.org/dawidd6/qtictactoe)
 
 ### Game modes:
 - two on one mouse
