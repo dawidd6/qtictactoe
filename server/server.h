@@ -11,18 +11,14 @@ class Server : public QTcpServer
 		QTcpSocket *connection_b;
 		QString response_a;
 		QString response_b;
-	signals:
-		void signalTurn();
-
 	public slots:
+		void handleRead();
 		void handleNewConnection();
 		void handleDisconnection();
-		void handleRead();
 	public:
 		Server();
 		void logger(QString msg);
 		void startListening();
-		void sendGreeting(char c);
 };
 
 #endif
