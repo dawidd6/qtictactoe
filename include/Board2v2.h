@@ -27,7 +27,7 @@ class Board2v2 : public QWidget
 		QLabel right_line;
 		QLabel horizon_line;
 		QLabel vertical_line;
-		QLabel turn;
+		QLabel label_turn;
 		QLabel label_current;
 		QChar button_str[3][3];
 		int thickness;

@@ -16,7 +16,7 @@ Board2v2::Board2v2(Window *window)
 	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
 	size_x.scale(100, 100, Qt::IgnoreAspectRatio);
 	size_o.scale(100, 100, Qt::IgnoreAspectRatio);
-	turn.setText("Whose turn:");
+	label_turn.setText("Whose turn:");
 
 	thickness = 8;
 	rows = 0;
@@ -48,10 +48,15 @@ Board2v2::Board2v2(Window *window)
 		{
 			button[x][y].setDisabled(true);
 			if(xnow)
+			{
 				markButtonIcon(x, y, 'x', icon_x, size_x, false);
+				label_current.setPixmap(icon_o.pixmap(size_current));
+			}
 			else
+			{
 				markButtonIcon(x, y, 'o', icon_o, size_o, true);
-
+				label_current.setPixmap(icon_x.pixmap(size_current));
+			}
 			checkConditions();
 		});
 
@@ -75,7 +80,7 @@ Board2v2::Board2v2(Window *window)
 		layout.addWidget(&button[x][y], rows, columns);
 		columns++;
 	}
-	layout.addWidget(&turn, 6, 0);
+	layout.addWidget(&label_turn, 6, 0);
 	layout.addWidget(&label_current, 6, 2);
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
 
@@ -134,7 +139,6 @@ void Board2v2::markButtonIcon(const int &x, const int &y, char s, QIcon &icon, Q
 	button[x][y].setIcon(icon);
 	button[x][y].setIconSize(size);
 	button_str[x][y] = s;
-	label_current.setPixmap(icon.pixmap(size_current));
 	xnow = n;
 }
 
