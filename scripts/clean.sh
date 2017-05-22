@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf obj bin debug release *_plugin_import.cpp Makefile.*
+rm -rf obj bin debug release *_plugin_import.cpp Makefile.* *.Debug *.Release
 
 cd server
 

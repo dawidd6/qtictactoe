@@ -48,20 +48,24 @@ OBJECTS_DIR   = obj/
 
 ####### Files
 
-SOURCES       = src/Board.cpp \
+SOURCES       = src/Board2v2.cpp \
+		src/BoardMulti.cpp \
 		src/Game.cpp \
 		src/main.cpp \
 		src/Menu.cpp \
-		src/Window.cpp obj/moc_Board.cpp \
+		src/Window.cpp obj/moc_Board2v2.cpp \
+		obj/moc_BoardMulti.cpp \
 		obj/moc_Game.cpp \
 		obj/moc_Menu.cpp \
 		obj/moc_Window.cpp
-OBJECTS       = obj/Board.o \
+OBJECTS       = obj/Board2v2.o \
+		obj/BoardMulti.o \
 		obj/Game.o \
 		obj/main.o \
 		obj/Menu.o \
 		obj/Window.o \
-		obj/moc_Board.o \
+		obj/moc_Board2v2.o \
+		obj/moc_BoardMulti.o \
 		obj/moc_Game.o \
 		obj/moc_Menu.o \
 		obj/moc_Window.o
@@ -128,10 +132,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		qtictactoe.pro include/Board.h \
+		qtictactoe.pro include/Board2v2.h \
+		include/BoardMulti.h \
 		include/Game.h \
 		include/Menu.h \
-		include/Window.h src/Board.cpp \
+		include/Window.h src/Board2v2.cpp \
+		src/BoardMulti.cpp \
 		src/Game.cpp \
 		src/main.cpp \
 		src/Menu.cpp \
@@ -318,8 +324,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents include/Board.h include/Game.h include/Menu.h include/Window.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/Board.cpp src/Game.cpp src/main.cpp src/Menu.cpp src/Window.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents include/Board2v2.h include/BoardMulti.h include/Game.h include/Menu.h include/Window.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Board2v2.cpp src/BoardMulti.cpp src/Game.cpp src/main.cpp src/Menu.cpp src/Window.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -343,10 +349,10 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: obj/moc_Board.cpp obj/moc_Game.cpp obj/moc_Menu.cpp obj/moc_Window.cpp
+compiler_moc_header_make_all: obj/moc_Board2v2.cpp obj/moc_BoardMulti.cpp obj/moc_Game.cpp obj/moc_Menu.cpp obj/moc_Window.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) obj/moc_Board.cpp obj/moc_Game.cpp obj/moc_Menu.cpp obj/moc_Window.cpp
-obj/moc_Board.cpp: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
+	-$(DEL_FILE) obj/moc_Board2v2.cpp obj/moc_BoardMulti.cpp obj/moc_Game.cpp obj/moc_Menu.cpp obj/moc_Window.cpp
+obj/moc_Board2v2.cpp: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
@@ -455,32 +461,166 @@ obj/moc_Board.cpp: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStackedLayout \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstackedlayout.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
 		include/Window.h \
-		include/Board.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dawidd6/git/qtictactoe -I/home/dawidd6/git/qtictactoe/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++ -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++/i686-w64-mingw32.static -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++/backward -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include-fixed -I/home/dawidd6/git/mxe/usr/i686-w64-mingw32.static/include include/Board.h -o obj/moc_Board.cpp
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStackedLayout \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstackedlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \
+		include/Board2v2.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dawidd6/git/qtictactoe -I/home/dawidd6/git/qtictactoe/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++ -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++/i686-w64-mingw32.static -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++/backward -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include-fixed -I/home/dawidd6/git/mxe/usr/i686-w64-mingw32.static/include include/Board2v2.h -o obj/moc_Board2v2.cpp
+
+obj/moc_BoardMulti.cpp: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qfeatures.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qprocessordetection.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcompilerdetection.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qtypetraits.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsysinfo.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qlogging.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qbasicatomic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qgenericatomic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_cxx11.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_gcc.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_msvc.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_armv7.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_armv6.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_armv5.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_ia64.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_x86.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_unix.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qglobalstatic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmutex.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qnumeric.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstringbuilder.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstringmatcher.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qpair.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qisenum.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobject_impl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qurlquery.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
+		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
+		include/Window.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStackedLayout \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstackedlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
+		include/Board2v2.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
+		include/BoardMulti.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dawidd6/git/qtictactoe -I/home/dawidd6/git/qtictactoe/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++ -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++/i686-w64-mingw32.static -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include/c++/backward -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include -I/home/dawidd6/git/mxe/usr/lib/gcc/i686-w64-mingw32.static/5.4.0/include-fixed -I/home/dawidd6/git/mxe/usr/i686-w64-mingw32.static/include include/BoardMulti.h -o obj/moc_BoardMulti.cpp
 
 obj/moc_Game.cpp: include/Window.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
@@ -602,7 +742,7 @@ obj/moc_Game.cpp: include/Window.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
-		include/Board.h \
+		include/Board2v2.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
@@ -613,6 +753,7 @@ obj/moc_Game.cpp: include/Window.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
+		include/BoardMulti.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
@@ -880,7 +1021,140 @@ compiler_clean: compiler_moc_header_clean
 
 ####### Compile
 
-obj/Board.o: src/Board.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
+obj/Board2v2.o: src/Board2v2.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qfeatures.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qprocessordetection.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcompilerdetection.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qtypetraits.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsysinfo.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qlogging.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qbasicatomic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qgenericatomic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_cxx11.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_gcc.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_msvc.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_armv7.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_armv6.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_armv5.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_ia64.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_x86.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_unix.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qglobalstatic.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmutex.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qnumeric.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstringbuilder.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qstringmatcher.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qpair.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qisenum.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qobject_impl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qurlquery.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
+		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
+		include/Window.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStackedLayout \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstackedlayout.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
+		include/Board2v2.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Board2v2.o src/Board2v2.cpp
+
+obj/BoardMulti.o: src/BoardMulti.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
@@ -1016,8 +1290,9 @@ obj/Board.o: src/Board.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButt
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
-		include/Board.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Board.o src/Board.cpp
+		include/Board2v2.h \
+		include/BoardMulti.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/BoardMulti.o src/BoardMulti.cpp
 
 obj/Game.o: src/Game.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
@@ -1139,7 +1414,7 @@ obj/Game.o: src/Game.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
-		include/Board.h \
+		include/Board2v2.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
@@ -1150,6 +1425,7 @@ obj/Game.o: src/Game.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
+		include/BoardMulti.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
@@ -1264,6 +1540,7 @@ obj/main.o: src/main.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplicatio
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qguiapplication.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qinputmethod.h \
+		include/Game.h \
 		include/Window.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
@@ -1284,7 +1561,7 @@ obj/main.o: src/main.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplicatio
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
-		include/Board.h \
+		include/Board2v2.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
@@ -1295,11 +1572,11 @@ obj/main.o: src/main.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplicatio
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
 		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
+		include/BoardMulti.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
-		include/Menu.h \
-		include/Game.h
+		include/Menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o src/main.cpp
 
 obj/Menu.o: src/Menu.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
@@ -1426,16 +1703,6 @@ obj/Menu.o: src/Menu.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
-		include/Board.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
 		include/Menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Menu.o src/Menu.cpp
 
@@ -1559,25 +1826,15 @@ obj/Window.o: src/Window.cpp /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushBu
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
 		include/Window.h \
-		include/Board.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/QPicture \
-		/usr/include/x86_64-linux-gnu/qt5/QtGui/qpicture.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
-		/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
-		include/Menu.h
+		include/Menu.h \
+		/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGridLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Window.o src/Window.cpp
 
-obj/moc_Board.o: obj/moc_Board.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_Board.o obj/moc_Board.cpp
+obj/moc_Board2v2.o: obj/moc_Board2v2.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_Board2v2.o obj/moc_Board2v2.cpp
+
+obj/moc_BoardMulti.o: obj/moc_BoardMulti.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_BoardMulti.o obj/moc_BoardMulti.cpp
 
 obj/moc_Game.o: obj/moc_Game.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_Game.o obj/moc_Game.cpp

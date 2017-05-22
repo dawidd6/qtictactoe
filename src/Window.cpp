@@ -5,7 +5,6 @@
 #include <QMessageBox>
 
 #include "Window.h"
-#include "Board.h"
 #include "Menu.h"
 
 Window::Window() : about("About", &menu), return_to_menu("Return to menu", &menu)

@@ -3,7 +3,6 @@
 #include <QLabel>
 
 #include "Window.h"
-#include "Board.h"
 #include "Menu.h"
 
 Menu::Menu(Window *window)

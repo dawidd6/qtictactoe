@@ -1,20 +1,16 @@
-#ifndef QTICTACTOE_BOARD_H
-#define QTICTACTOE_BOARD_H
+#ifndef QTICTACTOE_BOARD_2V2_H
+#define QTICTACTOE_BOARD_2V2_H
 
 #include <QPushButton>
 #include <QGridLayout>
-#include <QStackedLayout>
 #include <QLabel>
-#include <QMenuBar>
-#include <QAction>
 #include <QPainter>
 #include <QPicture>
-#include <QTcpSocket>
 #include <QMessageBox>
 
 #include "Window.h"
 
-class Board : public QWidget
+class Board2v2 : public QWidget
 {
 	Q_OBJECT
 	protected:
@@ -31,44 +27,28 @@ class Board : public QWidget
 		QLabel right_line;
 		QLabel horizon_line;
 		QLabel vertical_line;
-		QLabel label_turn;
+		QLabel turn;
 		QLabel label_current;
-		QIcon *icon_my;
-		QSize *size_my;
-		QIcon *icon_enemy;
-		QSize *size_enemy;
-	protected:
+		QChar button_str[3][3];
 		int thickness;
 		int rows;
 		int columns;
-		QChar button_str[3][3];
 		char win;
 		bool xnow;
-	private:
-		QTcpSocket socket;
-		QString response;
-		QChar symbol_my;
-		QChar symbol_enemy;
-		int turn;
-		int counter;
-	public slots:
-		void handleRestart();	
-	public slots:
-		void handleRead();
-		void handleConnection();
-		void handleDisconnection();
+	private slots:
+		void handleRestart();
 	public:
-		Board(Window *window);
-		~Board();
-		void logger(QString msg);
-		void checkConditions();
+		Board2v2(Window *window);
 		void markDisabledAll();
 		void markEnabledAll();
 		void markEnabledWhatLeft();
+		void checkConditions();
+		void drawFrames();
 		void paintCross();
 		void paintCircle();
 		void paintLine(QLabel &label, int angle, int len, QPointF point);
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
+		void markButtonIcon(const int &x, const int &y, char s, QIcon &icon, QSize &size, bool n);
 };
 
 #endif

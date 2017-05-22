@@ -2,7 +2,8 @@
 #define QTICTACTOE_GAME_H
 
 #include "Window.h"
-#include "Board.h"
+#include "Board2v2.h"
+#include "BoardMulti.h"
 #include "Menu.h"
 
 class Game : public QObject
@@ -10,13 +11,15 @@ class Game : public QObject
 	Q_OBJECT
 	private:
 		Window *window;
-		Board *board;
+		Board2v2 *board_2v2;
+		BoardMulti *board_multi;
 		Menu *menu;
 	signals:
 		void signalReturn();
-	public slots:
+	private slots:
 		void handleReturn();
 		void handlePlay2v2();
+		void handlePlayMulti();
 		void handleRestore();
 	public:
 		Game();

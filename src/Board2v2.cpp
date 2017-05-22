@@ -3,14 +3,11 @@
 #include <QLabel>
 #include <QPainter>
 #include <QPicture>
-#include <QTcpSocket>
-#include <QDateTime>
-#include <QByteArray>
 
 #include "Window.h"
-#include "Board.h"
+#include "Board2v2.h"
 
-Board::Board(Window *window) : counter(0)
+Board2v2::Board2v2(Window *window)
 {
 	window->layout.addWidget(this);
 	setLayout(&layout);
@@ -19,12 +16,7 @@ Board::Board(Window *window) : counter(0)
 	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
 	size_x.scale(100, 100, Qt::IgnoreAspectRatio);
 	size_o.scale(100, 100, Qt::IgnoreAspectRatio);
-	label_turn.setText("Whose turn:");
-
-	socket.connectToHost("127.0.0.1", 60000);
-	connect(&socket, SIGNAL(connected()), this, SLOT(handleConnection()));
-	connect(&restart, SIGNAL(clicked()), this, SLOT(handleRestart()));
-	socket.waitForReadyRead(-1);
+	turn.setText("Whose turn:");
 
 	thickness = 8;
 	rows = 0;
@@ -34,41 +26,16 @@ Board::Board(Window *window) : counter(0)
 
 	paintCross();
 	paintCircle();
+	drawFrames();
 	paintLine(vertical_line, 90, 298, QPointF(112, 0));
 	paintLine(horizon_line, 0, 298, QPointF(0, 100));
 	paintLine(left_line, 45, 420, QPointF(0, 100));
 	paintLine(right_line, -45, 420, QPointF(0, 100));
-	line[0].setFrameShape(QFrame::HLine);
-	line[1].setFrameShape(QFrame::HLine);
-	line[2].setFrameShape(QFrame::VLine);
-	line[3].setFrameShape(QFrame::VLine);
-	line[0].setLineWidth(2);
-	line[1].setLineWidth(2);
-	line[2].setLineWidth(2);
-	line[3].setLineWidth(2);
 	label_current.setPixmap(icon_x.pixmap(size_current));
-
-	if(symbol_my == 'x')
-	{
-		icon_my = &icon_x;
-		size_my = &size_x;
-		icon_enemy = &icon_o;
-		size_enemy = &size_o;
-		symbol_enemy = 'o';
-	}
-	else if(symbol_my == 'o')
-	{
-		icon_my = &icon_o;
-		size_my = &size_o;
-		icon_enemy = &icon_x;
-		size_enemy = &size_x;
-		symbol_enemy = 'x';
-	}
 
 	layout.setSpacing(0);
 	layout.setRowMinimumHeight(5, 20);
 	layout.setRowMinimumHeight(6, 40);
-
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -79,19 +46,13 @@ Board::Board(Window *window) : counter(0)
 
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
-			if(turn)
-			{
-				button[x][y].setDisabled(true);
-				button[x][y].setIcon(*icon_my);
-				button[x][y].setIconSize(*size_my);
-				button_str[x][y] = symbol_my;
-				label_current.setPixmap(icon_enemy->pixmap(size_current));
-				turn = false;
-				socket.write(QByteArray(QByteArray::number(x) + ',' + QByteArray::number(y)));
-				socket.waitForBytesWritten(3000);
-				markDisabledAll();
-				checkConditions();
-			}
+			button[x][y].setDisabled(true);
+			if(xnow)
+				markButtonIcon(x, y, 'x', icon_x, size_x, false);
+			else
+				markButtonIcon(x, y, 'o', icon_o, size_o, true);
+
+			checkConditions();
 		});
 
 		if(columns == 5)
@@ -114,114 +75,22 @@ Board::Board(Window *window) : counter(0)
 		layout.addWidget(&button[x][y], rows, columns);
 		columns++;
 	}
-
-	if(!turn)
-		markDisabledAll();
-
-	layout.addWidget(&label_turn, 6, 0);
+	layout.addWidget(&turn, 6, 0);
 	layout.addWidget(&label_current, 6, 2);
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
+
+	connect(&restart, SIGNAL(clicked()), this, SLOT(handleRestart()));
 }
 
-Board::~Board()
+void Board2v2::handleRestart()
 {
-	qDebug("called destructor");
-	if(socket.state() == QAbstractSocket::ConnectedState)
-		socket.disconnectFromHost();
-}
-
-void Board::logger(QString msg)
-{
-	QDateTime date;
-	qDebug().noquote().nospace() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] " << msg;
-}
-
-void Board::handleRead()
-{
-	if(counter == 0)
-	{
-		response = socket.readAll().data();
-		turn = response[0].digitValue();
-		symbol_my = response[1];
-		logger("Greeting: " + response);
-		counter++;
-	}
-	else
-	{
-		logger("Reading...");
-		response = socket.readAll().data();
-		if(response == "restart")
-		{
-			label_current.setPixmap(icon_x.pixmap(size_current));
-			if(symbol_my == 'x')
-			{
-				turn = true;
-				markEnabledAll();
-			}
-			else
-			{
-				turn = false;
-				markDisabledAll();
-			}
-			for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
-			{
-				button_str[x][y] = '0';
-				button[x][y].setIcon(QIcon());
-			}
-			layout.removeWidget(&left_line);
-			layout.removeWidget(&right_line);
-			layout.removeWidget(&horizon_line);
-			layout.removeWidget(&vertical_line);
-			left_line.hide();
-			right_line.hide();
-			horizon_line.hide();
-			vertical_line.hide();
-		}
-		else
-		{
-			int x = response[0].digitValue();
-			int y = response[2].digitValue();
-			button[x][y].setDisabled(true);
-			button[x][y].setIcon(*icon_enemy);
-			button[x][y].setIconSize(*size_enemy);
-			button_str[x][y] = symbol_enemy;
-			label_current.setPixmap(icon_my->pixmap(size_current));
-			turn = true;
-			markEnabledWhatLeft();
-			checkConditions();
-		}
-		logger("Received: " + response);
-	}
-}
-
-void Board::handleConnection()
-{
-	logger("Connected");
-	connect(&socket, SIGNAL(readyRead()), this, SLOT(handleRead()));
-	connect(&socket, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
-}
-
-void Board::handleDisconnection()
-{
-	logger("Disconnected, exiting...");
-}
-
-void Board::handleRestart()
-{
+	xnow = true;
+	win = 'n';
 	label_current.setPixmap(icon_x.pixmap(size_current));
-	if(symbol_my == 'x')
-	{
-		turn = true;
-		markEnabledAll();
-	}
-	else
-	{
-		turn = false;
-		markDisabledAll();
-	}
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
 		button_str[x][y] = '0';
+		button[x][y].setEnabled(true);
 		button[x][y].setIcon(QIcon());
 	}
 	layout.removeWidget(&left_line);
@@ -232,36 +101,44 @@ void Board::handleRestart()
 	right_line.hide();
 	horizon_line.hide();
 	vertical_line.hide();
-	socket.write("restart");
 }
 
-void Board::markDisabledAll()
+void Board2v2::markDisabledAll()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		button[x][y].setDisabled(true);
 }
 
-void Board::markEnabledAll()
+void Board2v2::markEnabledAll()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		button[x][y].setEnabled(true);
 }
 
-void Board::markEnabledWhatLeft()
+void Board2v2::markEnabledWhatLeft()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		if(button_str[x][y] == '0')
 			button[x][y].setEnabled(true);
 }
 
-void Board::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
+void Board2v2::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
 {
 	layout.addWidget(&line, fromrow, fromcolumn, rowspan, columnspan, Qt::AlignJustify);
 	line.show();
 	markDisabledAll();
 }
 
-void Board::paintCross()
+void Board2v2::markButtonIcon(const int &x, const int &y, char s, QIcon &icon, QSize &size, bool n)
+{
+	button[x][y].setIcon(icon);
+	button[x][y].setIconSize(size);
+	button_str[x][y] = s;
+	label_current.setPixmap(icon.pixmap(size_current));
+	xnow = n;
+}
+
+void Board2v2::paintCross()
 {
 	QPixmap pic(size_x);
 	pic.fill(Qt::transparent);
@@ -280,7 +157,7 @@ void Board::paintCross()
 	icon_x.addPixmap(pic);
 }
 
-void Board::paintCircle()
+void Board2v2::paintCircle()
 {
 	QPixmap pic(size_o);
 	pic.fill(Qt::transparent);
@@ -295,7 +172,19 @@ void Board::paintCircle()
 	icon_o.addPixmap(pic);
 }
 
-void Board::paintLine(QLabel &label, int angle, int len, QPointF point)
+void Board2v2::drawFrames()
+{
+	line[0].setFrameShape(QFrame::HLine);
+	line[1].setFrameShape(QFrame::HLine);
+	line[2].setFrameShape(QFrame::VLine);
+	line[3].setFrameShape(QFrame::VLine);
+	line[0].setLineWidth(2);
+	line[1].setLineWidth(2);
+	line[2].setLineWidth(2);
+	line[3].setLineWidth(2);
+}
+
+void Board2v2::paintLine(QLabel &label, int angle, int len, QPointF point)
 {
 	QPicture pic;
 	QLineF angleline;
@@ -314,7 +203,7 @@ void Board::paintLine(QLabel &label, int angle, int len, QPointF point)
 	label.setPicture(pic);
 }
 
-void Board::checkConditions()
+void Board2v2::checkConditions()
 {
 	if(button_str[0][0] == 'x' && button_str[0][1] == 'x' && button_str[0][2] == 'x')
 	drawLineOnGrid(horizon_line, 0, 0, 1, 5);
