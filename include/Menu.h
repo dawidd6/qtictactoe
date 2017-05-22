@@ -4,8 +4,11 @@
 #include <QPushButton>
 #include <QGridLayout>
 
+#include "Window.h"
+
 class Menu : public QWidget
 {
+	Q_OBJECT
 	private:
 		QVBoxLayout layout;
 	public:
