@@ -1,13 +1,8 @@
-#include <QPushButton>
-#include <QStackedLayout>
-#include <QMenuBar>
-#include <QAction>
-#include <QMessageBox>
-
 #include "Window.h"
 #include "Menu.h"
+#include "Game.h"
 
-Window::Window() : about("About", &menu), return_to_menu("Return to menu", &menu)
+Window::Window(Game *game) : about("About", &menu), return_to_menu("Return to menu", &menu)
 {
 	setWindowTitle("QTicTacToe");
 	setWindowFlags(Qt::Window);
@@ -23,6 +18,7 @@ Window::Window() : about("About", &menu), return_to_menu("Return to menu", &menu
 	menu.addAction(&about);
 
 	connect(&about, SIGNAL(triggered()), this, SLOT(handleAbout()));
+	connect(&return_to_menu, SIGNAL(triggered()), game, SLOT(handleReturn()));
 }
 
 void Window::handleAbout()

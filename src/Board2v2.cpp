@@ -1,9 +1,3 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
-#include <QPainter>
-#include <QPicture>
-
 #include "Window.h"
 #include "Board2v2.h"
 

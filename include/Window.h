@@ -7,6 +7,9 @@
 #include <QAction>
 #include <QMessageBox>
 
+#include "Menu.h"
+#include "Game.h"
+
 class Window : public QWidget
 {
 	Q_OBJECT
@@ -16,10 +19,10 @@ class Window : public QWidget
 		QMenu menu;
 		QAction about;
 		QAction return_to_menu;
-	public slots:
+	private slots:
 		void handleAbout();
 	public:
-		Window();
+		Window(Game *game);
 };
 
 #endif

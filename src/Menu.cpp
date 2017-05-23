@@ -1,11 +1,8 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
-
 #include "Window.h"
 #include "Menu.h"
+#include "Game.h"
 
-Menu::Menu(Window *window)
+Menu::Menu(Window *window, Game *game)
 {
 	window->layout.addWidget(this);
 
@@ -24,4 +21,7 @@ Menu::Menu(Window *window)
 	layout.addWidget(&play_2v2);
 	layout.addWidget(&play_single);
 	layout.addWidget(&play_multi);
+
+	connect(&play_2v2, SIGNAL(clicked()), game, SLOT(handlePlay2v2()));
+	connect(&play_multi, SIGNAL(clicked()), game, SLOT(handlePlayMulti()));
 }

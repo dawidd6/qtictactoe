@@ -1,15 +1,7 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
-#include <QPainter>
-#include <QPicture>
-#include <QTcpSocket>
-#include <QDateTime>
-#include <QByteArray>
-
 #include "Window.h"
 #include "Board2v2.h"
 #include "BoardMulti.h"
+#include "Game.h"
 
 BoardMulti::BoardMulti(Window *window) : Board2v2(window), counter(0)
 {
@@ -65,11 +57,6 @@ BoardMulti::~BoardMulti()
 		socket.disconnectFromHost();
 }
 
-void BoardMulti::logger(QString msg)
-{
-	QDateTime date;
-	qDebug() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] " << msg;
-}
 
 void BoardMulti::handleRead()
 {
@@ -78,12 +65,12 @@ void BoardMulti::handleRead()
 		response = socket.readAll().data();
 		turn = response[0].digitValue();
 		symbol_my = response[1];
-		logger("Greeting: " + response);
+		Game::logger("Greeting: " + response);
 		counter++;
 	}
 	else
 	{
-		logger("Reading...");
+		Game::logger("Reading...");
 		response = socket.readAll().data();
 		if(response == "restart")
 		{
@@ -125,20 +112,20 @@ void BoardMulti::handleRead()
 			markEnabledWhatLeft();
 			checkConditions();
 		}
-		logger("Received: " + response);
+		Game::logger("Received: " + response);
 	}
 }
 
 void BoardMulti::handleConnection()
 {
-	logger("Connected");
+	Game::logger("Connected");
 	connect(&socket, SIGNAL(readyRead()), this, SLOT(handleRead()));
 	connect(&socket, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
 }
 
 void BoardMulti::handleDisconnection()
 {
-	logger("Disconnected, exiting...");
+	Game::logger("Disconnected, exiting...");
 }
 
 void BoardMulti::handleRestart()

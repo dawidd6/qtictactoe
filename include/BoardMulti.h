@@ -32,7 +32,6 @@ class BoardMulti : public Board2v2
 	public:
 		BoardMulti(Window *window);
 		~BoardMulti();
-		void logger(QString msg);
 };
 
 #endif

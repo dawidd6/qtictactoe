@@ -1,28 +1,29 @@
-#include <QPushButton>
-#include <QAction>
-
 #include "Window.h"
+#include "Menu.h"
 #include "Board2v2.h"
 #include "BoardMulti.h"
-#include "Menu.h"
 #include "Game.h"
+
+void Game::logger(QString msg)
+{
+	qDebug
+	(
+		"[%s] %s",
+		qPrintable(QDateTime().currentDateTime().toString("yyyy-MM-dd | hh:mm:ss")),
+		qPrintable(msg)
+	);
+}
 
 Game::Game()
 {
-	window = new Window;
-	menu = new Menu(window);
+	window = new Window(this);
+	menu = new Menu(window, this);
 
 	board_2v2 = nullptr;
 	board_multi = nullptr;
 
 	menu->show();
 	window->show();
-
-	connect(&window->return_to_menu, SIGNAL(triggered()), this, SLOT(handleReturn()));
-	connect(this, SIGNAL(signalReturn()), this, SLOT(handleRestore()));
-
-	connect(&menu->play_2v2, SIGNAL(clicked()), this, SLOT(handlePlay2v2()));
-	connect(&menu->play_multi, SIGNAL(clicked()), this, SLOT(handlePlayMulti()));
 }
 
 Game::~Game()
@@ -49,9 +50,8 @@ void Game::handleReturn()
 			delete board_multi;
 			board_multi = nullptr;
 		}
-		menu = new Menu(window);
+		menu = new Menu(window, this);
 		menu->show();
-		emit signalReturn();
 	}
 }
 
@@ -77,10 +77,4 @@ void Game::handlePlayMulti()
 		board_multi = new BoardMulti(window);
 		board_multi->show();
 	}
-}
-
-void Game::handleRestore()
-{
-	connect(&menu->play_2v2, SIGNAL(clicked()), this, SLOT(handlePlay2v2()));
-	connect(&menu->play_multi, SIGNAL(clicked()), this, SLOT(handlePlayMulti()));
 }

@@ -1,10 +1,13 @@
 #ifndef QTICTACTOE_GAME_H
 #define QTICTACTOE_GAME_H
 
-#include "Window.h"
-#include "Board2v2.h"
-#include "BoardMulti.h"
-#include "Menu.h"
+#include <QObject>
+#include <QDateTime>
+
+class Window;
+class Menu;
+class Board2v2;
+class BoardMulti;
 
 class Game : public QObject
 {
@@ -14,16 +17,14 @@ class Game : public QObject
 		Board2v2 *board_2v2;
 		BoardMulti *board_multi;
 		Menu *menu;
-	signals:
-		void signalReturn();
-	private slots:
+	public slots:
 		void handleReturn();
 		void handlePlay2v2();
 		void handlePlayMulti();
-		void handleRestore();
 	public:
 		Game();
 		~Game();
+		static void logger(QString msg);
 };
 
 #endif

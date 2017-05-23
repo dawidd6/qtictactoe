@@ -8,8 +8,12 @@
 
 void Server::logger(QString msg)
 {
-	QDateTime date;
-	qDebug().noquote().nospace() << "["<< date.currentDateTime().toString("yyyy-MM-dd | hh:mm:ss") << "] " << msg;
+	qDebug
+	(
+		"[%s] %s",
+		qPrintable(QDateTime().currentDateTime().toString("yyyy-MM-dd | hh:mm:ss")),
+		qPrintable(msg)
+	);
 }
 
 void Server::handleNewConnection()
@@ -17,13 +21,13 @@ void Server::handleNewConnection()
 	if(connection_a == nullptr)
 	{
 		connection_a = nextPendingConnection();
-		connect(connection_a, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
+		connect(connection_a, &QTcpSocket::disconnected, this, &Server::handleDisconnection);
 		logger("Connected a");
 	}
 	else if(connection_b == nullptr)
 	{
 		connection_b = nextPendingConnection();
-		connect(connection_b, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
+		connect(connection_b, &QTcpSocket::disconnected, this, &Server::handleDisconnection);
 		logger("Connected b");
 	}
 	else logger("two clients connected, ignoring");
@@ -32,8 +36,8 @@ void Server::handleNewConnection()
 	{
 		connection_a->write("1x");
 		connection_b->write("0o");
-		connect(connection_a, SIGNAL(readyRead()), this, SLOT(handleRead()));
-		connect(connection_b, SIGNAL(readyRead()), this, SLOT(handleRead()));
+		connect(connection_a, &QTcpSocket::readyRead, this, &Server::handleRead);
+		connect(connection_b, &QTcpSocket::readyRead, this, &Server::handleRead);
 	}
 }
 
@@ -75,7 +79,7 @@ void Server::startListening()
 	{
 		logger("Could not start server");
 		logger("Exiting...");
-		QCoreApplication::exit(1);
+		emit signalExit();
 	}
 }
 
@@ -84,8 +88,9 @@ Server::Server()
 	setMaxPendingConnections(2);
 	connection_a = nullptr;
 	connection_b = nullptr;
+	connect(this, &Server::newConnection, this, &Server::handleNewConnection);
+	connect(this, &Server::signalExit, this, &QCoreApplication::quit, Qt::QueuedConnection);
 	startListening();
-	connect(this, SIGNAL(newConnection()), this, SLOT(handleNewConnection()));
 }
 
 int main(int argc, char **argv)

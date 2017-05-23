@@ -11,7 +11,9 @@ class Server : public QTcpServer
 		QTcpSocket *connection_b;
 		QString response_a;
 		QString response_b;
-	public slots:
+	signals:
+		void signalExit();
+	private slots:
 		void handleRead();
 		void handleNewConnection();
 		void handleDisconnection();
