@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('server_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,23 +101,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">server.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef QTICTACTOE_SERVER_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define QTICTACTOE_SERVER_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QTcpServer&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_server.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_server.html">Server</a> : <span class="keyword">public</span> QTcpServer</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">private</span>:</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        QTcpSocket *connection_a;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        QTcpSocket *connection_b;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        QString response_a;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        QString response_b;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    signals:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">void</span> signalExit();</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">private</span> slots:</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> handleRead();</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">void</span> handleNewConnection();</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">void</span> handleDisconnection();</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_server.html">Server</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">void</span> logger(QString msg);</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> startListening();</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_server_html"><div class="ttname"><a href="class_server.html">Server</a></div><div class="ttdef"><b>Definition:</b> <a href="server_8h_source.html#l00006">server.h:6</a></div></div>
+<a href="server_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef QTICTACTOE_SERVER_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define QTICTACTOE_SERVER_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QTcpServer&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_server.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_server.html">Server</a> : <span class="keyword">public</span> QTcpServer</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">private</span>:</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        QTcpSocket *connection_a;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        QTcpSocket *connection_b;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        QString response_a;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        QString response_b;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    signals:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_server.html#af10de98e951c5d6fe11716d8663f6c01">signalExit</a>();</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">private</span> slots:</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> handleRead();</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">void</span> handleNewConnection();</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">void</span> handleDisconnection();</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_server.html#ad5ec9462b520e59f7ea831e157ee5e59">Server</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_server.html#a9cf983ea4d3c59bc9a13b93f16fa0afa">logger</a>(QString msg);</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_server.html#a174332d05b2330e5682c5c5aad8917f4">startListening</a>();</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_server_html"><div class="ttname"><a href="class_server.html">Server</a></div><div class="ttdef"><b>Definition:</b> <a href="server_8h_source.html#l00006">server.h:6</a></div></div>
+<div class="ttc" id="class_server_html_a174332d05b2330e5682c5c5aad8917f4"><div class="ttname"><a href="class_server.html#a174332d05b2330e5682c5c5aad8917f4">Server::startListening</a></div><div class="ttdeci">void startListening()</div><div class="ttdef"><b>Definition:</b> <a href="server_8cpp_source.html#l00074">server.cpp:74</a></div></div>
+<div class="ttc" id="class_server_html_a9cf983ea4d3c59bc9a13b93f16fa0afa"><div class="ttname"><a href="class_server.html#a9cf983ea4d3c59bc9a13b93f16fa0afa">Server::logger</a></div><div class="ttdeci">void logger(QString msg)</div><div class="ttdef"><b>Definition:</b> <a href="server_8cpp_source.html#l00009">server.cpp:9</a></div></div>
+<div class="ttc" id="class_server_html_af10de98e951c5d6fe11716d8663f6c01"><div class="ttname"><a href="class_server.html#af10de98e951c5d6fe11716d8663f6c01">Server::signalExit</a></div><div class="ttdeci">void signalExit()</div></div>
+<div class="ttc" id="class_server_html_ad5ec9462b520e59f7ea831e157ee5e59"><div class="ttname"><a href="class_server.html#ad5ec9462b520e59f7ea831e157ee5e59">Server::Server</a></div><div class="ttdeci">Server()</div><div class="ttdef"><b>Definition:</b> <a href="server_8cpp_source.html#l00086">server.cpp:86</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li><li class="navelem"><a class="el" href="server_8h.html">server.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>
