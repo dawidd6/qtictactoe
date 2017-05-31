@@ -21,9 +21,6 @@ Game::Game()
 
 	board_2v2 = nullptr;
 	board_multi = nullptr;
-
-	menu->show();
-	window->show();
 }
 
 Game::~Game()
@@ -40,18 +37,15 @@ void Game::handleReturn()
 	{
 		if(board_2v2 != nullptr)
 		{
-			board_2v2->hide();
 			delete board_2v2;
 			board_2v2 = nullptr;
 		}
 		if(board_multi != nullptr)
 		{
-			board_multi->hide();
 			delete board_multi;
 			board_multi = nullptr;
 		}
 		menu = new Menu(window, this);
-		menu->show();
 	}
 }
 
@@ -59,11 +53,9 @@ void Game::handlePlay2v2()
 {
 	if(menu != nullptr)
 	{
-		menu->hide();
 		delete menu;
 		menu = nullptr;
 		board_2v2 = new Board2v2(window);
-		board_2v2->show();
 	}
 }
 
@@ -71,10 +63,8 @@ void Game::handlePlayMulti()
 {
 	if(menu != nullptr)
 	{
-		menu->hide();
 		delete menu;
 		menu = nullptr;
 		board_multi = new BoardMulti(window);
-		board_multi->show();
 	}
 }

@@ -1,5 +1,4 @@
-#ifndef QTICTACTOE_GAME_H
-#define QTICTACTOE_GAME_H
+#pragma once
 
 #include <QObject>
 #include <QDateTime>
@@ -26,5 +25,3 @@ class Game : public QObject
 		~Game();
 		static void logger(QString msg);
 };
-
-#endif

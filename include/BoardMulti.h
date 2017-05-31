@@ -1,7 +1,8 @@
-#ifndef QTICTACTOE_BOARD_MULTI_H
-#define QTICTACTOE_BOARD_MULTI_H
+#pragma once
 
 #include <QPushButton>
+#include <QLineEdit>
+#include <QStatusBar>
 #include <QGridLayout>
 #include <QLabel>
 #include <QPicture>
@@ -10,10 +11,14 @@
 #include "Window.h"
 #include "Board2v2.h"
 
+class SetupConnection;
+
 class BoardMulti : public Board2v2
 {
 	Q_OBJECT
 	private:
+		SetupConnection *setup_connection;
+		Window *win;
 		QIcon *icon_my;
 		QSize *size_my;
 		QIcon *icon_enemy;
@@ -31,7 +36,19 @@ class BoardMulti : public Board2v2
 		void handleDisconnection();
 	public:
 		BoardMulti(Window *window);
-		~BoardMulti();
+		virtual ~BoardMulti();
 };
 
-#endif
+class SetupConnection : public QWidget
+{
+	Q_OBJECT
+	private:
+		QGridLayout layout;
+		QLineEdit line_address;
+		QStatusBar statusbar;
+		QPushButton button_connect;
+	signals:
+		void signalSuccess();
+	public:
+		SetupConnection(Window *window, QTcpSocket &socket);
+};

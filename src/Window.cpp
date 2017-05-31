@@ -6,7 +6,14 @@ Window::Window(Game *game) : about("About", &menu), return_to_menu("Return to me
 {
 	setWindowTitle("QTicTacToe");
 	setWindowFlags(Qt::Window);
-	setFixedSize(0, 0);
+	/*
+	 * something fucky here
+	 * after invoking adjustSize on window
+	 * it's doing what it's supposed to
+	 * but also hides menubar
+	 * temporary disabling fixedsize of window
+	 */
+	//setFixedSize(0, 0);
 	setLayout(&layout);
 	move(300, 200);
 
@@ -19,6 +26,8 @@ Window::Window(Game *game) : about("About", &menu), return_to_menu("Return to me
 
 	connect(&about, SIGNAL(triggered()), this, SLOT(handleAbout()));
 	connect(&return_to_menu, SIGNAL(triggered()), game, SLOT(handleReturn()));
+
+	show();
 }
 
 void Window::handleAbout()

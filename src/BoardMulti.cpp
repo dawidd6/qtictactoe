@@ -5,27 +5,15 @@
 
 BoardMulti::BoardMulti(Window *window) : Board2v2(window), counter(0)
 {
-	socket.connectToHost("127.0.0.1", 60000);
-	connect(&socket, SIGNAL(connected()), this, SLOT(handleConnection()));
+	hide();
+	win = window;
+	win->layout.removeWidget(this);
+	window->adjustSize();
+	setup_connection = new SetupConnection(window, socket);
+	setup_connection->show();
+	connect(setup_connection, &SetupConnection::signalSuccess, this, &BoardMulti::handleConnection);
+	//connect(&socket, SIGNAL(connected()), this, SLOT(handleConnection()));
 	connect(&restart, SIGNAL(clicked()), this, SLOT(handleRestart()));
-	socket.waitForReadyRead(-1);
-
-	if(symbol_my == 'x')
-	{
-		icon_my = &icon_x;
-		size_my = &size_x;
-		icon_enemy = &icon_o;
-		size_enemy = &size_o;
-		symbol_enemy = 'o';
-	}
-	else if(symbol_my == 'o')
-	{
-		icon_my = &icon_o;
-		size_my = &size_o;
-		icon_enemy = &icon_x;
-		size_enemy = &size_x;
-		symbol_enemy = 'x';
-	}
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -47,26 +35,51 @@ BoardMulti::BoardMulti(Window *window) : Board2v2(window), counter(0)
 			}
 		});
 	}
-	if(!turn) markDisabledAll();
+	markDisabledAll();
 }
 
 BoardMulti::~BoardMulti()
 {
-	qDebug("called destructor");
 	if(socket.state() == QAbstractSocket::ConnectedState)
 		socket.disconnectFromHost();
+	if(setup_connection != nullptr)
+		delete setup_connection;
 }
-
 
 void BoardMulti::handleRead()
 {
 	if(counter == 0)
 	{
+		setup_connection->hide();
+		delete setup_connection;
+		setup_connection = nullptr;
+		win->layout.addWidget(this);
+		show();
+
 		response = socket.readAll().data();
 		turn = response[0].digitValue();
 		symbol_my = response[1];
 		Game::logger("Greeting: " + response);
 		counter++;
+		if(symbol_my == 'x')
+		{
+			icon_my = &icon_x;
+			size_my = &size_x;
+			icon_enemy = &icon_o;
+			size_enemy = &size_o;
+			symbol_enemy = 'o';
+			markEnabledAll();
+			turn = true;
+		}
+		else if(symbol_my == 'o')
+		{
+			icon_my = &icon_o;
+			size_my = &size_o;
+			icon_enemy = &icon_x;
+			size_enemy = &size_x;
+			symbol_enemy = 'x';
+			turn = false;
+		}
 	}
 	else
 	{
@@ -119,13 +132,14 @@ void BoardMulti::handleRead()
 void BoardMulti::handleConnection()
 {
 	Game::logger("Connected");
+
 	connect(&socket, SIGNAL(readyRead()), this, SLOT(handleRead()));
 	connect(&socket, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
 }
 
 void BoardMulti::handleDisconnection()
 {
-	Game::logger("Disconnected, exiting...");
+	Game::logger("Disconnected");
 }
 
 void BoardMulti::handleRestart()
@@ -155,4 +169,38 @@ void BoardMulti::handleRestart()
 	horizon_line.hide();
 	vertical_line.hide();
 	socket.write("restart");
+}
+
+SetupConnection::SetupConnection(Window *window, QTcpSocket &socket)
+{
+	window->layout.addWidget(this);
+	window->adjustSize();
+
+	setLayout(&layout);
+	layout.setSpacing(30);
+	
+	line_address.setFixedSize(300, 40);
+	button_connect.setFixedSize(100, 40);
+	
+	line_address.setText("Address");
+	button_connect.setText("Connect");
+	
+	layout.addWidget(&line_address);
+	layout.addWidget(&button_connect, 0, 0, Qt::AlignRight);
+	layout.addWidget(&statusbar);
+
+	connect(&button_connect, &QPushButton::clicked, [&]
+	{
+		socket.connectToHost(line_address.text(), 60000);
+		if(socket.waitForConnected(5000))
+		{
+			statusbar.showMessage("Connected, waiting for opponent");
+			emit signalSuccess();
+		}
+		else
+		{
+			statusbar.showMessage(socket.errorString());
+			Game::logger("Connection failed");
+		}
+	});
 }

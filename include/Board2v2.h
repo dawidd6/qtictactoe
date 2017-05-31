@@ -1,5 +1,4 @@
-#ifndef QTICTACTOE_BOARD_2V2_H
-#define QTICTACTOE_BOARD_2V2_H
+#pragma once
 
 #include <QPushButton>
 #include <QGridLayout>
@@ -50,5 +49,3 @@ class Board2v2 : public QWidget
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
 		void markButtonIcon(const int &x, const int &y, char s, QIcon &icon, QSize &size, bool n);
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef QTICTACTOE_WINDOW_H
-#define QTICTACTOE_WINDOW_H
+#pragma once
 
 #include <QPushButton>
 #include <QStackedLayout>
@@ -24,5 +23,3 @@ class Window : public QWidget
 	public:
 		Window(Game *game);
 };
-
-#endif

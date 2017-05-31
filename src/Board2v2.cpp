@@ -79,6 +79,8 @@ Board2v2::Board2v2(Window *window)
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
 
 	connect(&restart, SIGNAL(clicked()), this, SLOT(handleRestart()));
+	
+	show();
 }
 
 void Board2v2::handleRestart()

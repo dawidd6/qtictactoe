@@ -1,5 +1,4 @@
-#ifndef QTICTACTOE_MENU_H
-#define QTICTACTOE_MENU_H
+#pragma once
 
 #include <QPushButton>
 #include <QGridLayout>
@@ -12,12 +11,10 @@ class Menu : public QWidget
 {
 	Q_OBJECT
 	private:
-		QVBoxLayout layout;
+		QGridLayout layout;
 		QPushButton play_single;
 		QPushButton play_2v2;
 		QPushButton play_multi;
 	public:
 		Menu(Window *window, Game *game);
 };
-
-#endif
