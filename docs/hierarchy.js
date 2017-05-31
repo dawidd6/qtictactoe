@@ -11,6 +11,7 @@ var hierarchy =
         [ "BoardMulti", "class_board_multi.html", null ]
       ] ],
       [ "Menu", "class_menu.html", null ],
+      [ "SetupConnection", "class_setup_connection.html", null ],
       [ "Window", "class_window.html", null ]
     ] ]
 ];

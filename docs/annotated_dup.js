@@ -5,5 +5,6 @@ var annotated_dup =
     [ "Game", "class_game.html", "class_game" ],
     [ "Menu", "class_menu.html", "class_menu" ],
     [ "Server", "class_server.html", "class_server" ],
+    [ "SetupConnection", "class_setup_connection.html", "class_setup_connection" ],
     [ "Window", "class_window.html", "class_window" ]
 ];
