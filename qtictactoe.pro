@@ -15,9 +15,7 @@ SOURCES += src/*.cpp
 
 binfile.files += qtictactoe
 binfile.path = /usr/bin/
-#shortcutfiles.files += data/wallch.desktop
-#shortcutfiles.path = /usr/share/applications/
-#INSTALLS += shortcutfiles
+shortcutfiles.files += data/qtictactoe.desktop
+shortcutfiles.path = /usr/share/applications/
+INSTALLS += shortcutfiles
 INSTALLS += binfile
-
-

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=QTicTacToe
+GenericName=QTicTacToe
+Comment=QTicTacToe
+Exec=qtictactoe
+Terminal=false
+Type=Application
+Icon=QtIcon
+Categories=Game;
+StartupNotify=false
