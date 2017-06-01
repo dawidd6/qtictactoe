@@ -1,0 +1,12 @@
+Source: qtictactoe
+Section: games
+Priority: optional
+Maintainer: dawidd6 <dawidd0811@gmail.com>
+Build-Depends: debhelper (>=9), qtbase5-dev-tools, qt5-qmake, qtbase5-dev
+Standards-Version: 3.9.7
+Homepage: https://github.com/dawidd6/qtictactoe
+
+Package: qtictactoe
+Architecture: any
+Depends: libqt5gui5, libqt5widgets5, libqt5network5, libqt5core5a
+Description: QTicTacToe
