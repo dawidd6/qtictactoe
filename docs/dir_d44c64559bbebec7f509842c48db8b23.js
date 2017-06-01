@@ -4,8 +4,8 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "Board2v2", "class_board2v2.html", "class_board2v2" ]
     ] ],
     [ "BoardMulti.h", "_board_multi_8h.html", [
-      [ "BoardMulti", "class_board_multi.html", "class_board_multi" ],
-      [ "SetupConnection", "class_setup_connection.html", "class_setup_connection" ]
+      [ "SetupConnection", "class_setup_connection.html", "class_setup_connection" ],
+      [ "BoardMulti", "class_board_multi.html", "class_board_multi" ]
     ] ],
     [ "Game.h", "_game_8h.html", [
       [ "Game", "class_game.html", "class_game" ]

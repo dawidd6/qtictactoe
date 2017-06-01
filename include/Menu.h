@@ -1,15 +1,7 @@
 #pragma once
 
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
-
-#include "Window.h"
-#include "Game.h"
-
 class Menu : public QWidget
 {
-	Q_OBJECT
 	private:
 		QGridLayout layout;
 		QPushButton play_single;

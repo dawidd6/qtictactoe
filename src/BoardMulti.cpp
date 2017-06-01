@@ -1,19 +1,23 @@
+#include <QtWidgets>
+#include <QtNetwork>
+
 #include "Window.h"
 #include "Board2v2.h"
-#include "BoardMulti.h"
 #include "Game.h"
+
+#include "BoardMulti.h"
 
 BoardMulti::BoardMulti(Window *window) : Board2v2(window), counter(0)
 {
 	hide();
+	disconnect(&restart, 0, 0, 0);
 	win = window;
 	win->layout.removeWidget(this);
 	window->adjustSize();
 	setup_connection = new SetupConnection(window, socket);
 	setup_connection->show();
-	connect(setup_connection, &SetupConnection::signalSuccess, this, &BoardMulti::handleConnection);
-	//connect(&socket, SIGNAL(connected()), this, SLOT(handleConnection()));
-	connect(&restart, SIGNAL(clicked()), this, SLOT(handleRestart()));
+	connect(&socket, &QTcpSocket::connected, this, &BoardMulti::handleConnection);
+	connect(&restart, &QPushButton::clicked, this, &BoardMulti::handleRestart);
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -26,8 +30,8 @@ BoardMulti::BoardMulti(Window *window) : Board2v2(window), counter(0)
 				button[x][y].setIcon(*icon_my);
 				button[x][y].setIconSize(*size_my);
 				button_str[x][y] = symbol_my;
-				label_current.setPixmap(icon_enemy->pixmap(size_current));
 				turn = false;
+				statusbar.showMessage("Opponent's turn");
 				socket.write(QByteArray(QByteArray::number(x) + ',' + QByteArray::number(y)));
 				socket.waitForBytesWritten(3000);
 				markDisabledAll();
@@ -35,6 +39,9 @@ BoardMulti::BoardMulti(Window *window) : Board2v2(window), counter(0)
 			}
 		});
 	}
+
+	layout.setRowMinimumHeight(7, 30);
+	layout.addWidget(&statusbar, 7, 0, 1, 5);
 	markDisabledAll();
 }
 
@@ -80,38 +87,18 @@ void BoardMulti::handleRead()
 			symbol_enemy = 'x';
 			turn = false;
 		}
+		if(turn)
+			statusbar.showMessage("Your turn");
+		else
+			statusbar.showMessage("Opponent's turn");
+		label_turn.setText("Your symbol:");
+		label_current.setPixmap(icon_my->pixmap(size_current));
 	}
 	else
 	{
 		Game::logger("Reading...");
 		response = socket.readAll().data();
-		if(response == "restart")
-		{
-			label_current.setPixmap(icon_x.pixmap(size_current));
-			if(symbol_my == 'x')
-			{
-				turn = true;
-				markEnabledAll();
-			}
-			else
-			{
-				turn = false;
-				markDisabledAll();
-			}
-			for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
-			{
-				button_str[x][y] = '0';
-				button[x][y].setIcon(QIcon());
-			}
-			layout.removeWidget(&left_line);
-			layout.removeWidget(&right_line);
-			layout.removeWidget(&horizon_line);
-			layout.removeWidget(&vertical_line);
-			left_line.hide();
-			right_line.hide();
-			horizon_line.hide();
-			vertical_line.hide();
-		}
+		if(response == "restart") restartBoard();
 		else
 		{
 			int x = response[0].digitValue();
@@ -120,8 +107,8 @@ void BoardMulti::handleRead()
 			button[x][y].setIcon(*icon_enemy);
 			button[x][y].setIconSize(*size_enemy);
 			button_str[x][y] = symbol_enemy;
-			label_current.setPixmap(icon_my->pixmap(size_current));
 			turn = true;
+			statusbar.showMessage("Your turn");
 			markEnabledWhatLeft();
 			checkConditions();
 		}
@@ -133,8 +120,8 @@ void BoardMulti::handleConnection()
 {
 	Game::logger("Connected");
 
-	connect(&socket, SIGNAL(readyRead()), this, SLOT(handleRead()));
-	connect(&socket, SIGNAL(disconnected()), this, SLOT(handleDisconnection()));
+	connect(&socket, &QTcpSocket::readyRead, this, &BoardMulti::handleRead);
+	connect(&socket, &QTcpSocket::disconnected, this, &BoardMulti::handleDisconnection);
 }
 
 void BoardMulti::handleDisconnection()
@@ -142,17 +129,18 @@ void BoardMulti::handleDisconnection()
 	Game::logger("Disconnected");
 }
 
-void BoardMulti::handleRestart()
+void BoardMulti::restartBoard()
 {
-	label_current.setPixmap(icon_x.pixmap(size_current));
 	if(symbol_my == 'x')
 	{
 		turn = true;
+		statusbar.showMessage("Your turn");
 		markEnabledAll();
 	}
 	else
 	{
 		turn = false;
+		statusbar.showMessage("Opponent's turn");
 		markDisabledAll();
 	}
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
@@ -168,6 +156,11 @@ void BoardMulti::handleRestart()
 	right_line.hide();
 	horizon_line.hide();
 	vertical_line.hide();
+}
+
+void BoardMulti::handleRestart()
+{
+	restartBoard();
 	socket.write("restart");
 }
 
@@ -178,13 +171,13 @@ SetupConnection::SetupConnection(Window *window, QTcpSocket &socket)
 
 	setLayout(&layout);
 	layout.setSpacing(30);
-	
+
 	line_address.setFixedSize(300, 40);
 	button_connect.setFixedSize(100, 40);
-	
+
 	line_address.setText("Address");
 	button_connect.setText("Connect");
-	
+
 	layout.addWidget(&line_address);
 	layout.addWidget(&button_connect, 0, 0, Qt::AlignRight);
 	layout.addWidget(&statusbar);
@@ -193,14 +186,8 @@ SetupConnection::SetupConnection(Window *window, QTcpSocket &socket)
 	{
 		socket.connectToHost(line_address.text(), 60000);
 		if(socket.waitForConnected(5000))
-		{
 			statusbar.showMessage("Connected, waiting for opponent");
-			emit signalSuccess();
-		}
 		else
-		{
 			statusbar.showMessage(socket.errorString());
-			Game::logger("Connection failed");
-		}
 	});
 }

@@ -1,17 +1,7 @@
 #pragma once
 
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLabel>
-#include <QPainter>
-#include <QPicture>
-#include <QMessageBox>
-
-#include "Window.h"
-
 class Board2v2 : public QWidget
 {
-	Q_OBJECT
 	protected:
 		QGridLayout layout;
 		QPushButton restart;
@@ -34,8 +24,6 @@ class Board2v2 : public QWidget
 		int columns;
 		char win;
 		bool xnow;
-	private slots:
-		void handleRestart();
 	public:
 		Board2v2(Window *window);
 		void markDisabledAll();
@@ -48,4 +36,5 @@ class Board2v2 : public QWidget
 		void paintLine(QLabel &label, int angle, int len, QPointF point);
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
 		void markButtonIcon(const int &x, const int &y, char s, QIcon &icon, QSize &size, bool n);
+		void handleRestart();
 };

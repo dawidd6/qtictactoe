@@ -1,6 +1,9 @@
-#include "Window.h"
-#include "Menu.h"
+#include <QtWidgets>
+#include <QtNetwork>
+
 #include "Game.h"
+
+#include "Window.h"
 
 Window::Window(Game *game) : about("About", &menu), return_to_menu("Return to menu", &menu)
 {
@@ -24,8 +27,8 @@ Window::Window(Game *game) : about("About", &menu), return_to_menu("Return to me
 	menu.addAction(&return_to_menu);
 	menu.addAction(&about);
 
-	connect(&about, SIGNAL(triggered()), this, SLOT(handleAbout()));
-	connect(&return_to_menu, SIGNAL(triggered()), game, SLOT(handleReturn()));
+	connect(&about, &QAction::triggered, this, &Window::handleAbout);
+	connect(&return_to_menu, &QAction::triggered, game, &Game::handleReturn);
 
 	show();
 }

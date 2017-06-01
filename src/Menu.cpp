@@ -1,6 +1,10 @@
+#include <QtWidgets>
+#include <QtNetwork>
+
 #include "Window.h"
-#include "Menu.h"
 #include "Game.h"
+
+#include "Menu.h"
 
 Menu::Menu(Window *window, Game *game)
 {
@@ -18,13 +22,13 @@ Menu::Menu(Window *window, Game *game)
 	setLayout(&layout);
 
 	layout.setSpacing(50);
-	
+
 	layout.addWidget(&play_2v2);
 	layout.addWidget(&play_single);
 	layout.addWidget(&play_multi);
 
-	connect(&play_2v2, SIGNAL(clicked()), game, SLOT(handlePlay2v2()));
-	connect(&play_multi, SIGNAL(clicked()), game, SLOT(handlePlayMulti()));
-	
+	connect(&play_2v2, &QPushButton::clicked, game, &Game::handlePlay2v2);
+	connect(&play_multi, &QPushButton::clicked, game, &Game::handlePlayMulti);
+
 	show();
 }

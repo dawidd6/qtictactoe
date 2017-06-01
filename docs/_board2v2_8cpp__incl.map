@@ -1,6 +1,4 @@
 <map id="src/Board2v2.cpp" name="src/Board2v2.cpp">
-<area shape="rect" id="node2" href="$_window_8h.html" title="Window.h" alt="" coords="395,155,475,181"/>
-<area shape="rect" id="node14" href="$_board2v2_8h.html" title="Board2v2.h" alt="" coords="639,80,727,107"/>
-<area shape="rect" id="node8" href="$_menu_8h.html" title="Menu.h" alt="" coords="451,229,517,256"/>
-<area shape="rect" id="node11" href="$_game_8h.html" title="Game.h" alt="" coords="210,304,278,331"/>
+<area shape="rect" id="node4" href="$_window_8h.html" title="Window.h" alt="" coords="223,80,303,107"/>
+<area shape="rect" id="node5" href="$_board2v2_8h.html" title="Board2v2.h" alt="" coords="327,80,415,107"/>
 </map>

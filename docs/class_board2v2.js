@@ -4,6 +4,7 @@ var class_board2v2 =
     [ "checkConditions", "class_board2v2.html#ab1cb49d75c03a7da3a7e7ef0725363ac", null ],
     [ "drawFrames", "class_board2v2.html#a538a487e5013450e837171c9f58e2c82", null ],
     [ "drawLineOnGrid", "class_board2v2.html#a6dd63a763ce282e6d1f86e91891deff1", null ],
+    [ "handleRestart", "class_board2v2.html#ab330e2b7481956a488479cbdc913baa1", null ],
     [ "markButtonIcon", "class_board2v2.html#ac7870b8bbed5b8fe64a43ff803fc55a8", null ],
     [ "markDisabledAll", "class_board2v2.html#a99959c8f17df2175ee2db4df20ecf3e4", null ],
     [ "markEnabledAll", "class_board2v2.html#ab1d6eb78a2d778e7d94099b308a57f66", null ],

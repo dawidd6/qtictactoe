@@ -1,7 +1,11 @@
+#include <QtWidgets>
+#include <QtNetwork>
+
 #include "Window.h"
-#include "Menu.h"
 #include "Board2v2.h"
 #include "BoardMulti.h"
+#include "Menu.h"
+
 #include "Game.h"
 
 void Game::logger(QString msg)

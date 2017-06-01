@@ -1,10 +1,4 @@
 <map id="include/Menu.h" name="include/Menu.h">
-<area shape="rect" id="node2" href="$_window_8h.html" title="include/Window.h" alt="" coords="301,80,427,107"/>
-<area shape="rect" id="node6" href="$_game_8cpp.html" title="src/Game.cpp" alt="" coords="44,304,148,331"/>
-<area shape="rect" id="node8" href="$_menu_8cpp.html" title="src/Menu.cpp" alt="" coords="443,155,544,181"/>
-<area shape="rect" id="node9" href="$_window_8cpp.html" title="src/Window.cpp" alt="" coords="569,155,685,181"/>
-<area shape="rect" id="node3" href="$_board2v2_8h.html" title="include/Board2v2.h" alt="" coords="180,155,313,181"/>
-<area shape="rect" id="node4" href="$_board_multi_8h.html" title="include/BoardMulti.h" alt="" coords="285,229,425,256"/>
-<area shape="rect" id="node5" href="$_board_multi_8cpp.html" title="src/BoardMulti.cpp" alt="" coords="289,304,420,331"/>
-<area shape="rect" id="node7" href="$_board2v2_8cpp.html" title="src/Board2v2.cpp" alt="" coords="34,229,158,256"/>
+<area shape="rect" id="node2" href="$_game_8cpp.html" title="src/Game.cpp" alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node3" href="$_menu_8cpp.html" title="src/Menu.cpp" alt="" coords="133,80,235,107"/>
 </map>

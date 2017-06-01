@@ -10,7 +10,14 @@ CONFIG += c++11
 OBJECTS_DIR = obj
 DESTDIR = bin
 MOC_DIR = obj
-
-# Input
 HEADERS += include/*.h
 SOURCES += src/*.cpp
+
+binfile.files += qtictactoe
+binfile.path = /usr/bin/
+#shortcutfiles.files += data/wallch.desktop
+#shortcutfiles.path = /usr/share/applications/
+#INSTALLS += shortcutfiles
+INSTALLS += binfile
+
+

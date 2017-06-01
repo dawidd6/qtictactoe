@@ -1,4 +1,8 @@
+#include <QtWidgets>
+#include <QtNetwork>
+
 #include "Window.h"
+
 #include "Board2v2.h"
 
 Board2v2::Board2v2(Window *window)
@@ -78,8 +82,8 @@ Board2v2::Board2v2(Window *window)
 	layout.addWidget(&label_current, 6, 2);
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
 
-	connect(&restart, SIGNAL(clicked()), this, SLOT(handleRestart()));
-	
+	connect(&restart, &QPushButton::clicked, this, &Board2v2::handleRestart);
+
 	show();
 }
 
