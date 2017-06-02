@@ -1,14 +1,32 @@
-#include <QtWidgets>
-#include <QtNetwork>
+#include <QObject>
+#include <QDateTime>
+#include <QDebug>
+#include <QPushButton>
+#include <QGridLayout>
+#include <QPainter>
+#include <QPicture>
+#include <QLineF>
+#include <QPixmap>
+#include <QPointF>
+#include <QIcon>
+#include <QSize>
+#include <QLineEdit>
+#include <QTcpSocket>
+#include <QStatusBar>
+#include <QLabel>
+#include <QAction>
+#include <QMenuBar>
+#include <QStackedLayout>
 
 #include "Window.h"
+#include "Symbols.h"
 #include "Board2v2.h"
 #include "BoardMulti.h"
 #include "Menu.h"
 
 #include "Game.h"
 
-void Game::logger(QString msg)
+void CGame::logger(QString msg)
 {
 	qDebug
 	(
@@ -18,16 +36,16 @@ void Game::logger(QString msg)
 	);
 }
 
-Game::Game()
+CGame::CGame()
 {
-	window = new Window(this);
-	menu = new Menu(window, this);
+	window = new CWindow(this);
+	menu = new CMenu(window, this);
 
 	board_2v2 = nullptr;
 	board_multi = nullptr;
 }
 
-Game::~Game()
+CGame::~CGame()
 {
 	if(menu != nullptr) delete menu;
 	if(board_2v2 != nullptr) delete board_2v2;
@@ -35,7 +53,7 @@ Game::~Game()
 	if(window != nullptr) delete window;
 }
 
-void Game::handleReturn()
+void CGame::handleReturn()
 {
 	if(menu == nullptr)
 	{
@@ -49,26 +67,26 @@ void Game::handleReturn()
 			delete board_multi;
 			board_multi = nullptr;
 		}
-		menu = new Menu(window, this);
+		menu = new CMenu(window, this);
 	}
 }
 
-void Game::handlePlay2v2()
+void CGame::handlePlay2v2()
 {
 	if(menu != nullptr)
 	{
 		delete menu;
 		menu = nullptr;
-		board_2v2 = new Board2v2(window);
+		board_2v2 = new CBoard2v2(window);
 	}
 }
 
-void Game::handlePlayMulti()
+void CGame::handlePlayMulti()
 {
 	if(menu != nullptr)
 	{
 		delete menu;
 		menu = nullptr;
-		board_multi = new BoardMulti(window);
+		board_multi = new CBoardMulti(window);
 	}
 }

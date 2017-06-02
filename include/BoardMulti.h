@@ -1,6 +1,6 @@
 #pragma once
 
-class SetupConnection : public QWidget
+class CSetupConnection : public QWidget
 {
 	private:
 		QGridLayout layout;
@@ -8,28 +8,27 @@ class SetupConnection : public QWidget
 		QStatusBar statusbar;
 		QPushButton button_connect;
 	public:
-		SetupConnection(Window *window, QTcpSocket &socket);
+		CSetupConnection(CWindow *window, QTcpSocket &socket);
 };
 
-class BoardMulti : public Board2v2
+class CBoardMulti : public CBoard2v2
 {
 	private:
-		SetupConnection *setup_connection;
-		Window *win;
-		QIcon *icon_my;
-		QSize *size_my;
-		QIcon *icon_enemy;
-		QSize *size_enemy;
+		CSetupConnection *setup_connection;
+		CWindow *win;
+		CAbstractSymbol *symbol_my;
+		CAbstractSymbol *symbol_enemy;
 		QTcpSocket socket;
 		QStatusBar statusbar;
 		QString response;
-		QChar symbol_my;
-		QChar symbol_enemy;
+		QChar symbol_char_my;
+		QChar symbol_char_enemy;
 		int turn;
 		int counter;
 	public:
-		BoardMulti(Window *window);
-		~BoardMulti();
+		CBoardMulti(CWindow *window);
+		~CBoardMulti();
+		void makeMove(const int &x, const int &y, const CAbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message);
 		void handleRestart();
 		void handleRead();
 		void handleConnection();

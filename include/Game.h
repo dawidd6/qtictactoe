@@ -1,20 +1,20 @@
 #pragma once
 
-class Window;
-class Board2v2;
-class BoardMulti;
-class Menu;
+class CWindow;
+class CBoard2v2;
+class CBoardMulti;
+class CMenu;
 
-class Game : public QObject
+class CGame : public QObject
 {
 	private:
-		Window *window;
-		Board2v2 *board_2v2;
-		BoardMulti *board_multi;
-		Menu *menu;
+		CWindow *window;
+		CBoard2v2 *board_2v2;
+		CBoardMulti *board_multi;
+		CMenu *menu;
 	public:
-		Game();
-		~Game();
+		CGame();
+		~CGame();
 		static void logger(QString msg);
 		void handleReturn();
 		void handlePlay2v2();

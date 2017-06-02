@@ -1,12 +1,14 @@
 #Assembled by dawidd6
 COMPILER=g++
-CFLAGS=-Wall -fPIC -std=c++11 $(shell pkg-config --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets) -Iinclude
+CFLAGS=-Wall -fPIC -std=c++11 $(shell pkg-config --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets) -Iinclude -Iinclude/server
 PROGRAM=qtictactoe
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
 START_COLOR=\033[0;33m
 CLOSE_COLOR=\033[m
 DESTDIR=
+
+all: $(PROGRAM) server
 
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
@@ -32,7 +34,7 @@ uninstall:
 
 clean:
 	@echo "$(START_COLOR)[RM]$(CLOSE_COLOR)   src/*.o $(PROGRAM)"
-	@rm -rf src/*.o $(PROGRAM)
+	@rm -rf src/*.o $(PROGRAM) server
 
 debian:
 	@echo "$(START_COLOR)[DEBUILD]$(CLOSE_COLOR)   debian"
@@ -47,4 +49,9 @@ docs:
 vim:
 	@vim src/*.cpp include/*.h
 
-.PHONY: install uninstall clean debian docs vim
+server:
+	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   server.cpp"
+	@echo "$(START_COLOR)[LD]$(CLOSE_COLOR)   server"
+	@$(COMPILER) -o server src/server/server.cpp $(CFLAGS)
+
+.PHONY: install uninstall clean debian docs vim server

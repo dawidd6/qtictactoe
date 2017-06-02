@@ -1,8 +1,8 @@
 #pragma once
 
-class Game;
+class CGame;
 
-class Window : public QWidget
+class CWindow : public QWidget
 {
 	public:
 		QStackedLayout layout;
@@ -11,6 +11,6 @@ class Window : public QWidget
 		QAction about;
 		QAction return_to_menu;
 	public:
-		Window(Game *game);
+		CWindow(CGame *game);
 		void handleAbout();
 };

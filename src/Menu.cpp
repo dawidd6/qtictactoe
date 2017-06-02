@@ -1,12 +1,16 @@
-#include <QtWidgets>
-#include <QtNetwork>
+#include <QWidget>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QAction>
+#include <QMenuBar>
+#include <QStackedLayout>
 
 #include "Window.h"
 #include "Game.h"
 
 #include "Menu.h"
 
-Menu::Menu(Window *window, Game *game)
+CMenu::CMenu(CWindow *window, CGame *game)
 {
 	window->layout.addWidget(this);
 	window->adjustSize();
@@ -27,8 +31,8 @@ Menu::Menu(Window *window, Game *game)
 	layout.addWidget(&play_single);
 	layout.addWidget(&play_multi);
 
-	connect(&play_2v2, &QPushButton::clicked, game, &Game::handlePlay2v2);
-	connect(&play_multi, &QPushButton::clicked, game, &Game::handlePlayMulti);
+	connect(&play_2v2, &QPushButton::clicked, game, &CGame::handlePlay2v2);
+	connect(&play_multi, &QPushButton::clicked, game, &CGame::handlePlayMulti);
 
 	show();
 }

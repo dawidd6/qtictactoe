@@ -5,6 +5,6 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	Game game;
+	CGame game;
 	return a.exec();
 }

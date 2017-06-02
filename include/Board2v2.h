@@ -1,15 +1,13 @@
 #pragma once
 
-class Board2v2 : public QWidget
+class CBoard2v2 : public QWidget
 {
 	protected:
 		QGridLayout layout;
 		QPushButton restart;
 		QPushButton button[3][3];
-		QIcon icon_x;
-		QIcon icon_o;
-		QSize size_x;
-		QSize size_o;
+		CCross cross;
+		CCircle circle;
 		QSize size_current;
 		QFrame line[4];
 		QLabel left_line;
@@ -25,16 +23,14 @@ class Board2v2 : public QWidget
 		char win;
 		bool xnow;
 	public:
-		Board2v2(Window *window);
+		CBoard2v2(CWindow *window);
 		void markDisabledAll();
 		void markEnabledAll();
 		void markEnabledWhatLeft();
 		void checkConditions();
 		void drawFrames();
-		void paintCross();
-		void paintCircle();
 		void paintLine(QLabel &label, int angle, int len, QPointF point);
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
-		void markButtonIcon(const int &x, const int &y, char s, QIcon &icon, QSize &size, bool n);
+		void markButtonIcon(const int &x, const int &y, char s, CAbstractSymbol *symbol, bool n);
 		void handleRestart();
 };

@@ -1,35 +1,38 @@
-#include <QtWidgets>
-#include <QtNetwork>
+#include <QPushButton>
+#include <QGridLayout>
+#include <QPainter>
+#include <QPicture>
+#include <QLineF>
+#include <QPixmap>
+#include <QPointF>
+#include <QIcon>
+#include <QSize>
+#include <QLabel>
+#include <QAction>
+#include <QMenuBar>
+#include <QStackedLayout>
 
 #include "Window.h"
+#include "Symbols.h"
 
 #include "Board2v2.h"
 
-Board2v2::Board2v2(Window *window)
+CBoard2v2::CBoard2v2(CWindow *window) : thickness(8), rows(0), columns(0), win('n'), xnow(true)
 {
 	window->layout.addWidget(this);
 	setLayout(&layout);
+
 	restart.setText("Restart");
 	restart.setFocusPolicy(Qt::NoFocus);
 	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
-	size_x.scale(100, 100, Qt::IgnoreAspectRatio);
-	size_o.scale(100, 100, Qt::IgnoreAspectRatio);
 	label_turn.setText("Whose turn:");
 
-	thickness = 8;
-	rows = 0;
-	columns = 0;
-	win = 'n';
-	xnow = true;
-
-	paintCross();
-	paintCircle();
 	drawFrames();
 	paintLine(vertical_line, 90, 298, QPointF(112, 0));
 	paintLine(horizon_line, 0, 298, QPointF(0, 100));
 	paintLine(left_line, 45, 420, QPointF(0, 100));
 	paintLine(right_line, -45, 420, QPointF(0, 100));
-	label_current.setPixmap(icon_x.pixmap(size_current));
+	label_current.setPixmap(circle.getIcon().pixmap(size_current));
 
 	layout.setSpacing(0);
 	layout.setRowMinimumHeight(5, 20);
@@ -45,16 +48,12 @@ Board2v2::Board2v2(Window *window)
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
 			button[x][y].setDisabled(true);
+			
 			if(xnow)
-			{
-				markButtonIcon(x, y, 'x', icon_x, size_x, false);
-				label_current.setPixmap(icon_o.pixmap(size_current));
-			}
+				markButtonIcon(x, y, 'x', &cross, false);
 			else
-			{
-				markButtonIcon(x, y, 'o', icon_o, size_o, true);
-				label_current.setPixmap(icon_x.pixmap(size_current));
-			}
+				markButtonIcon(x, y, 'o', &circle, true);
+
 			checkConditions();
 		});
 
@@ -78,20 +77,21 @@ Board2v2::Board2v2(Window *window)
 		layout.addWidget(&button[x][y], rows, columns);
 		columns++;
 	}
+	
 	layout.addWidget(&label_turn, 6, 0);
 	layout.addWidget(&label_current, 6, 2);
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
 
-	connect(&restart, &QPushButton::clicked, this, &Board2v2::handleRestart);
+	connect(&restart, &QPushButton::clicked, this, &CBoard2v2::handleRestart);
 
 	show();
 }
 
-void Board2v2::handleRestart()
+void CBoard2v2::handleRestart()
 {
 	xnow = true;
 	win = 'n';
-	label_current.setPixmap(icon_x.pixmap(size_current));
+	label_current.setPixmap(cross.getIcon().pixmap(size_current));
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
 		button_str[x][y] = '0';
@@ -108,75 +108,42 @@ void Board2v2::handleRestart()
 	vertical_line.hide();
 }
 
-void Board2v2::markDisabledAll()
+void CBoard2v2::markDisabledAll()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		button[x][y].setDisabled(true);
 }
 
-void Board2v2::markEnabledAll()
+void CBoard2v2::markEnabledAll()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		button[x][y].setEnabled(true);
 }
 
-void Board2v2::markEnabledWhatLeft()
+void CBoard2v2::markEnabledWhatLeft()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		if(button_str[x][y] == '0')
 			button[x][y].setEnabled(true);
 }
 
-void Board2v2::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
+void CBoard2v2::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
 {
 	layout.addWidget(&line, fromrow, fromcolumn, rowspan, columnspan, Qt::AlignJustify);
 	line.show();
 	markDisabledAll();
 }
 
-void Board2v2::markButtonIcon(const int &x, const int &y, char s, QIcon &icon, QSize &size, bool n)
+void CBoard2v2::markButtonIcon(const int &x, const int &y, char s, CAbstractSymbol *symbol, bool n)
 {
-	button[x][y].setIcon(icon);
-	button[x][y].setIconSize(size);
+	label_current.setPixmap(symbol->getIcon().pixmap(size_current));
+	button[x][y].setIcon(symbol->getIcon());
+	button[x][y].setIconSize(symbol->getSize());
 	button_str[x][y] = s;
 	xnow = n;
 }
 
-void Board2v2::paintCross()
-{
-	QPixmap pic(size_x);
-	pic.fill(Qt::transparent);
-
-	QPainter painter(&pic);
-	painter.setPen(QPen(Qt::black, thickness));
-	painter.setRenderHint(QPainter::Antialiasing);
-
-	QLineF angleline;
-	angleline.setLine(7, 7, 93, 93);
-	painter.drawLine(angleline);
-	angleline.setLine(7, 93, 93, 7);
-	painter.drawLine(angleline);
-
-	painter.end();
-	icon_x.addPixmap(pic);
-}
-
-void Board2v2::paintCircle()
-{
-	QPixmap pic(size_o);
-	pic.fill(Qt::transparent);
-
-	QPainter painter(&pic);
-	painter.setPen(QPen(Qt::black, thickness));
-	painter.setRenderHint(QPainter::Antialiasing);
-
-	painter.drawEllipse(QPointF(50, 50), 45, 45);
-
-	painter.end();
-	icon_o.addPixmap(pic);
-}
-
-void Board2v2::drawFrames()
+void CBoard2v2::drawFrames()
 {
 	line[0].setFrameShape(QFrame::HLine);
 	line[1].setFrameShape(QFrame::HLine);
@@ -188,7 +155,7 @@ void Board2v2::drawFrames()
 	line[3].setLineWidth(2);
 }
 
-void Board2v2::paintLine(QLabel &label, int angle, int len, QPointF point)
+void CBoard2v2::paintLine(QLabel &label, int angle, int len, QPointF point)
 {
 	QPicture pic;
 	QLineF angleline;
@@ -207,7 +174,7 @@ void Board2v2::paintLine(QLabel &label, int angle, int len, QPointF point)
 	label.setPicture(pic);
 }
 
-void Board2v2::checkConditions()
+void CBoard2v2::checkConditions()
 {
 	if(button_str[0][0] == 'x' && button_str[0][1] == 'x' && button_str[0][2] == 'x')
 	drawLineOnGrid(horizon_line, 0, 0, 1, 5);
