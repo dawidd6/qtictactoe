@@ -19,7 +19,11 @@
 #include <QStackedLayout>
 
 #include "Window.h"
-#include "Symbols.h"
+#include "AbstractSymbol.h"
+#include "Circle.h"
+#include "Cross.h"
+#include "SetupConnection.h"
+#include "AbstractBoard.h"
 #include "Board2v2.h"
 #include "BoardMulti.h"
 #include "Menu.h"
@@ -40,16 +44,13 @@ CGame::CGame()
 {
 	window = new CWindow(this);
 	menu = new CMenu(window, this);
-
-	board_2v2 = nullptr;
-	board_multi = nullptr;
+	board = nullptr;
 }
 
 CGame::~CGame()
 {
 	if(menu != nullptr) delete menu;
-	if(board_2v2 != nullptr) delete board_2v2;
-	if(board_multi != nullptr) delete board_multi;
+	if(board != nullptr) delete board;
 	if(window != nullptr) delete window;
 }
 
@@ -57,15 +58,10 @@ void CGame::handleReturn()
 {
 	if(menu == nullptr)
 	{
-		if(board_2v2 != nullptr)
+		if(board != nullptr)
 		{
-			delete board_2v2;
-			board_2v2 = nullptr;
-		}
-		if(board_multi != nullptr)
-		{
-			delete board_multi;
-			board_multi = nullptr;
+			delete board;
+			board = nullptr;
 		}
 		menu = new CMenu(window, this);
 	}
@@ -77,7 +73,7 @@ void CGame::handlePlay2v2()
 	{
 		delete menu;
 		menu = nullptr;
-		board_2v2 = new CBoard2v2(window);
+		board = new CBoard2v2(window);
 	}
 }
 
@@ -87,6 +83,6 @@ void CGame::handlePlayMulti()
 	{
 		delete menu;
 		menu = nullptr;
-		board_multi = new CBoardMulti(window);
+		board = new CBoardMulti(window, this);
 	}
 }

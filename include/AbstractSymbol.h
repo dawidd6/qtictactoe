@@ -12,17 +12,3 @@ class CAbstractSymbol
 		QIcon getIcon() const;
 		QSize getSize() const;
 };
-
-class CCross : public CAbstractSymbol
-{
-	public:
-		CCross();
-		virtual void paint();
-};
-
-class CCircle : public CAbstractSymbol
-{
-	public:
-		CCircle();
-		virtual void paint();
-};

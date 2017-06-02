@@ -9,29 +9,30 @@
 #include <QAction>
 #include <QMenuBar>
 #include <QStackedLayout>
+#include <QMessageBox>
 
 #include "Window.h"
-#include "Symbols.h"
-#include "Board2v2.h"
+#include "AbstractSymbol.h"
+#include "Circle.h"
+#include "Cross.h"
+#include "AbstractBoard.h"
+#include "SetupConnection.h"
 #include "Game.h"
 
 #include "BoardMulti.h"
 
-CBoardMulti::CBoardMulti(CWindow *window) : CBoard2v2(window), counter(0)
+CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window), counter(0)
 {
 	hide();
-	disconnect(&restart, 0, 0, 0);
 	win = window;
+	g = game;
 	win->layout.removeWidget(this);
 	window->adjustSize();
 	setup_connection = new CSetupConnection(window, socket);
 	setup_connection->show();
-	connect(&socket, &QTcpSocket::connected, this, &CBoardMulti::handleConnection);
-	connect(&restart, &QPushButton::clicked, this, &CBoardMulti::handleRestart);
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
-		disconnect(&button[x][y], 0, 0, 0);
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
 			if(turn)
@@ -44,6 +45,9 @@ CBoardMulti::CBoardMulti(CWindow *window) : CBoard2v2(window), counter(0)
 			}
 		});
 	}
+
+	connect(&socket, &QTcpSocket::connected, this, &CBoardMulti::handleConnection);
+	connect(&restart, &QPushButton::clicked, this, &CBoardMulti::handleRestart);
 
 	layout.setRowMinimumHeight(7, 30);
 	layout.addWidget(&statusbar, 7, 0, 1, 5);
@@ -103,13 +107,18 @@ void CBoardMulti::handleRead()
 		CGame::logger("Reading...");
 		response = socket.readAll().data();
 		if(response == "restart") restartBoard();
+		else if(response == "dis")
+		{
+			QMessageBox::about(this, "Info", "Opponent has disconnected, press OK to return to menu");
+			g->handleReturn();
+		}
 		else
 		{
 			makeMove(response[0].digitValue(), response[2].digitValue(), symbol_enemy, symbol_char_enemy, true, "Your turn");
 			markEnabledWhatLeft();
 			checkConditions();
+			CGame::logger("Received: " + response);
 		}
-		CGame::logger("Received: " + response);
 	}
 }
 
@@ -136,8 +145,9 @@ void CBoardMulti::handleDisconnection()
 	CGame::logger("Disconnected");
 }
 
-void CBoardMulti::restartBoard()
+void CBoardMulti::handleRestart()
 {
+	restartBoard();
 	if(symbol_char_my == 'x')
 	{
 		turn = true;
@@ -150,51 +160,5 @@ void CBoardMulti::restartBoard()
 		statusbar.showMessage("Opponent's turn");
 		markDisabledAll();
 	}
-	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
-	{
-		button_str[x][y] = '0';
-		button[x][y].setIcon(QIcon());
-	}
-	layout.removeWidget(&left_line);
-	layout.removeWidget(&right_line);
-	layout.removeWidget(&horizon_line);
-	layout.removeWidget(&vertical_line);
-	left_line.hide();
-	right_line.hide();
-	horizon_line.hide();
-	vertical_line.hide();
-}
-
-void CBoardMulti::handleRestart()
-{
-	restartBoard();
 	socket.write("restart");
-}
-
-CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
-{
-	window->layout.addWidget(this);
-	window->adjustSize();
-
-	setLayout(&layout);
-	layout.setSpacing(30);
-
-	line_address.setFixedSize(300, 40);
-	button_connect.setFixedSize(100, 40);
-
-	line_address.setText("Address");
-	button_connect.setText("Connect");
-
-	layout.addWidget(&line_address);
-	layout.addWidget(&button_connect, 0, 0, Qt::AlignRight);
-	layout.addWidget(&statusbar);
-
-	connect(&button_connect, &QPushButton::clicked, [&]
-	{
-		socket.connectToHost(line_address.text(), 60000);
-		if(socket.waitForConnected(5000))
-			statusbar.showMessage("Connected, waiting for opponent");
-		else
-			statusbar.showMessage(socket.errorString());
-	});
 }

@@ -1,16 +1,14 @@
 #pragma once
 
 class CWindow;
-class CBoard2v2;
-class CBoardMulti;
+class CAbstractBoard;
 class CMenu;
 
 class CGame : public QObject
 {
 	private:
 		CWindow *window;
-		CBoard2v2 *board_2v2;
-		CBoardMulti *board_multi;
+		CAbstractBoard *board;
 		CMenu *menu;
 	public:
 		CGame();
