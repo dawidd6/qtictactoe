@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "CAbstractBoard", "class_c_abstract_board.html", "class_c_abstract_board" ],
     [ "CAbstractSymbol", "class_c_abstract_symbol.html", "class_c_abstract_symbol" ],
     [ "CBoard2v2", "class_c_board2v2.html", "class_c_board2v2" ],
     [ "CBoardMulti", "class_c_board_multi.html", "class_c_board_multi" ],

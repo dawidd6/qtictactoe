@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['restartboard',['restartBoard',['../class_c_board_multi.html#a294e522226f7df19bd9c8ade5f09a95a',1,'CBoardMulti']]]
+  ['restartboard',['restartBoard',['../class_c_abstract_board.html#a90e2ebf067868c852db912f6332b457b',1,'CAbstractBoard']]]
 ];

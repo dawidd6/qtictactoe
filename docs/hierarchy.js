@@ -11,7 +11,8 @@ var hierarchy =
       [ "Server", "class_server.html", null ]
     ] ],
     [ "QWidget", null, [
-      [ "CBoard2v2", "class_c_board2v2.html", [
+      [ "CAbstractBoard", "class_c_abstract_board.html", [
+        [ "CBoard2v2", "class_c_board2v2.html", null ],
         [ "CBoardMulti", "class_c_board_multi.html", null ]
       ] ],
       [ "CMenu", "class_c_menu.html", null ],

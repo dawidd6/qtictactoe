@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['cabstractboard',['CAbstractBoard',['../class_c_abstract_board.html',1,'']]],
   ['cabstractsymbol',['CAbstractSymbol',['../class_c_abstract_symbol.html',1,'']]],
   ['cboard2v2',['CBoard2v2',['../class_c_board2v2.html',1,'']]],
   ['cboardmulti',['CBoardMulti',['../class_c_board_multi.html',1,'']]],
