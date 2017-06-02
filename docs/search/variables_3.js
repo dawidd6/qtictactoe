@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['horizon_5fline',['horizon_line',['../class_board2v2.html#a3d7231d2140205bc851f810bc1a2a539',1,'Board2v2']]]
+  ['horizon_5fline',['horizon_line',['../class_c_board2v2.html#a61579b4e70a95c25cdebca5dd93c0c63',1,'CBoard2v2']]]
 ];

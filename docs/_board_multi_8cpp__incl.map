@@ -1,6 +1,7 @@
 <map id="src/BoardMulti.cpp" name="src/BoardMulti.cpp">
-<area shape="rect" id="node4" href="$_window_8h.html" title="Window.h" alt="" coords="223,80,303,107"/>
-<area shape="rect" id="node5" href="$_board2v2_8h.html" title="Board2v2.h" alt="" coords="327,80,415,107"/>
-<area shape="rect" id="node6" href="$_game_8h.html" title="Game.h" alt="" coords="440,80,508,107"/>
-<area shape="rect" id="node7" href="$_board_multi_8h.html" title="BoardMulti.h" alt="" coords="532,80,627,107"/>
+<area shape="rect" id="node13" href="$_window_8h.html" title="Window.h" alt="" coords="1182,80,1262,107"/>
+<area shape="rect" id="node14" href="$_symbols_8h.html" title="Symbols.h" alt="" coords="1287,80,1371,107"/>
+<area shape="rect" id="node15" href="$_board2v2_8h.html" title="Board2v2.h" alt="" coords="1395,80,1483,107"/>
+<area shape="rect" id="node16" href="$_game_8h.html" title="Game.h" alt="" coords="1508,80,1576,107"/>
+<area shape="rect" id="node17" href="$_board_multi_8h.html" title="BoardMulti.h" alt="" coords="1600,80,1695,107"/>
 </map>

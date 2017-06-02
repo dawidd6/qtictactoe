@@ -105,7 +105,6 @@ $(document).ready(function(){initNavTree('class_server.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_server-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -115,11 +114,6 @@ $(document).ready(function(){initNavTree('class_server.html','');});
 
 <p><code>#include &lt;<a class="el" href="server_8h_source.html">server.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
-Signals</h2></td></tr>
-<tr class="memitem:af10de98e951c5d6fe11716d8663f6c01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#af10de98e951c5d6fe11716d8663f6c01">signalExit</a> ()</td></tr>
-<tr class="separator:af10de98e951c5d6fe11716d8663f6c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5ec9462b520e59f7ea831e157ee5e59"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#ad5ec9462b520e59f7ea831e157ee5e59">Server</a> ()</td></tr>
@@ -128,10 +122,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9cf983ea4d3c59bc9a13b93f16fa0afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a174332d05b2330e5682c5c5aad8917f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a174332d05b2330e5682c5c5aad8917f4">startListening</a> ()</td></tr>
 <tr class="separator:a174332d05b2330e5682c5c5aad8917f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af7c5825e62dc83f1a3a6c8e4137e09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a7af7c5825e62dc83f1a3a6c8e4137e09">handleRead</a> ()</td></tr>
+<tr class="separator:a7af7c5825e62dc83f1a3a6c8e4137e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c4ff3c7c7fa22956c30f6cb13036744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a6c4ff3c7c7fa22956c30f6cb13036744">handleNewConnection</a> ()</td></tr>
+<tr class="separator:a6c4ff3c7c7fa22956c30f6cb13036744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a782b2d9f22711ac0cca57e990dfb83d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a782b2d9f22711ac0cca57e990dfb83d0">handleDisconnection</a> ()</td></tr>
+<tr class="separator:a782b2d9f22711ac0cca57e990dfb83d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="server_8h_source.html#l00006">6</a> of file <a class="el" href="server_8h_source.html">server.h</a>.</p>
+<p>Definition at line <a class="el" href="server_8h_source.html#l00003">3</a> of file <a class="el" href="server_8h_source.html">server.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad5ec9462b520e59f7ea831e157ee5e59"></a>
 <div class="memitem">
@@ -151,6 +151,57 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a782b2d9f22711ac0cca57e990dfb83d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::handleDisconnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="server_8cpp_source.html#l00060">60</a> of file <a class="el" href="server_8cpp_source.html">server.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c4ff3c7c7fa22956c30f6cb13036744"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::handleNewConnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="server_8cpp_source.html#l00019">19</a> of file <a class="el" href="server_8cpp_source.html">server.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7af7c5825e62dc83f1a3a6c8e4137e09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::handleRead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="server_8cpp_source.html#l00044">44</a> of file <a class="el" href="server_8cpp_source.html">server.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a9cf983ea4d3c59bc9a13b93f16fa0afa"></a>
 <div class="memitem">
 <div class="memproto">
@@ -166,29 +217,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="server_8cpp_source.html#l00009">9</a> of file <a class="el" href="server_8cpp_source.html">server.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af10de98e951c5d6fe11716d8663f6c01"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Server::signalExit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -210,8 +238,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>server/<a class="el" href="server_8h_source.html">server.h</a></li>
-<li>server/<a class="el" href="server_8cpp_source.html">server.cpp</a></li>
+<li>include/server/<a class="el" href="server_8h_source.html">server.h</a></li>
+<li>src/server/<a class="el" href="server_8cpp_source.html">server.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

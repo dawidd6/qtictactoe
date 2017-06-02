@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['checkconditions',['checkConditions',['../class_board2v2.html#ab1cb49d75c03a7da3a7e7ef0725363ac',1,'Board2v2']]]
+  ['drawframes',['drawFrames',['../class_c_board2v2.html#acf4b18b2c29347364a2441c65c024466',1,'CBoard2v2']]],
+  ['drawlineongrid',['drawLineOnGrid',['../class_c_board2v2.html#a4b68e75cfd8b7238f5416b67be964ec6',1,'CBoard2v2']]]
 ];

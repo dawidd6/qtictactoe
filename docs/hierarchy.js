@@ -1,17 +1,21 @@
 var hierarchy =
 [
+    [ "CAbstractSymbol", "class_c_abstract_symbol.html", [
+      [ "CCircle", "class_c_circle.html", null ],
+      [ "CCross", "class_c_cross.html", null ]
+    ] ],
     [ "QObject", null, [
-      [ "Game", "class_game.html", null ]
+      [ "CGame", "class_c_game.html", null ]
     ] ],
     [ "QTcpServer", null, [
       [ "Server", "class_server.html", null ]
     ] ],
     [ "QWidget", null, [
-      [ "Board2v2", "class_board2v2.html", [
-        [ "BoardMulti", "class_board_multi.html", null ]
+      [ "CBoard2v2", "class_c_board2v2.html", [
+        [ "CBoardMulti", "class_c_board_multi.html", null ]
       ] ],
-      [ "Menu", "class_menu.html", null ],
-      [ "SetupConnection", "class_setup_connection.html", null ],
-      [ "Window", "class_window.html", null ]
+      [ "CMenu", "class_c_menu.html", null ],
+      [ "CSetupConnection", "class_c_setup_connection.html", null ],
+      [ "CWindow", "class_c_window.html", null ]
     ] ]
 ];

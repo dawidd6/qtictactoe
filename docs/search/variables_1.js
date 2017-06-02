@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['button',['button',['../class_board2v2.html#af3ff20c0518a6dd943f75656638cb41d',1,'Board2v2']]],
-  ['button_5fstr',['button_str',['../class_board2v2.html#af2325847baf312726e21c71ee066daf8',1,'Board2v2']]]
+  ['button',['button',['../class_c_board2v2.html#aea135e5fadd257a4866992993abb8d09',1,'CBoard2v2']]],
+  ['button_5fstr',['button_str',['../class_c_board2v2.html#a04ebe7c3750c8f18414229bc6e751c65',1,'CBoard2v2']]]
 ];

@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../server_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;server.cpp'],['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp']]],
-  ['markbuttonicon',['markButtonIcon',['../class_board2v2.html#ac7870b8bbed5b8fe64a43ff803fc55a8',1,'Board2v2']]],
-  ['markdisabledall',['markDisabledAll',['../class_board2v2.html#a99959c8f17df2175ee2db4df20ecf3e4',1,'Board2v2']]],
-  ['markenabledall',['markEnabledAll',['../class_board2v2.html#ab1d6eb78a2d778e7d94099b308a57f66',1,'Board2v2']]],
-  ['markenabledwhatleft',['markEnabledWhatLeft',['../class_board2v2.html#a0695da3b0f98c91cff3ac4120586f457',1,'Board2v2']]],
-  ['menu',['Menu',['../class_menu.html#a5c1b5806361f94ad9de8d1ee72ac7384',1,'Menu']]]
+  ['paint',['paint',['../class_c_abstract_symbol.html#a2fb0872f7d4ebfd13f553158f949e940',1,'CAbstractSymbol::paint()'],['../class_c_cross.html#aa0729b5ac44b05f38111dd96b95d237e',1,'CCross::paint()'],['../class_c_circle.html#afc37bb0c3b27ff3b9c1b098224eb659d',1,'CCircle::paint()']]],
+  ['paintline',['paintLine',['../class_c_board2v2.html#aeb4dcd1547c61cb7814f0090f02e387a',1,'CBoard2v2']]]
 ];

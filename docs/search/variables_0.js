@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['about',['about',['../class_window.html#aa6ab86d0910ce3dc4d157363082f83fd',1,'Window']]]
+  ['about',['about',['../class_c_window.html#afc6b320d58684a469cbc29850604fb1a',1,'CWindow']]]
 ];

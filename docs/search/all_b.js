@@ -3,10 +3,9 @@ var searchData=
   ['server',['Server',['../class_server.html',1,'Server'],['../class_server.html#ad5ec9462b520e59f7ea831e157ee5e59',1,'Server::Server()']]],
   ['server_2ecpp',['server.cpp',['../server_8cpp.html',1,'']]],
   ['server_2eh',['server.h',['../server_8h.html',1,'']]],
-  ['setupconnection',['SetupConnection',['../class_setup_connection.html',1,'SetupConnection'],['../class_setup_connection.html#a1828dc5e186d553ecf79ee16bbe27b47',1,'SetupConnection::SetupConnection()']]],
-  ['signalexit',['signalExit',['../class_server.html#af10de98e951c5d6fe11716d8663f6c01',1,'Server']]],
-  ['size_5fcurrent',['size_current',['../class_board2v2.html#aa5cf28c935930c5a1a01717b8f4ce581',1,'Board2v2']]],
-  ['size_5fo',['size_o',['../class_board2v2.html#af9cba9ec6a36839497a424b418b9741b',1,'Board2v2']]],
-  ['size_5fx',['size_x',['../class_board2v2.html#a61c33adf78f0d12f4b7dc63834617eb2',1,'Board2v2']]],
-  ['startlistening',['startListening',['../class_server.html#a174332d05b2330e5682c5c5aad8917f4',1,'Server']]]
+  ['size',['size',['../class_c_abstract_symbol.html#a864f44b885e1eb074afb2a7b549e82e1',1,'CAbstractSymbol']]],
+  ['size_5fcurrent',['size_current',['../class_c_board2v2.html#ab5d37bc04014893ff89934a7e196c0a0',1,'CBoard2v2']]],
+  ['startlistening',['startListening',['../class_server.html#a174332d05b2330e5682c5c5aad8917f4',1,'Server']]],
+  ['symbols_2ecpp',['Symbols.cpp',['../_symbols_8cpp.html',1,'']]],
+  ['symbols_2eh',['Symbols.h',['../_symbols_8h.html',1,'']]]
 ];

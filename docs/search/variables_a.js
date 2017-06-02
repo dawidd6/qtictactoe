@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertical_5fline',['vertical_line',['../class_board2v2.html#ac0ba9bd15b384772676c5e636bfd4ad4',1,'Board2v2']]]
+  ['vertical_5fline',['vertical_line',['../class_c_board2v2.html#ab44603109c21c6fc59df4b9e60905bc1',1,'CBoard2v2']]]
 ];
