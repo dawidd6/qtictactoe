@@ -33,6 +33,7 @@ CMenu::CMenu(CWindow *window, CGame *game)
 
 	connect(&play_2v2, &QPushButton::clicked, game, &CGame::handlePlay2v2);
 	connect(&play_multi, &QPushButton::clicked, game, &CGame::handlePlayMulti);
+	connect(&play_single, &QPushButton::clicked, game, &CGame::handlePlaySingle);
 
 	show();
 }

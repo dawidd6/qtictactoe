@@ -4,7 +4,7 @@ class CWindow;
 class CAbstractBoard;
 class CMenu;
 
-class CGame : public QObject
+class CGame final : public QObject
 {
 	private:
 		CWindow *window;
@@ -17,4 +17,5 @@ class CGame : public QObject
 		void handleReturn();
 		void handlePlay2v2();
 		void handlePlayMulti();
+		void handlePlaySingle();
 };

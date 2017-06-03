@@ -22,6 +22,7 @@ class CAbstractBoard : public QWidget
 		int thickness;
 		int rows;
 		int columns;
+		int win;
 	public:
 		CAbstractBoard(CWindow *window);
 		void markDisabledAll();

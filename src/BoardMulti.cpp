@@ -77,7 +77,7 @@ void CBoardMulti::handleRead()
 		symbol_char_my = response[1];
 		CGame::logger("Greeting: " + response);
 		counter++;
-		
+
 		if(symbol_char_my == 'x')
 		{
 			symbol_my = &cross;
@@ -93,7 +93,7 @@ void CBoardMulti::handleRead()
 			symbol_char_enemy = 'x';
 			turn = false;
 		}
-		
+
 		if(turn)
 			statusbar.showMessage("Your turn");
 		else

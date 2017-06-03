@@ -26,6 +26,7 @@
 #include "AbstractBoard.h"
 #include "Board2v2.h"
 #include "BoardMulti.h"
+#include "BoardSingle.h"
 #include "Menu.h"
 
 #include "Game.h"
@@ -84,5 +85,15 @@ void CGame::handlePlayMulti()
 		delete menu;
 		menu = nullptr;
 		board = new CBoardMulti(window, this);
+	}
+}
+
+void CGame::handlePlaySingle()
+{
+	if(menu != nullptr)
+	{
+		delete menu;
+		menu = nullptr;
+		board = new CBoardSingle(window);
 	}
 }

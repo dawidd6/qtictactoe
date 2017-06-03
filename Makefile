@@ -8,7 +8,7 @@ START_COLOR=\033[0;33m
 CLOSE_COLOR=\033[m
 DESTDIR=
 
-all: $(PROGRAM) server
+all: banner $(PROGRAM) server
 
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
@@ -54,4 +54,7 @@ server:
 	@echo "$(START_COLOR)[LD]$(CLOSE_COLOR)   server"
 	@$(COMPILER) -o server src/srv/server.cpp $(CFLAGS)
 
-.PHONY: install uninstall clean debian docs vim server
+banner:
+	@head -n 8 src/main.cpp |cut -d '*' -f2
+
+.PHONY: install uninstall clean debian docs vim server banner

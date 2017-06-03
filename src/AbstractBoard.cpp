@@ -19,7 +19,7 @@
 
 #include "AbstractBoard.h"
 
-CAbstractBoard::CAbstractBoard(CWindow *window) : thickness(8), rows(0), columns(0)
+CAbstractBoard::CAbstractBoard(CWindow *window) : thickness(8), rows(0), columns(0), win(0)
 {
 	window->layout.addWidget(this);
 	setLayout(&layout);
@@ -67,7 +67,7 @@ CAbstractBoard::CAbstractBoard(CWindow *window) : thickness(8), rows(0), columns
 		layout.addWidget(&button[x][y], rows, columns);
 		columns++;
 	}
-	
+
 	layout.addWidget(&label_turn, 6, 0);
 	layout.addWidget(&label_current, 6, 2);
 	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
@@ -117,6 +117,7 @@ void CAbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, i
 	layout.addWidget(&line, fromrow, fromcolumn, rowspan, columnspan, Qt::AlignJustify);
 	line.show();
 	markDisabledAll();
+	win = 1;
 }
 
 void CAbstractBoard::drawFrames()

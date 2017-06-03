@@ -20,13 +20,11 @@
 
 #include "Board2v2.h"
 
-CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window), win('n'), xnow(true)
+CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window), xnow(true)
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
-			button[x][y].setDisabled(true);
-
 			if(xnow)
 			{
 				markButtonIcon(x, y, 'x', cross, false);
@@ -48,12 +46,12 @@ void CBoard2v2::handleRestart()
 {
 	restartBoard();
 	xnow = true;
-	win = 'n';
 	label_current.setPixmap(cross.getIcon().pixmap(size_current));
 }
 
 void CBoard2v2::markButtonIcon(const int &x, const int &y, char s, const CAbstractSymbol &symbol, bool n)
 {
+	button[x][y].setDisabled(true);
 	button[x][y].setIcon(symbol.getIcon());
 	button[x][y].setIconSize(symbol.getSize());
 	button_str[x][y] = s;
