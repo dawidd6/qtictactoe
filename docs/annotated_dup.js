@@ -4,6 +4,7 @@ var annotated_dup =
     [ "CAbstractSymbol", "class_c_abstract_symbol.html", "class_c_abstract_symbol" ],
     [ "CBoard2v2", "class_c_board2v2.html", "class_c_board2v2" ],
     [ "CBoardMulti", "class_c_board_multi.html", "class_c_board_multi" ],
+    [ "CBoardSingle", "class_c_board_single.html", "class_c_board_single" ],
     [ "CCircle", "class_c_circle.html", "class_c_circle" ],
     [ "CCross", "class_c_cross.html", "class_c_cross" ],
     [ "CGame", "class_c_game.html", "class_c_game" ],

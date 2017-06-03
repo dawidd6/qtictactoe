@@ -1,6 +1,6 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
-    [ "server", "dir_9802b4c1251697bb7aa87f8aabca2719.html", "dir_9802b4c1251697bb7aa87f8aabca2719" ],
+    [ "srv", "dir_40fdf46f0b8da95b7da6034eec1b1a60.html", "dir_40fdf46f0b8da95b7da6034eec1b1a60" ],
     [ "AbstractBoard.h", "_abstract_board_8h.html", [
       [ "CAbstractBoard", "class_c_abstract_board.html", "class_c_abstract_board" ]
     ] ],
@@ -12,6 +12,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     ] ],
     [ "BoardMulti.h", "_board_multi_8h.html", [
       [ "CBoardMulti", "class_c_board_multi.html", "class_c_board_multi" ]
+    ] ],
+    [ "BoardSingle.h", "_board_single_8h.html", [
+      [ "CBoardSingle", "class_c_board_single.html", "class_c_board_single" ]
     ] ],
     [ "Circle.h", "_circle_8h.html", [
       [ "CCircle", "class_c_circle.html", "class_c_circle" ]

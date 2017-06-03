@@ -2,6 +2,7 @@
 <area shape="rect" id="node2" href="$_abstract_board_8cpp.html" title="src/AbstractBoard.cpp" alt="" coords="5,80,157,107"/>
 <area shape="rect" id="node3" href="$_board2v2_8cpp.html" title="src/Board2v2.cpp" alt="" coords="182,80,306,107"/>
 <area shape="rect" id="node4" href="$_board_multi_8cpp.html" title="src/BoardMulti.cpp" alt="" coords="329,80,460,107"/>
-<area shape="rect" id="node5" href="$_circle_8cpp.html" title="src/Circle.cpp" alt="" coords="485,80,587,107"/>
-<area shape="rect" id="node6" href="$_game_8cpp.html" title="src/Game.cpp" alt="" coords="612,80,716,107"/>
+<area shape="rect" id="node5" href="$_board_single_8cpp.html" title="src/BoardSingle.cpp" alt="" coords="484,80,623,107"/>
+<area shape="rect" id="node6" href="$_circle_8cpp.html" title="src/Circle.cpp" alt="" coords="647,80,750,107"/>
+<area shape="rect" id="node7" href="$_game_8cpp.html" title="src/Game.cpp" alt="" coords="775,80,879,107"/>
 </map>
