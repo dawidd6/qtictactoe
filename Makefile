@@ -1,6 +1,6 @@
 #Assembled by dawidd6
 COMPILER=g++
-CFLAGS=-Wall -fPIC -std=c++11 $(shell pkg-config --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets) -Iinclude -Iinclude/server
+CFLAGS=-Wall -fPIC -std=c++11 $(shell pkg-config --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets) -Iinclude -Iinclude/srv
 PROGRAM=qtictactoe
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
@@ -52,6 +52,6 @@ vim:
 server:
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   server.cpp"
 	@echo "$(START_COLOR)[LD]$(CLOSE_COLOR)   server"
-	@$(COMPILER) -o server src/server/server.cpp $(CFLAGS)
+	@$(COMPILER) -o server src/srv/server.cpp $(CFLAGS)
 
 .PHONY: install uninstall clean debian docs vim server
