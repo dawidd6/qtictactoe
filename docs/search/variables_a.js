@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertical_5fline',['vertical_line',['../class_c_abstract_board.html#a704a044bd1a5fc6d1b675def2812f49f',1,'CAbstractBoard']]]
+  ['win',['win',['../class_c_abstract_board.html#a7f3f4f9b45c7941b0da7dc9d31938f99',1,'CAbstractBoard']]]
 ];

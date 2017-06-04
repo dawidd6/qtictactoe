@@ -135,8 +135,8 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>about
-: <a class="el" href="class_c_window.html#afc6b320d58684a469cbc29850604fb1a">CWindow</a>
+<li>addToLayout()
+: <a class="el" href="class_c_window.html#aec7bf8516343dd10fa045e164eacf901">CWindow</a>
 </li>
 </ul>
 
@@ -243,6 +243,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>handlePlaySingle()
 : <a class="el" href="class_c_game.html#a5dc532c3f41bcb6c4f27e39413e83e0b">CGame</a>
 </li>
+<li>handleRandom()
+: <a class="el" href="class_c_board_multi.html#a8c0d0652c493460eeed27801bd5d6aa7">CBoardMulti</a>
+</li>
 <li>handleRead()
 : <a class="el" href="class_c_board_multi.html#a5dbf9d3acf0993ab909a878ad42715b7">CBoardMulti</a>
 , <a class="el" href="class_server.html#a7af7c5825e62dc83f1a3a6c8e4137e09">Server</a>
@@ -278,7 +281,6 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>layout
 : <a class="el" href="class_c_abstract_board.html#a665d8bf52e36a400e7c94e8c5f532f4d">CAbstractBoard</a>
-, <a class="el" href="class_c_window.html#aa5bebf24cde370e55629e24f8993f144">CWindow</a>
 </li>
 <li>left_line
 : <a class="el" href="class_c_abstract_board.html#ac8c4cf227e40232ec2900d64082c91c5">CAbstractBoard</a>
@@ -313,12 +315,6 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>markEnabledWhatLeft()
 : <a class="el" href="class_c_abstract_board.html#a0623b9f56517d5571a0112a4d2f57cc4">CAbstractBoard</a>
 </li>
-<li>menu
-: <a class="el" href="class_c_window.html#a28d55e441f66a09215f1b3e6a3c49356">CWindow</a>
-</li>
-<li>menubar
-: <a class="el" href="class_c_window.html#a55290559ca1cfbdea9edcec56c74d40f">CWindow</a>
-</li>
 </ul>
 
 
@@ -328,8 +324,14 @@ $(document).ready(function(){initNavTree('functions.html','');});
 , <a class="el" href="class_c_circle.html#afc37bb0c3b27ff3b9c1b098224eb659d">CCircle</a>
 , <a class="el" href="class_c_cross.html#aa0729b5ac44b05f38111dd96b95d237e">CCross</a>
 </li>
+<li>painter
+: <a class="el" href="class_c_abstract_symbol.html#a99d0b89e7a016d931e77ab1c97cf05d5">CAbstractSymbol</a>
+</li>
 <li>paintLine()
 : <a class="el" href="class_c_abstract_board.html#a342beabf5c8e81e038a4eedfb4dab154">CAbstractBoard</a>
+</li>
+<li>pixmap
+: <a class="el" href="class_c_abstract_symbol.html#a97f2340a536f27f5234451d172d0bb87">CAbstractSymbol</a>
 </li>
 </ul>
 
@@ -339,16 +341,20 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_c_board_single.html#abb9f03e52c916bb588a0bc23083248ae">CBoardSingle</a>
 </li>
 <li>randomTurn()
-: <a class="el" href="class_c_board_single.html#a0bcaf8107ca9b36150d77a29648f1f2c">CBoardSingle</a>
+: <a class="el" href="class_c_board2v2.html#a005c81bc6d9583544b26eb8a3fc5ff2a">CBoard2v2</a>
+, <a class="el" href="class_c_board_single.html#a0bcaf8107ca9b36150d77a29648f1f2c">CBoardSingle</a>
+</li>
+<li>randomTurnAndSymbol()
+: <a class="el" href="class_server.html#a3ba84e59ad1530359a6666de6b9afd32">Server</a>
+</li>
+<li>removeFromLayout()
+: <a class="el" href="class_c_window.html#a8e2eab76962eac1fd37ec465d0b2bb02">CWindow</a>
 </li>
 <li>restart
 : <a class="el" href="class_c_abstract_board.html#a2358dca38eac11660e8b21700b4aa630">CAbstractBoard</a>
 </li>
 <li>restartBoard()
 : <a class="el" href="class_c_abstract_board.html#a90e2ebf067868c852db912f6332b457b">CAbstractBoard</a>
-</li>
-<li>return_to_menu
-: <a class="el" href="class_c_window.html#a83ed2ff4b84a274be52f7a50ccf02ee8">CWindow</a>
 </li>
 <li>right_line
 : <a class="el" href="class_c_abstract_board.html#a79c02cdcb61fb618208807450802260b">CAbstractBoard</a>
@@ -363,11 +369,17 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>Server()
 : <a class="el" href="class_server.html#ad5ec9462b520e59f7ea831e157ee5e59">Server</a>
 </li>
+<li>setAboutEnabled()
+: <a class="el" href="class_c_window.html#aa98d0a4b94b580d20c56e84cbcb45cc0">CWindow</a>
+</li>
 <li>size
 : <a class="el" href="class_c_abstract_symbol.html#a864f44b885e1eb074afb2a7b549e82e1">CAbstractSymbol</a>
 </li>
 <li>size_current
 : <a class="el" href="class_c_abstract_board.html#ae1b882d943346b8f3bf5c14e5ab8ebc9">CAbstractBoard</a>
+</li>
+<li>smb
+: <a class="el" href="class_c_abstract_board.html#af53650896f160fc355c06347196110e7">CAbstractBoard</a>
 </li>
 <li>startListening()
 : <a class="el" href="class_server.html#a174332d05b2330e5682c5c5aad8917f4">Server</a>

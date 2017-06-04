@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['geticon',['getIcon',['../class_c_abstract_symbol.html#ae6cda83e4ad0f262d37758959155516e',1,'CAbstractSymbol']]],
-  ['getsize',['getSize',['../class_c_abstract_symbol.html#aada5f6131314316dff8ba4b01cb933cf',1,'CAbstractSymbol']]]
+  ['drawframes',['drawFrames',['../class_c_abstract_board.html#a43bb7c61b3bfee7ab9df7a8304ec1a44',1,'CAbstractBoard']]],
+  ['drawlineongrid',['drawLineOnGrid',['../class_c_abstract_board.html#a9300fde7eece423a350f8cce19dd560b',1,'CAbstractBoard']]]
 ];

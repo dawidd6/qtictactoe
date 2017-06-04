@@ -1,10 +1,10 @@
 <map id="src/BoardMulti.cpp" name="src/BoardMulti.cpp">
-<area shape="rect" id="node14" href="$_window_8h.html" title="Window.h" alt="" coords="1315,80,1395,107"/>
-<area shape="rect" id="node15" href="$_abstract_symbol_8h.html" title="AbstractSymbol.h" alt="" coords="1420,80,1547,107"/>
-<area shape="rect" id="node16" href="$_circle_8h.html" title="Circle.h" alt="" coords="1571,80,1638,107"/>
-<area shape="rect" id="node17" href="$_cross_8h.html" title="Cross.h" alt="" coords="1663,80,1731,107"/>
-<area shape="rect" id="node18" href="$_abstract_board_8h.html" title="AbstractBoard.h" alt="" coords="1755,80,1871,107"/>
-<area shape="rect" id="node19" href="$_setup_connection_8h.html" title="SetupConnection.h" alt="" coords="1895,80,2029,107"/>
-<area shape="rect" id="node20" href="$_game_8h.html" title="Game.h" alt="" coords="2053,80,2121,107"/>
-<area shape="rect" id="node21" href="$_board_multi_8h.html" title="BoardMulti.h" alt="" coords="2145,80,2240,107"/>
+<area shape="rect" id="node15" href="$_window_8h.html" title="Window.h" alt="" coords="1413,80,1493,107"/>
+<area shape="rect" id="node16" href="$_abstract_symbol_8h.html" title="AbstractSymbol.h" alt="" coords="1517,80,1644,107"/>
+<area shape="rect" id="node17" href="$_circle_8h.html" title="Circle.h" alt="" coords="1669,80,1735,107"/>
+<area shape="rect" id="node18" href="$_cross_8h.html" title="Cross.h" alt="" coords="1760,80,1828,107"/>
+<area shape="rect" id="node19" href="$_abstract_board_8h.html" title="AbstractBoard.h" alt="" coords="1852,80,1968,107"/>
+<area shape="rect" id="node20" href="$_setup_connection_8h.html" title="SetupConnection.h" alt="" coords="1993,80,2126,107"/>
+<area shape="rect" id="node21" href="$_game_8h.html" title="Game.h" alt="" coords="2151,80,2219,107"/>
+<area shape="rect" id="node22" href="$_board_multi_8h.html" title="BoardMulti.h" alt="" coords="2243,80,2337,107"/>
 </map>

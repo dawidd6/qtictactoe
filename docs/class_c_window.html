@@ -106,7 +106,6 @@ $(document).ready(function(){initNavTree('class_c_window.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_c_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CWindow Class Reference</div>  </div>
@@ -121,19 +120,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9a043871ea3b8ea28dc8754e44e65407"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a456ee082f6ee4d80d12280431d8016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#a5a456ee082f6ee4d80d12280431d8016">handleAbout</a> ()</td></tr>
 <tr class="separator:a5a456ee082f6ee4d80d12280431d8016"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:aa5bebf24cde370e55629e24f8993f144"><td class="memItemLeft" align="right" valign="top">QStackedLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#aa5bebf24cde370e55629e24f8993f144">layout</a></td></tr>
-<tr class="separator:aa5bebf24cde370e55629e24f8993f144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55290559ca1cfbdea9edcec56c74d40f"><td class="memItemLeft" align="right" valign="top">QMenuBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#a55290559ca1cfbdea9edcec56c74d40f">menubar</a></td></tr>
-<tr class="separator:a55290559ca1cfbdea9edcec56c74d40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28d55e441f66a09215f1b3e6a3c49356"><td class="memItemLeft" align="right" valign="top">QMenu&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#a28d55e441f66a09215f1b3e6a3c49356">menu</a></td></tr>
-<tr class="separator:a28d55e441f66a09215f1b3e6a3c49356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc6b320d58684a469cbc29850604fb1a"><td class="memItemLeft" align="right" valign="top">QAction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#afc6b320d58684a469cbc29850604fb1a">about</a></td></tr>
-<tr class="separator:afc6b320d58684a469cbc29850604fb1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83ed2ff4b84a274be52f7a50ccf02ee8"><td class="memItemLeft" align="right" valign="top">QAction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#a83ed2ff4b84a274be52f7a50ccf02ee8">return_to_menu</a></td></tr>
-<tr class="separator:a83ed2ff4b84a274be52f7a50ccf02ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa98d0a4b94b580d20c56e84cbcb45cc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#aa98d0a4b94b580d20c56e84cbcb45cc0">setAboutEnabled</a> (bool enable)</td></tr>
+<tr class="separator:aa98d0a4b94b580d20c56e84cbcb45cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7bf8516343dd10fa045e164eacf901"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#aec7bf8516343dd10fa045e164eacf901">addToLayout</a> (QWidget *child)</td></tr>
+<tr class="separator:aec7bf8516343dd10fa045e164eacf901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e2eab76962eac1fd37ec465d0b2bb02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_window.html#a8e2eab76962eac1fd37ec465d0b2bb02">removeFromLayout</a> (QWidget *child)</td></tr>
+<tr class="separator:a8e2eab76962eac1fd37ec465d0b2bb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -158,6 +150,24 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aec7bf8516343dd10fa045e164eacf901"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CWindow::addToLayout </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>child</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00045">45</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5a456ee082f6ee4d80d12280431d8016"></a>
 <div class="memitem">
 <div class="memproto">
@@ -175,74 +185,39 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="afc6b320d58684a469cbc29850604fb1a"></a>
+<a class="anchor" id="a8e2eab76962eac1fd37ec465d0b2bb02"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QAction CWindow::about</td>
+          <td class="memname">void CWindow::removeFromLayout </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>child</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00011">11</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00050">50</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa5bebf24cde370e55629e24f8993f144"></a>
+<a class="anchor" id="aa98d0a4b94b580d20c56e84cbcb45cc0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QStackedLayout CWindow::layout</td>
+          <td class="memname">void CWindow::setAboutEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00008">8</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a28d55e441f66a09215f1b3e6a3c49356"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QMenu CWindow::menu</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00010">10</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a55290559ca1cfbdea9edcec56c74d40f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QMenuBar CWindow::menubar</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00009">9</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a83ed2ff4b84a274be52f7a50ccf02ee8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QAction CWindow::return_to_menu</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_window_8h_source.html#l00012">12</a> of file <a class="el" href="_window_8h_source.html">Window.h</a>.</p>
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00055">55</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
 
 </div>
 </div>

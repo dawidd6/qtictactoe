@@ -25,6 +25,7 @@ var class_c_abstract_board =
     [ "right_line", "class_c_abstract_board.html#a79c02cdcb61fb618208807450802260b", null ],
     [ "rows", "class_c_abstract_board.html#a037cff24995e731e4802540b7eb5e2aa", null ],
     [ "size_current", "class_c_abstract_board.html#ae1b882d943346b8f3bf5c14e5ab8ebc9", null ],
+    [ "smb", "class_c_abstract_board.html#af53650896f160fc355c06347196110e7", null ],
     [ "thickness", "class_c_abstract_board.html#a6b510c2306b134166892a304d051a409", null ],
     [ "vertical_line", "class_c_abstract_board.html#a704a044bd1a5fc6d1b675def2812f49f", null ],
     [ "win", "class_c_abstract_board.html#a7f3f4f9b45c7941b0da7dc9d31938f99", null ]

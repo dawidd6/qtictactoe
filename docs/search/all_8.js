@@ -8,8 +8,6 @@ var searchData=
   ['markdisabledall',['markDisabledAll',['../class_c_abstract_board.html#afcd5543e5b0770363a1e34f4a5a57033',1,'CAbstractBoard']]],
   ['markenabledall',['markEnabledAll',['../class_c_abstract_board.html#a88c22ef0d6c1f8a0988c624b52f94c21',1,'CAbstractBoard']]],
   ['markenabledwhatleft',['markEnabledWhatLeft',['../class_c_abstract_board.html#a0623b9f56517d5571a0112a4d2f57cc4',1,'CAbstractBoard']]],
-  ['menu',['menu',['../class_c_window.html#a28d55e441f66a09215f1b3e6a3c49356',1,'CWindow']]],
   ['menu_2ecpp',['Menu.cpp',['../_menu_8cpp.html',1,'']]],
-  ['menu_2eh',['Menu.h',['../_menu_8h.html',1,'']]],
-  ['menubar',['menubar',['../class_c_window.html#a55290559ca1cfbdea9edcec56c74d40f',1,'CWindow']]]
+  ['menu_2eh',['Menu.h',['../_menu_8h.html',1,'']]]
 ];

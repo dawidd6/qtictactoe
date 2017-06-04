@@ -120,6 +120,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af26c5e53c1b50eb086f5025c1caae1a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4db75ea074a1f823cd946a1d0d8bab64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_board2v2.html#a4db75ea074a1f823cd946a1d0d8bab64">markButtonIcon</a> (const int &amp;x, const int &amp;y, char s, const <a class="el" href="class_c_abstract_symbol.html">CAbstractSymbol</a> &amp;symbol, bool n)</td></tr>
 <tr class="separator:a4db75ea074a1f823cd946a1d0d8bab64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a005c81bc6d9583544b26eb8a3fc5ff2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_board2v2.html#a005c81bc6d9583544b26eb8a3fc5ff2a">randomTurn</a> ()</td></tr>
+<tr class="separator:a005c81bc6d9583544b26eb8a3fc5ff2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87ca4720a6debc66a8f370a9f08c7bcc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_board2v2.html#a87ca4720a6debc66a8f370a9f08c7bcc">handleRestart</a> ()</td></tr>
 <tr class="separator:a87ca4720a6debc66a8f370a9f08c7bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_c_abstract_board"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_abstract_board')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_c_abstract_board.html">CAbstractBoard</a></td></tr>
@@ -153,6 +155,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a2bf830a0b6e9be1b4def2eb1772840be inherit pro_attribs_class_c_abstract_board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaafaccef000258af40ea2714e28fd197 inherit pro_attribs_class_c_abstract_board"><td class="memItemLeft" align="right" valign="top">QChar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#aaafaccef000258af40ea2714e28fd197">button_str</a> [3][3]</td></tr>
 <tr class="separator:aaafaccef000258af40ea2714e28fd197 inherit pro_attribs_class_c_abstract_board"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53650896f160fc355c06347196110e7 inherit pro_attribs_class_c_abstract_board"><td class="memItemLeft" align="right" valign="top">QChar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#af53650896f160fc355c06347196110e7">smb</a> [2]</td></tr>
+<tr class="separator:af53650896f160fc355c06347196110e7 inherit pro_attribs_class_c_abstract_board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17404aeeb4567d5342791dae8126b07e inherit pro_attribs_class_c_abstract_board"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_c_cross.html">CCross</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a17404aeeb4567d5342791dae8126b07e">cross</a></td></tr>
 <tr class="separator:a17404aeeb4567d5342791dae8126b07e inherit pro_attribs_class_c_abstract_board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2c3f3daf3e8f38d5735a17a0cb098e7 inherit pro_attribs_class_c_abstract_board"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_c_circle.html">CCircle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#ae2c3f3daf3e8f38d5735a17a0cb098e7">circle</a></td></tr>
@@ -200,7 +204,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_board2v2_8cpp_source.html#l00023">23</a> of file <a class="el" href="_board2v2_8cpp_source.html">Board2v2.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_board2v2_8cpp_source.html#l00022">22</a> of file <a class="el" href="_board2v2_8cpp_source.html">Board2v2.cpp</a>.</p>
 
 </div>
 </div>
@@ -228,7 +232,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="class_c_abstract_board.html#a60c841fa84276d47d823de385c007f63">CAbstractBoard</a>.</p>
 
-<p>Definition at line <a class="el" href="_board2v2_8cpp_source.html#l00045">45</a> of file <a class="el" href="_board2v2_8cpp_source.html">Board2v2.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_board2v2_8cpp_source.html#l00046">46</a> of file <a class="el" href="_board2v2_8cpp_source.html">Board2v2.cpp</a>.</p>
 
 </div>
 </div>
@@ -275,6 +279,23 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_board2v2_8cpp_source.html#l00052">52</a> of file <a class="el" href="_board2v2_8cpp_source.html">Board2v2.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a005c81bc6d9583544b26eb8a3fc5ff2a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBoard2v2::randomTurn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_board2v2_8cpp_source.html#l00061">61</a> of file <a class="el" href="_board2v2_8cpp_source.html">Board2v2.cpp</a>.</p>
 
 </div>
 </div>

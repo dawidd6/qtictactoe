@@ -5,5 +5,6 @@ var class_server =
     [ "handleNewConnection", "class_server.html#a6c4ff3c7c7fa22956c30f6cb13036744", null ],
     [ "handleRead", "class_server.html#a7af7c5825e62dc83f1a3a6c8e4137e09", null ],
     [ "logger", "class_server.html#a9cf983ea4d3c59bc9a13b93f16fa0afa", null ],
+    [ "randomTurnAndSymbol", "class_server.html#a3ba84e59ad1530359a6666de6b9afd32", null ],
     [ "startListening", "class_server.html#a174332d05b2330e5682c5c5aad8917f4", null ]
 ];

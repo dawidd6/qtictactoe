@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['menu',['menu',['../class_c_window.html#a28d55e441f66a09215f1b3e6a3c49356',1,'CWindow']]],
-  ['menubar',['menubar',['../class_c_window.html#a55290559ca1cfbdea9edcec56c74d40f',1,'CWindow']]]
+  ['restart',['restart',['../class_c_abstract_board.html#a2358dca38eac11660e8b21700b4aa630',1,'CAbstractBoard']]],
+  ['right_5fline',['right_line',['../class_c_abstract_board.html#a79c02cdcb61fb618208807450802260b',1,'CAbstractBoard']]],
+  ['rows',['rows',['../class_c_abstract_board.html#a037cff24995e731e4802540b7eb5e2aa',1,'CAbstractBoard']]]
 ];
