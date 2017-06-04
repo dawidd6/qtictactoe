@@ -66,7 +66,7 @@ void CBoardMulti::handleRead()
 {
 	response = socket.readAll().data();
 	CGame::logger("Received: " + response);
-	if(setup_connection->isVisible())
+	if(setup_connection != nullptr)
 	{
 		setup_connection->hide();
 		delete setup_connection;
