@@ -22,13 +22,12 @@
 
 #include "BoardMulti.h"
 
-CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window), counter(0)
+CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window), win(window), g(game)
 {
 	hide();
-	win = window;
-	g = game;
 	win->removeFromLayout(this);
 	win->adjustSize();
+	win->setAboutEnabled(false);
 	setup_connection = new CSetupConnection(window, socket);
 	setup_connection->show();
 
@@ -67,14 +66,13 @@ void CBoardMulti::handleRead()
 {
 	response = socket.readAll().data();
 	CGame::logger("Received: " + response);
-	if(counter == 0)
+	if(setup_connection->isVisible())
 	{
 		setup_connection->hide();
 		delete setup_connection;
 		setup_connection = nullptr;
 		win->addToLayout(this);
 		show();
-		counter++;
 
 		handleRandom();
 	}
@@ -153,7 +151,6 @@ void CBoardMulti::handleRandom()
 {
 	turn = response[2].digitValue();
 	symbol_char_my = response[3];
-	CGame::logger("Greeting: " + response);
 
 	if(symbol_char_my == 'x')
 	{

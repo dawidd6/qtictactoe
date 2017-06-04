@@ -51,3 +51,8 @@ void CWindow::removeFromLayout(QWidget *child)
 {
 	layout.removeWidget(child);
 }
+
+void CWindow::setAboutEnabled(bool enable)
+{
+	about.setEnabled(enable);
+}

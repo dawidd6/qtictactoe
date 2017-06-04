@@ -14,7 +14,6 @@ class CBoardMulti : public CAbstractBoard
 		QChar symbol_char_my;
 		QChar symbol_char_enemy;
 		int turn;
-		int counter;
 	public:
 		CBoardMulti(CWindow *window, CGame *game);
 		~CBoardMulti();

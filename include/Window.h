@@ -13,6 +13,7 @@ class CWindow : public QWidget
 	public:
 		CWindow(CGame *game);
 		void handleAbout();
+		void setAboutEnabled(bool enable);
 		void addToLayout(QWidget *child);
 		void removeFromLayout(QWidget *child);
 };

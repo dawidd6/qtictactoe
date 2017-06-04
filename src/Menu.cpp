@@ -14,6 +14,7 @@ CMenu::CMenu(CWindow *window, CGame *game)
 {
 	window->addToLayout(this);
 	window->adjustSize();
+	window->setAboutEnabled(true);
 
 	play_single.setText("Play Singleplayer");
 	play_2v2.setText("Play 2v2");
