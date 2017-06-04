@@ -82,6 +82,7 @@ void Server::handleRead()
 				connection_b->write(response.toUtf8());
 			logger("Message from a to b redirected");
 		}
+		else connection_a->write("dis");
 	}
 	if(sender() == connection_b)
 	{
@@ -94,6 +95,7 @@ void Server::handleRead()
 				connection_a->write(response.toUtf8());
 			logger("Message from b to a redirected");
 		}
+		else connection_b->write("dis");
 	}
 }
 

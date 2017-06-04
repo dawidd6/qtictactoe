@@ -66,7 +66,7 @@ CBoardMulti::~CBoardMulti()
 void CBoardMulti::handleRead()
 {
 	response = socket.readAll().data();
-	CGame::logger("Reading...");
+	CGame::logger("Received: " + response);
 	if(counter == 0)
 	{
 		setup_connection->hide();
@@ -80,7 +80,7 @@ void CBoardMulti::handleRead()
 	}
 	else
 	{
-		if(response == "restart")
+		if(response.contains("restart"))
 		{
 			enum QMessageBox::StandardButton btn = QMessageBox::question(this, "Restart request", "Opponent wants to restart the game\n\nAgreed?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 			if(btn == QMessageBox::Yes)
@@ -88,7 +88,7 @@ void CBoardMulti::handleRead()
 			else
 				socket.write("rn");
 		}
-		else if(response == "rn")
+		else if(response.contains("rn"))
 		{
 			QMessageBox::information(this, "Info", "Opponent has not agreed");
 			if(turn)
@@ -98,13 +98,13 @@ void CBoardMulti::handleRead()
 			markEnabledWhatLeft();
 			restart.setEnabled(true);
 		}
-		else if(response[0] == 'r' && response[1] == '-')
+		else if(response.contains("r-"))
 		{
 			handleRandom();
 			restartBoard();
 			restart.setEnabled(true);
 		}
-		else if(response == "dis")
+		else if(response.contains("dis"))
 		{
 			QMessageBox::information(this, "Info", "Opponent has disconnected\n\nPress OK to return to menu");
 			g->handleReturn();
@@ -114,7 +114,6 @@ void CBoardMulti::handleRead()
 			makeMove(response[0].digitValue(), response[2].digitValue(), symbol_enemy, symbol_char_enemy, true, "Your turn");
 			markEnabledWhatLeft();
 			checkConditions();
-			CGame::logger("Received: " + response);
 		}
 	}
 }
