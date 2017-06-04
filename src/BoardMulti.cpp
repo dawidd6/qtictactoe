@@ -50,6 +50,7 @@ CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window),
 	connect(&socket, &QTcpSocket::connected, this, &CBoardMulti::handleConnection);
 	connect(&restart, &QPushButton::clicked, this, &CBoardMulti::handleRestart);
 
+	statusbar.setSizeGripEnabled(false);
 	layout.setRowMinimumHeight(7, 30);
 	layout.addWidget(&statusbar, 7, 0, 1, 5);
 }
@@ -86,7 +87,6 @@ void CBoardMulti::handleRead()
 				socket.write("ry");
 			else
 				socket.write("rn");
-
 		}
 		else if(response == "rn")
 		{
@@ -96,11 +96,13 @@ void CBoardMulti::handleRead()
 			else
 				statusbar.showMessage("Opponent's turn");
 			markEnabledWhatLeft();
+			restart.setEnabled(true);
 		}
 		else if(response[0] == 'r' && response[1] == '-')
 		{
 			handleRandom();
 			restartBoard();
+			restart.setEnabled(true);
 		}
 		else if(response == "dis")
 		{
@@ -143,6 +145,7 @@ void CBoardMulti::handleDisconnection()
 void CBoardMulti::handleRestart()
 {
 	markDisabledAll();
+	restart.setDisabled(true);
 	socket.write("restart");
 	statusbar.showMessage("Waiting for response");
 }
