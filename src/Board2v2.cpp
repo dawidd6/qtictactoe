@@ -1,7 +1,6 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QPainter>
-#include <QPicture>
 #include <QLineF>
 #include <QPixmap>
 #include <QPointF>
@@ -20,8 +19,10 @@
 
 #include "Board2v2.h"
 
-CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window), xnow(true)
+CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window)
 {
+	randomTurn();
+
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
@@ -45,8 +46,7 @@ CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window), xnow(true)
 void CBoard2v2::handleRestart()
 {
 	restartBoard();
-	xnow = true;
-	label_current.setPixmap(cross.getIcon().pixmap(size_current));
+	randomTurn();
 }
 
 void CBoard2v2::markButtonIcon(const int &x, const int &y, char s, const CAbstractSymbol &symbol, bool n)
@@ -56,4 +56,18 @@ void CBoard2v2::markButtonIcon(const int &x, const int &y, char s, const CAbstra
 	button[x][y].setIconSize(symbol.getSize());
 	button_str[x][y] = s;
 	xnow = n;
+}
+
+void CBoard2v2::randomTurn()
+{
+	if((qrand() % 2))
+	{
+		xnow = true;
+		label_current.setPixmap(cross.getIcon().pixmap(size_current));
+	}
+	else
+	{
+		xnow = false;
+		label_current.setPixmap(circle.getIcon().pixmap(size_current));
+	}
 }

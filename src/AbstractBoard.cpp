@@ -11,6 +11,7 @@
 #include <QStackedLayout>
 #include <QPainter>
 #include <QPicture>
+#include <QTime>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -19,10 +20,12 @@
 
 #include "AbstractBoard.h"
 
-CAbstractBoard::CAbstractBoard(CWindow *window) : thickness(8), rows(0), columns(0), win(0)
+CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), rows(0), columns(0), win(0)
 {
-	window->layout.addWidget(this);
+	window->addToLayout(this);
 	setLayout(&layout);
+
+	qsrand(QTime::currentTime().msec());
 
 	restart.setText("Restart");
 	restart.setFocusPolicy(Qt::NoFocus);
@@ -153,36 +156,21 @@ void CAbstractBoard::paintLine(QLabel &label, int angle, int len, QPointF point)
 
 void CAbstractBoard::checkConditions()
 {
-	if(button_str[0][0] == 'x' && button_str[0][1] == 'x' && button_str[0][2] == 'x')
-	drawLineOnGrid(horizon_line, 0, 0, 1, 5);
-	else if(button_str[1][0] == 'x' && button_str[1][1] == 'x' && button_str[1][2] == 'x')
-	drawLineOnGrid(horizon_line, 2, 0, 1, 5);
-	else if(button_str[2][0] == 'x' && button_str[2][1] == 'x' && button_str[2][2] == 'x')
-	drawLineOnGrid(horizon_line, 4, 0, 1, 5);
-	else if(button_str[0][0] == 'x' && button_str[1][0] == 'x' && button_str[2][0] == 'x')
-	drawLineOnGrid(vertical_line, 0, 0, 5, 1);
-	else if(button_str[0][1] == 'x' && button_str[1][1] == 'x' && button_str[2][1] == 'x')
-	drawLineOnGrid(vertical_line, 0, 2, 5, 1);
-	else if(button_str[0][2] == 'x' && button_str[1][2] == 'x' && button_str[2][2] == 'x')
-	drawLineOnGrid(vertical_line, 0, 4, 5, 1);
-	else if(button_str[0][0] == 'x' && button_str[1][1] == 'x' && button_str[2][2] == 'x')
-	drawLineOnGrid(right_line, 0, 0, 5, 5);
-	else if(button_str[0][2] == 'x' && button_str[1][1] == 'x' && button_str[2][0] == 'x')
-	drawLineOnGrid(left_line, 0, 0, 5, 5);
-	if(button_str[0][0] == 'o' && button_str[0][1] == 'o' && button_str[0][2] == 'o')
-	drawLineOnGrid(horizon_line, 0, 0, 1, 5);
-	else if(button_str[1][0] == 'o' && button_str[1][1] == 'o' && button_str[1][2] == 'o')
-	drawLineOnGrid(horizon_line, 2, 0, 1, 5);
-	else if(button_str[2][0] == 'o' && button_str[2][1] == 'o' && button_str[2][2] == 'o')
-	drawLineOnGrid(horizon_line, 4, 0, 1, 5);
-	else if(button_str[0][0] == 'o' && button_str[1][0] == 'o' && button_str[2][0] == 'o')
-	drawLineOnGrid(vertical_line, 0, 0, 5, 1);
-	else if(button_str[0][1] == 'o' && button_str[1][1] == 'o' && button_str[2][1] == 'o')
-	drawLineOnGrid(vertical_line, 0, 2, 5, 1);
-	else if(button_str[0][2] == 'o' && button_str[1][2] == 'o' && button_str[2][2] == 'o')
-	drawLineOnGrid(vertical_line, 0, 4, 5, 1);
-	else if(button_str[0][0] == 'o' && button_str[1][1] == 'o' && button_str[2][2] == 'o')
-	drawLineOnGrid(right_line, 0, 0, 5, 5);
-	else if(button_str[0][2] == 'o' && button_str[1][1] == 'o' && button_str[2][0] == 'o')
-	drawLineOnGrid(left_line, 0, 0, 5, 5);
+	for(int i = 0; i < 2; i++)
+	if(button_str[0][0] == smb[i] && button_str[0][1] == smb[i] && button_str[0][2] == smb[i])
+		drawLineOnGrid(horizon_line, 0, 0, 1, 5);
+	else if(button_str[1][0] == smb[i] && button_str[1][1] == smb[i] && button_str[1][2] == smb[i])
+		drawLineOnGrid(horizon_line, 2, 0, 1, 5);
+	else if(button_str[2][0] == smb[i] && button_str[2][1] == smb[i] && button_str[2][2] == smb[i])
+		drawLineOnGrid(horizon_line, 4, 0, 1, 5);
+	else if(button_str[0][0] == smb[i] && button_str[1][0] == smb[i] && button_str[2][0] == smb[i])
+		drawLineOnGrid(vertical_line, 0, 0, 5, 1);
+	else if(button_str[0][1] == smb[i] && button_str[1][1] == smb[i] && button_str[2][1] == smb[i])
+		drawLineOnGrid(vertical_line, 0, 2, 5, 1);
+	else if(button_str[0][2] == smb[i] && button_str[1][2] == smb[i] && button_str[2][2] == smb[i])
+		drawLineOnGrid(vertical_line, 0, 4, 5, 1);
+	else if(button_str[0][0] == smb[i] && button_str[1][1] == smb[i] && button_str[2][2] == smb[i])
+		drawLineOnGrid(right_line, 0, 0, 5, 5);
+	else if(button_str[0][2] == smb[i] && button_str[1][1] == smb[i] && button_str[2][0] == smb[i])
+		drawLineOnGrid(left_line, 0, 0, 5, 5);
 }

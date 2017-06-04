@@ -11,9 +11,6 @@
 #include <QAction>
 #include <QMenuBar>
 #include <QStackedLayout>
-#include <QStatusBar>
-#include <QDebug>
-#include <QTime>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -22,6 +19,44 @@
 #include "AbstractBoard.h"
 
 #include "BoardSingle.h"
+
+CBoardSingle::CBoardSingle(CWindow *window) : CAbstractBoard(window)
+{
+	randomSymbol();
+	randomTurn();
+
+	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
+		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
+		{
+			markButtonIcon(x, y, symbol_char_my, my_symbol);
+			checkConditions();
+			if(!win)
+			{
+				makeComputerMove();
+				checkConditions();
+			}
+		});
+
+	connect(&restart, &QPushButton::clicked, this, &CBoardSingle::handleRestart);
+
+	label_turn.setText("Your symbol:");
+}
+
+void CBoardSingle::handleRestart()
+{
+	restartBoard();
+	randomSymbol();
+	randomTurn();
+	win = 0;
+}
+
+void CBoardSingle::markButtonIcon(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol)
+{
+	button[x][y].setDisabled(true);
+	button[x][y].setIcon(symbol->getIcon());
+	button[x][y].setIconSize(symbol->getSize());
+	button_str[x][y] = s;
+}
 
 void CBoardSingle::randomSymbol()
 {
@@ -69,43 +104,4 @@ void CBoardSingle::makeComputerMove()
 		y = qrand() % 3;
 	}
 	markButtonIcon(x, y, symbol_char_computer, computer_symbol);
-}
-
-CBoardSingle::CBoardSingle(CWindow *window) : CAbstractBoard(window)
-{
-	qsrand(QTime::currentTime().msec());
-	randomSymbol();
-	randomTurn();
-
-	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
-		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
-		{
-			markButtonIcon(x, y, symbol_char_my, my_symbol);
-			checkConditions();
-			if(!win)
-			{
-				makeComputerMove();
-				checkConditions();
-			}
-		});
-
-	connect(&restart, &QPushButton::clicked, this, &CBoardSingle::handleRestart);
-
-	label_turn.setText("Your symbol:");
-}
-
-void CBoardSingle::handleRestart()
-{
-	restartBoard();
-	randomSymbol();
-	randomTurn();
-	win = 0;
-}
-
-void CBoardSingle::markButtonIcon(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol)
-{
-	button[x][y].setDisabled(true);
-	button[x][y].setIcon(symbol->getIcon());
-	button[x][y].setIconSize(symbol->getSize());
-	button_str[x][y] = s;
 }

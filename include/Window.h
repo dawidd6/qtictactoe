@@ -4,7 +4,7 @@ class CGame;
 
 class CWindow : public QWidget
 {
-	public:
+	private:
 		QStackedLayout layout;
 		QMenuBar menubar;
 		QMenu menu;
@@ -13,4 +13,6 @@ class CWindow : public QWidget
 	public:
 		CWindow(CGame *game);
 		void handleAbout();
+		void addToLayout(QWidget *child);
+		void removeFromLayout(QWidget *child);
 };

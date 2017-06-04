@@ -41,3 +41,13 @@ void CWindow::handleAbout()
 {
 	QMessageBox::about(this, "About", "QTicTacToe");
 }
+
+void CWindow::addToLayout(QWidget *child)
+{
+	layout.addWidget(child);
+}
+
+void CWindow::removeFromLayout(QWidget *child)
+{
+	layout.removeWidget(child);
+}

@@ -47,7 +47,7 @@ docs:
 	@doxygen Doxyfile > /dev/null
 
 vim:
-	@vim src/*.cpp include/*.h
+	@vim src/*.cpp include/*.h src/srv/*.cpp include/srv/*.h
 
 server:
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   server.cpp"

@@ -9,6 +9,7 @@ class CAbstractBoard : public QWidget
 		QPushButton restart;
 		QPushButton button[3][3];
 		QChar button_str[3][3];
+		QChar smb[2];
 		CCross cross;
 		CCircle circle;
 		QFrame line[4];

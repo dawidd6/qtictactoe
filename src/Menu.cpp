@@ -12,7 +12,7 @@
 
 CMenu::CMenu(CWindow *window, CGame *game)
 {
-	window->layout.addWidget(this);
+	window->addToLayout(this);
 	window->adjustSize();
 
 	play_single.setText("Play Singleplayer");

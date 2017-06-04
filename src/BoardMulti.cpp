@@ -10,6 +10,7 @@
 #include <QMenuBar>
 #include <QStackedLayout>
 #include <QMessageBox>
+#include <QPainter>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -26,8 +27,8 @@ CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window),
 	hide();
 	win = window;
 	g = game;
-	win->layout.removeWidget(this);
-	window->adjustSize();
+	win->removeFromLayout(this);
+	win->adjustSize();
 	setup_connection = new CSetupConnection(window, socket);
 	setup_connection->show();
 
@@ -51,7 +52,6 @@ CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window),
 
 	layout.setRowMinimumHeight(7, 30);
 	layout.addWidget(&statusbar, 7, 0, 1, 5);
-	markDisabledAll();
 }
 
 CBoardMulti::~CBoardMulti()
@@ -64,52 +64,47 @@ CBoardMulti::~CBoardMulti()
 
 void CBoardMulti::handleRead()
 {
+	response = socket.readAll().data();
+	CGame::logger("Reading...");
 	if(counter == 0)
 	{
 		setup_connection->hide();
 		delete setup_connection;
 		setup_connection = nullptr;
-		win->layout.addWidget(this);
+		win->addToLayout(this);
 		show();
-
-		response = socket.readAll().data();
-		turn = response[0].digitValue();
-		symbol_char_my = response[1];
-		CGame::logger("Greeting: " + response);
 		counter++;
 
-		if(symbol_char_my == 'x')
-		{
-			symbol_my = &cross;
-			symbol_enemy = &circle;
-			symbol_char_enemy = 'o';
-			markEnabledAll();
-			turn = true;
-		}
-		else if(symbol_char_my == 'o')
-		{
-			symbol_my = &circle;
-			symbol_enemy = &cross;
-			symbol_char_enemy = 'x';
-			turn = false;
-		}
-
-		if(turn)
-			statusbar.showMessage("Your turn");
-		else
-			statusbar.showMessage("Opponent's turn");
-
-		label_turn.setText("Your symbol:");
-		label_current.setPixmap(symbol_my->getIcon().pixmap(size_current));
+		handleRandom();
 	}
 	else
 	{
-		CGame::logger("Reading...");
-		response = socket.readAll().data();
-		if(response == "restart") restartBoard();
+		if(response == "restart")
+		{
+			enum QMessageBox::StandardButton btn = QMessageBox::question(this, "Restart request", "Opponent wants to restart the game\n\nAgreed?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+			if(btn == QMessageBox::Yes)
+				socket.write("ry");
+			else
+				socket.write("rn");
+
+		}
+		else if(response == "rn")
+		{
+			QMessageBox::information(this, "Info", "Opponent has not agreed");
+			if(turn)
+				statusbar.showMessage("Your turn");
+			else
+				statusbar.showMessage("Opponent's turn");
+			markEnabledWhatLeft();
+		}
+		else if(response[0] == 'r' && response[1] == '-')
+		{
+			handleRandom();
+			restartBoard();
+		}
 		else if(response == "dis")
 		{
-			QMessageBox::about(this, "Info", "Opponent has disconnected, press OK to return to menu");
+			QMessageBox::information(this, "Info", "Opponent has disconnected\n\nPress OK to return to menu");
 			g->handleReturn();
 		}
 		else
@@ -147,18 +142,41 @@ void CBoardMulti::handleDisconnection()
 
 void CBoardMulti::handleRestart()
 {
-	restartBoard();
+	markDisabledAll();
+	socket.write("restart");
+	statusbar.showMessage("Waiting for response");
+}
+
+void CBoardMulti::handleRandom()
+{
+	turn = response[2].digitValue();
+	symbol_char_my = response[3];
+	CGame::logger("Greeting: " + response);
+
 	if(symbol_char_my == 'x')
 	{
-		turn = true;
+		symbol_my = &cross;
+		symbol_enemy = &circle;
+		symbol_char_enemy = 'o';
+	}
+	else if(symbol_char_my == 'o')
+	{
+		symbol_my = &circle;
+		symbol_enemy = &cross;
+		symbol_char_enemy = 'x';
+	}
+
+	if(turn)
+	{
 		statusbar.showMessage("Your turn");
 		markEnabledAll();
 	}
 	else
 	{
-		turn = false;
 		statusbar.showMessage("Opponent's turn");
 		markDisabledAll();
 	}
-	socket.write("restart");
+
+	label_turn.setText("Your symbol:");
+	label_current.setPixmap(symbol_my->getIcon().pixmap(size_current));
 }

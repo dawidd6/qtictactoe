@@ -13,4 +13,5 @@ class Server : public QTcpServer
 		void handleRead();
 		void handleNewConnection();
 		void handleDisconnection();
+		void randomTurnAndSymbol();
 };

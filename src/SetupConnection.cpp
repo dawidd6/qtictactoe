@@ -16,7 +16,7 @@
 
 CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
 {
-	window->layout.addWidget(this);
+	window->addToLayout(this);
 	window->adjustSize();
 
 	setLayout(&layout);
@@ -25,7 +25,7 @@ CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
 	line_address.setFixedSize(300, 40);
 	button_connect.setFixedSize(100, 40);
 
-	line_address.setText("Address");
+	line_address.setText("localhost");
 	button_connect.setText("Connect");
 
 	layout.addWidget(&line_address);

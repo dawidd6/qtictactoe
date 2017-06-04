@@ -1,12 +1,16 @@
 #include <QIcon>
 #include <QSize>
+#include <QPainter>
+#include <QPixmap>
 
 #include "AbstractSymbol.h"
 
-CAbstractSymbol::CAbstractSymbol()
+CAbstractSymbol::CAbstractSymbol() : size(100, 100), pixmap(size), thickness(8)
 {
-	thickness = 8;
-	size.scale(100, 100, Qt::IgnoreAspectRatio);
+	pixmap.fill(Qt::transparent);
+	painter.begin(&pixmap);
+	painter.setPen(QPen(Qt::black, thickness));
+	painter.setRenderHint(QPainter::Antialiasing);
 }
 
 QIcon CAbstractSymbol::getIcon() const

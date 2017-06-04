@@ -5,6 +5,8 @@ class CAbstractSymbol
 	protected:
 		QIcon icon;
 		QSize size;
+		QPixmap pixmap;
+		QPainter painter;
 		int thickness;
 	public:
 		CAbstractSymbol();

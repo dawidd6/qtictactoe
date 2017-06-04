@@ -1,10 +1,9 @@
-#include <QPainter>
-#include <QPicture>
-#include <QLineF>
-#include <QPixmap>
 #include <QPointF>
+#include <QLineF>
 #include <QIcon>
 #include <QSize>
+#include <QPainter>
+#include <QPixmap>
 
 #include "AbstractSymbol.h"
 
@@ -17,15 +16,8 @@ CCircle::CCircle()
 
 void CCircle::paint()
 {
-	QPixmap pic(size);
-	pic.fill(Qt::transparent);
-
-	QPainter painter(&pic);
-	painter.setPen(QPen(Qt::black, thickness));
-	painter.setRenderHint(QPainter::Antialiasing);
-
 	painter.drawEllipse(QPointF(50, 50), 45, 45);
 
-	painter.end();
-	icon.addPixmap(pic);
+	//painter.end();
+	icon.addPixmap(pixmap);
 }
