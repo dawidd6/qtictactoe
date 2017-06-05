@@ -13,4 +13,6 @@ class CBoardSingle : public CAbstractBoard
 		void randomSymbol();
 		void randomTurn();
 		virtual void handleRestart();
+		void gimmeFreeRoomHorizon(int &x, int &y, int &xx);
+		void gimmeFreeRoomVertical(int &x, int &y, int &yy);
 };

@@ -108,14 +108,6 @@ void CBoardMulti::handleRead()
 	}
 }
 
-bool CBoardMulti::yallGotAnyMoreOfThemButtons()
-{
-	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
-		if(button_str[x][y] == '0')
-			return true;
-	return false;
-}
-
 void CBoardMulti::makeMove(const int &x, const int &y, const CAbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message)
 {
 	button[x][y].setDisabled(true);

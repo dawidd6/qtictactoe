@@ -29,6 +29,7 @@ class CAbstractBoard : public QWidget
 		void markDisabledAll();
 		void markEnabledAll();
 		void markEnabledWhatLeft();
+		bool yallGotAnyMoreOfThemButtons();
 		void checkConditions();
 		void drawFrames();
 		void restartBoard();

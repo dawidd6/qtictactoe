@@ -106,6 +106,14 @@ void CAbstractBoard::markEnabledWhatLeft()
 			button[x][y].setEnabled(true);
 }
 
+bool CAbstractBoard::yallGotAnyMoreOfThemButtons()
+{
+	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
+		if(button_str[x][y] == '0')
+			return true;
+	return false;
+}
+
 void CAbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
 {
 	markDisabledAll();

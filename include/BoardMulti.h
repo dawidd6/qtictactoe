@@ -22,6 +22,5 @@ class CBoardMulti : public CAbstractBoard
 		void handleConnection();
 		void handleDisconnection();
 		void handleRandom();
-		bool yallGotAnyMoreOfThemButtons();
 		virtual void handleRestart();
 };
