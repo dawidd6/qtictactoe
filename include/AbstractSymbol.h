@@ -10,7 +10,7 @@ class CAbstractSymbol
 		int thickness;
 	public:
 		CAbstractSymbol();
-		virtual void paint() = 0;
 		QIcon getIcon() const;
 		QSize getSize() const;
+		virtual void paint() = 0;
 };

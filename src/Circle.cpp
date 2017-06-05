@@ -18,6 +18,6 @@ void CCircle::paint()
 {
 	painter.drawEllipse(QPointF(50, 50), 45, 45);
 
-	//painter.end();
+	painter.end();
 	icon.addPixmap(pixmap);
 }

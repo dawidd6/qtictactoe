@@ -9,10 +9,8 @@ class CBoardSingle : public CAbstractBoard
 		QChar symbol_char_computer;
 	public:
 		CBoardSingle(CWindow *window);
-		void markButtonIcon(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol);
 		void makeComputerMove();
 		void randomSymbol();
 		void randomTurn();
-		bool yallGotAnyMoreOfThemButtons();
 		virtual void handleRestart();
 };

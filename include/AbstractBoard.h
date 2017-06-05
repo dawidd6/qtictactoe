@@ -6,7 +6,7 @@ class CAbstractBoard : public QWidget
 {
 	protected:
 		QGridLayout layout;
-		QPushButton restart;
+		QPushButton button_restart;
 		QPushButton button[3][3];
 		QChar button_str[3][3];
 		QChar smb[2];
@@ -34,5 +34,6 @@ class CAbstractBoard : public QWidget
 		void restartBoard();
 		void paintLine(QLabel &label, int angle, int len, QPointF point);
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
+		void makeMove(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol);
 		virtual void handleRestart() = 0;
 };

@@ -17,20 +17,19 @@
 CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
 {
 	window->addToLayout(this);
-	window->adjustSize();
-
-	setLayout(&layout);
-	layout.setSpacing(30);
 
 	line_address.setFixedSize(300, 40);
 	button_connect.setFixedSize(100, 40);
-
-	line_address.setText("localhost");
 	button_connect.setText("Connect");
+	line_address.setText("localhost");
 
+	setLayout(&layout);
+	layout.setSpacing(30);
 	layout.addWidget(&line_address);
 	layout.addWidget(&button_connect, 0, 0, Qt::AlignRight);
 	layout.addWidget(&statusbar);
+
+	statusbar.setSizeGripEnabled(false);
 
 	connect(&button_connect, &QPushButton::clicked, [&]
 	{
@@ -40,4 +39,6 @@ CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
 		else
 			statusbar.showMessage(socket.errorString());
 	});
+
+	show();
 }

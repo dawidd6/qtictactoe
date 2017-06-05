@@ -11,6 +11,7 @@
 #include <QAction>
 #include <QMenuBar>
 #include <QStackedLayout>
+#include <QDebug>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -28,16 +29,11 @@ CBoardSingle::CBoardSingle(CWindow *window) : CAbstractBoard(window)
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
-			markButtonIcon(x, y, symbol_char_my, my_symbol);
-			checkConditions();
-			if(!win)
-			{
-				makeComputerMove();
-				checkConditions();
-			}
+			makeMove(x, y, symbol_char_my, my_symbol);
+			if(!win) makeComputerMove();
 		});
 
-	connect(&restart, &QPushButton::clicked, this, &CBoardSingle::handleRestart);
+	connect(&button_restart, &QPushButton::clicked, this, &CBoardSingle::handleRestart);
 
 	label_turn.setText("Your symbol:");
 }
@@ -48,14 +44,6 @@ void CBoardSingle::handleRestart()
 	randomSymbol();
 	randomTurn();
 	win = 0;
-}
-
-void CBoardSingle::markButtonIcon(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol)
-{
-	button[x][y].setDisabled(true);
-	button[x][y].setIcon(symbol->getIcon());
-	button[x][y].setIconSize(symbol->getSize());
-	button_str[x][y] = s;
 }
 
 void CBoardSingle::randomSymbol()
@@ -80,28 +68,21 @@ void CBoardSingle::randomSymbol()
 
 void CBoardSingle::randomTurn()
 {
-	if(!(qrand() % 2))
+	if(qrand() % 2)
 		makeComputerMove();
-}
-
-bool CBoardSingle::yallGotAnyMoreOfThemButtons()
-{
-	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
-		if(button_str[x][y] == '0')
-			return true;
-	return false;
 }
 
 void CBoardSingle::makeComputerMove()
 {
 	int x = qrand() % 3;
 	int y = qrand() % 3;
-
-	if(yallGotAnyMoreOfThemButtons())
-	while(button_str[x][y] != '0')
+	for(;;)
 	{
+		if(button_str[x][y] == '0')
+			break;
 		x = qrand() % 3;
 		y = qrand() % 3;
 	}
-	markButtonIcon(x, y, symbol_char_computer, computer_symbol);
+
+	makeMove(x, y, symbol_char_computer, computer_symbol);
 }

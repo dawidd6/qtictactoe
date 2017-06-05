@@ -23,25 +23,30 @@
 CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), rows(0), columns(0), win(0)
 {
 	window->addToLayout(this);
-	setLayout(&layout);
 
 	qsrand(QTime::currentTime().msec());
 
-	restart.setText("Restart");
-	restart.setFocusPolicy(Qt::NoFocus);
-	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
+	button_restart.setText("Restart");
 	label_turn.setText("Whose turn:");
+	button_restart.setFocusPolicy(Qt::NoFocus);
 
 	drawFrames();
+
 	paintLine(vertical_line, 90, 298, QPointF(112, 0));
 	paintLine(horizon_line, 0, 298, QPointF(0, 100));
 	paintLine(left_line, 45, 420, QPointF(0, 100));
 	paintLine(right_line, -45, 420, QPointF(0, 100));
+
+	size_current.scale(30, 30, Qt::IgnoreAspectRatio);
 	label_current.setPixmap(cross.getIcon().pixmap(size_current));
 
+	setLayout(&layout);
 	layout.setSpacing(0);
 	layout.setRowMinimumHeight(5, 20);
 	layout.setRowMinimumHeight(6, 40);
+	layout.addWidget(&label_turn, 6, 0);
+	layout.addWidget(&label_current, 6, 2);
+	layout.addWidget(&button_restart, 6, 4, Qt::AlignRight);
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -70,10 +75,6 @@ CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), r
 		layout.addWidget(&button[x][y], rows, columns);
 		columns++;
 	}
-
-	layout.addWidget(&label_turn, 6, 0);
-	layout.addWidget(&label_current, 6, 2);
-	layout.addWidget(&restart, 6, 4, Qt::AlignRight);
 
 	show();
 }
@@ -123,16 +124,23 @@ void CAbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, i
 	win = 1;
 }
 
+void CAbstractBoard::makeMove(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol)
+{
+	button[x][y].setDisabled(true);
+	button[x][y].setIcon(symbol->getIcon());
+	button[x][y].setIconSize(symbol->getSize());
+	button_str[x][y] = s;
+	checkConditions();
+}
+
 void CAbstractBoard::drawFrames()
 {
 	line[0].setFrameShape(QFrame::HLine);
 	line[1].setFrameShape(QFrame::HLine);
 	line[2].setFrameShape(QFrame::VLine);
 	line[3].setFrameShape(QFrame::VLine);
-	line[0].setLineWidth(2);
-	line[1].setLineWidth(2);
-	line[2].setLineWidth(2);
-	line[3].setLineWidth(2);
+	for(int i = 0; i < 4; i++)
+		line[i].setLineWidth(2);
 }
 
 void CAbstractBoard::paintLine(QLabel &label, int angle, int len, QPointF point)

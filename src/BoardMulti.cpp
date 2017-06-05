@@ -26,10 +26,8 @@ CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window),
 {
 	hide();
 	win->removeFromLayout(this);
-	win->adjustSize();
-	win->setAboutEnabled(false);
+
 	setup_connection = new CSetupConnection(window, socket);
-	setup_connection->show();
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -41,13 +39,12 @@ CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window),
 				socket.write(QByteArray(QByteArray::number(x) + ',' + QByteArray::number(y)));
 				socket.waitForBytesWritten(3000);
 				markDisabledAll();
-				checkConditions();
 			}
 		});
 	}
 
 	connect(&socket, &QTcpSocket::connected, this, &CBoardMulti::handleConnection);
-	connect(&restart, &QPushButton::clicked, this, &CBoardMulti::handleRestart);
+	connect(&button_restart, &QPushButton::clicked, this, &CBoardMulti::handleRestart);
 
 	statusbar.setSizeGripEnabled(false);
 	layout.setRowMinimumHeight(7, 30);
@@ -90,17 +87,19 @@ void CBoardMulti::handleRead()
 		{
 			QMessageBox::information(this, "Info", "Opponent has not agreed");
 			if(turn)
+			{
 				statusbar.showMessage("Your turn");
+				markEnabledWhatLeft();
+			}
 			else
 				statusbar.showMessage("Opponent's turn");
-			markEnabledWhatLeft();
-			restart.setEnabled(true);
+			button_restart.setEnabled(true);
 		}
 		else if(response.contains("r-"))
 		{
 			handleRandom();
 			restartBoard();
-			restart.setEnabled(true);
+			button_restart.setEnabled(true);
 		}
 		else if(response.contains("dis"))
 		{
@@ -111,7 +110,6 @@ void CBoardMulti::handleRead()
 		{
 			makeMove(response[0].digitValue(), response[2].digitValue(), symbol_enemy, symbol_char_enemy, true, "Your turn");
 			markEnabledWhatLeft();
-			checkConditions();
 		}
 	}
 }
@@ -142,7 +140,7 @@ void CBoardMulti::handleDisconnection()
 void CBoardMulti::handleRestart()
 {
 	markDisabledAll();
-	restart.setDisabled(true);
+	button_restart.setDisabled(true);
 	socket.write("restart");
 	statusbar.showMessage("Waiting for response");
 }

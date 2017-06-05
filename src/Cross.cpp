@@ -16,12 +16,11 @@ CCross::CCross()
 
 void CCross::paint()
 {
-	QLineF angleline;
 	angleline.setLine(7, 7, 93, 93);
 	painter.drawLine(angleline);
 	angleline.setLine(7, 93, 93, 7);
 	painter.drawLine(angleline);
 
-	//painter.end();
+	painter.end();
 	icon.addPixmap(pixmap);
 }

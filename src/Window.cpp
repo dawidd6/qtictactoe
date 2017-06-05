@@ -4,6 +4,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QStackedLayout>
+#include <QTest>
 
 #include "Game.h"
 
@@ -13,23 +14,15 @@ CWindow::CWindow(CGame *game) : about("About", &menu), return_to_menu("Return to
 {
 	setWindowTitle("QTicTacToe");
 	setWindowFlags(Qt::Window);
-	/*
-	 * something fucky here
-	 * after invoking adjustSize on window
-	 * it's doing what it's supposed to
-	 * but also hides menubar
-	 * temporary disabling fixedsize of window
-	 */
-	//setFixedSize(0, 0);
 	setLayout(&layout);
-	move(300, 200);
+	move(500, 300);
 
 	menu.setTitle("Menu");
-	layout.setMenuBar(&menubar);
-	menubar.addMenu(&menu);
+	layout.setMenuBar(&menu);
+	//menubar.addMenu(&menu);
 
 	menu.addAction(&return_to_menu);
-	menu.addAction(&about);
+	//menu.addAction(&about);
 
 	connect(&about, &QAction::triggered, this, &CWindow::handleAbout);
 	connect(&return_to_menu, &QAction::triggered, game, &CGame::handleReturn);
@@ -44,7 +37,9 @@ void CWindow::handleAbout()
 
 void CWindow::addToLayout(QWidget *child)
 {
+	setReturnEnabled(true);
 	layout.addWidget(child);
+	adjustSize();
 }
 
 void CWindow::removeFromLayout(QWidget *child)
@@ -52,7 +47,7 @@ void CWindow::removeFromLayout(QWidget *child)
 	layout.removeWidget(child);
 }
 
-void CWindow::setAboutEnabled(bool enable)
+void CWindow::setReturnEnabled(bool enable)
 {
-	about.setEnabled(enable);
+	return_to_menu.setEnabled(enable);
 }

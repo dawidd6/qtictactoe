@@ -28,34 +28,25 @@ CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window)
 		{
 			if(xnow)
 			{
-				markButtonIcon(x, y, 'x', cross, false);
+				makeMove(x, y, 'x', &cross);
 				label_current.setPixmap(circle.getIcon().pixmap(size_current));
+				xnow = false;
 			}
 			else
 			{
-				markButtonIcon(x, y, 'o', circle, true);
+				makeMove(x, y, 'o', &circle);
 				label_current.setPixmap(cross.getIcon().pixmap(size_current));
+				xnow = true;
 			}
-
-			checkConditions();
 		});
 
-	connect(&restart, &QPushButton::clicked, this, &CBoard2v2::handleRestart);
+	connect(&button_restart, &QPushButton::clicked, this, &CBoard2v2::handleRestart);
 }
 
 void CBoard2v2::handleRestart()
 {
 	restartBoard();
 	randomTurn();
-}
-
-void CBoard2v2::markButtonIcon(const int &x, const int &y, char s, const CAbstractSymbol &symbol, bool n)
-{
-	button[x][y].setDisabled(true);
-	button[x][y].setIcon(symbol.getIcon());
-	button[x][y].setIconSize(symbol.getSize());
-	button_str[x][y] = s;
-	xnow = n;
 }
 
 void CBoard2v2::randomTurn()
