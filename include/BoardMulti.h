@@ -4,7 +4,7 @@ class CBoardMulti : public CAbstractBoard
 {
 	private:
 		CSetupConnection *setup_connection;
-		CWindow *win;
+		CWindow *w;
 		CGame *g;
 		CAbstractSymbol *symbol_my;
 		CAbstractSymbol *symbol_enemy;
@@ -13,7 +13,7 @@ class CBoardMulti : public CAbstractBoard
 		QString response;
 		QChar symbol_char_my;
 		QChar symbol_char_enemy;
-		int turn;
+		volatile int turn;
 	public:
 		CBoardMulti(CWindow *window, CGame *game);
 		~CBoardMulti();
@@ -22,5 +22,6 @@ class CBoardMulti : public CAbstractBoard
 		void handleConnection();
 		void handleDisconnection();
 		void handleRandom();
+		bool yallGotAnyMoreOfThemButtons();
 		virtual void handleRestart();
 };

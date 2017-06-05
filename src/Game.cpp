@@ -1,22 +1,5 @@
-#include <QObject>
-#include <QDateTime>
-#include <QDebug>
-#include <QPushButton>
-#include <QGridLayout>
-#include <QPainter>
-#include <QPicture>
-#include <QLineF>
-#include <QPixmap>
-#include <QPointF>
-#include <QIcon>
-#include <QSize>
-#include <QLineEdit>
-#include <QTcpSocket>
-#include <QStatusBar>
-#include <QLabel>
-#include <QAction>
-#include <QMenuBar>
-#include <QStackedLayout>
+#include <QtWidgets>
+#include <QtNetwork>
 
 #include "Window.h"
 #include "AbstractSymbol.h"

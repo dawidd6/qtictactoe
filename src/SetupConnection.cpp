@@ -1,14 +1,5 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QLineEdit>
-#include <QTcpSocket>
-#include <QStatusBar>
-#include <QWidget>
-#include <QAction>
-#include <QMenuBar>
-#include <QMenu>
-#include <QMessageBox>
-#include <QStackedLayout>
+#include <QtWidgets>
+#include <QtNetwork>
 
 #include "Window.h"
 
@@ -16,7 +7,7 @@
 
 CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
 {
-	window->addToLayout(this);
+	window->setCentralWidget(this);
 
 	line_address.setFixedSize(300, 40);
 	button_connect.setFixedSize(100, 40);
@@ -41,4 +32,5 @@ CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
 	});
 
 	show();
+	window->adjustSize();
 }

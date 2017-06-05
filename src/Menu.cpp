@@ -1,9 +1,4 @@
-#include <QWidget>
-#include <QGridLayout>
-#include <QPushButton>
-#include <QAction>
-#include <QMenuBar>
-#include <QStackedLayout>
+#include <QtWidgets>
 
 #include "Window.h"
 #include "Game.h"
@@ -12,7 +7,7 @@
 
 CMenu::CMenu(CWindow *window, CGame *game)
 {
-	window->addToLayout(this);
+	window->setCentralWidget(this);
 	window->setReturnEnabled(false);
 
 	play_single.setText("Play Singleplayer");
@@ -34,4 +29,5 @@ CMenu::CMenu(CWindow *window, CGame *game)
 	connect(&play_single, &QPushButton::clicked, game, &CGame::handlePlaySingle);
 
 	show();
+	window->adjustSize();
 }

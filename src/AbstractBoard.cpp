@@ -1,17 +1,4 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QIcon>
-#include <QSize>
-#include <QLineEdit>
-#include <QTcpSocket>
-#include <QStatusBar>
-#include <QLabel>
-#include <QAction>
-#include <QMenuBar>
-#include <QStackedLayout>
-#include <QPainter>
-#include <QPicture>
-#include <QTime>
+#include <QtWidgets>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -22,7 +9,8 @@
 
 CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), rows(0), columns(0), win(0)
 {
-	window->addToLayout(this);
+	window->setCentralWidget(this);
+	window->setReturnEnabled(true);
 
 	qsrand(QTime::currentTime().msec());
 
@@ -77,6 +65,7 @@ CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), r
 	}
 
 	show();
+	window->adjustSize();
 }
 
 void CAbstractBoard::restartBoard()
@@ -95,6 +84,7 @@ void CAbstractBoard::restartBoard()
 	right_line.hide();
 	horizon_line.hide();
 	vertical_line.hide();
+	win = 0;
 }
 
 void CAbstractBoard::markDisabledAll()
@@ -118,9 +108,9 @@ void CAbstractBoard::markEnabledWhatLeft()
 
 void CAbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
 {
+	markDisabledAll();
 	layout.addWidget(&line, fromrow, fromcolumn, rowspan, columnspan, Qt::AlignJustify);
 	line.show();
-	markDisabledAll();
 	win = 1;
 }
 

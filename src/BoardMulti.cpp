@@ -1,16 +1,5 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QIcon>
-#include <QSize>
-#include <QLineEdit>
-#include <QTcpSocket>
-#include <QStatusBar>
-#include <QLabel>
-#include <QAction>
-#include <QMenuBar>
-#include <QStackedLayout>
-#include <QMessageBox>
-#include <QPainter>
+#include <QtWidgets>
+#include <QtNetwork>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -22,24 +11,20 @@
 
 #include "BoardMulti.h"
 
-CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window), win(window), g(game)
+CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window), w(window), g(game)
 {
 	hide();
-	win->removeFromLayout(this);
-
+	w->centralWidget()->setParent(0);
 	setup_connection = new CSetupConnection(window, socket);
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
 		connect(&button[x][y], &QPushButton::clicked, [&, x, y]
 		{
-			if(turn)
-			{
-				makeMove(x, y, symbol_my, symbol_char_my, false, "Opponent's turn");
-				socket.write(QByteArray(QByteArray::number(x) + ',' + QByteArray::number(y)));
-				socket.waitForBytesWritten(3000);
-				markDisabledAll();
-			}
+			makeMove(x, y, symbol_my, symbol_char_my, false, "Opponent's turn");
+			socket.write(QByteArray(QByteArray::number(x) + ',' + QByteArray::number(y)));
+			socket.waitForBytesWritten(3000);
+			markDisabledAll();
 		});
 	}
 
@@ -68,7 +53,7 @@ void CBoardMulti::handleRead()
 		setup_connection->hide();
 		delete setup_connection;
 		setup_connection = nullptr;
-		win->addToLayout(this);
+		w->setCentralWidget(this);
 		show();
 
 		handleRandom();
@@ -88,17 +73,26 @@ void CBoardMulti::handleRead()
 			QMessageBox::information(this, "Info", "Opponent has not agreed");
 			if(turn)
 			{
-				statusbar.showMessage("Your turn");
-				markEnabledWhatLeft();
+				if(!win) markEnabledWhatLeft();
+				else if(win) statusbar.showMessage("LOST");
+				else if(!yallGotAnyMoreOfThemButtons()) statusbar.showMessage("DRAW");
+				else statusbar.showMessage("Your turn");
 			}
 			else
-				statusbar.showMessage("Opponent's turn");
+			{
+				if(win) statusbar.showMessage("WIN");
+				else if(!win) statusbar.showMessage("LOST");
+				else if(!yallGotAnyMoreOfThemButtons()) statusbar.showMessage("DRAW");
+				else statusbar.showMessage("Opponent's turn");
+
+				markDisabledAll();
+			}
 			button_restart.setEnabled(true);
 		}
 		else if(response.contains("r-"))
 		{
-			handleRandom();
 			restartBoard();
+			handleRandom();
 			button_restart.setEnabled(true);
 		}
 		else if(response.contains("dis"))
@@ -114,6 +108,14 @@ void CBoardMulti::handleRead()
 	}
 }
 
+bool CBoardMulti::yallGotAnyMoreOfThemButtons()
+{
+	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
+		if(button_str[x][y] == '0')
+			return true;
+	return false;
+}
+
 void CBoardMulti::makeMove(const int &x, const int &y, const CAbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message)
 {
 	button[x][y].setDisabled(true);
@@ -122,6 +124,11 @@ void CBoardMulti::makeMove(const int &x, const int &y, const CAbstractSymbol *sy
 	button_str[x][y] = symbol_char;
 	turn = isMyTurn;
 	statusbar.showMessage(message);
+	checkConditions();
+	if(win && turn) statusbar.showMessage("LOST");
+	else if(win && !turn) statusbar.showMessage("WIN");
+	else if(!yallGotAnyMoreOfThemButtons())
+		statusbar.showMessage("DRAW");
 }
 
 void CBoardMulti::handleConnection()

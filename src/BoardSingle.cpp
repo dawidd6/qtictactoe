@@ -1,17 +1,4 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QPainter>
-#include <QPicture>
-#include <QLineF>
-#include <QPixmap>
-#include <QPointF>
-#include <QIcon>
-#include <QSize>
-#include <QLabel>
-#include <QAction>
-#include <QMenuBar>
-#include <QStackedLayout>
-#include <QDebug>
+#include <QtWidgets>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
@@ -43,7 +30,6 @@ void CBoardSingle::handleRestart()
 	restartBoard();
 	randomSymbol();
 	randomTurn();
-	win = 0;
 }
 
 void CBoardSingle::randomSymbol()

@@ -2,10 +2,9 @@
 
 class CGame;
 
-class CWindow : public QWidget
+class CWindow : public QMainWindow
 {
 	private:
-		QStackedLayout layout;
 		QMenuBar menubar;
 		QMenu menu;
 		QAction about;
@@ -14,6 +13,4 @@ class CWindow : public QWidget
 		CWindow(CGame *game);
 		void handleAbout();
 		void setReturnEnabled(bool enable);
-		void addToLayout(QWidget *child);
-		void removeFromLayout(QWidget *child);
 };

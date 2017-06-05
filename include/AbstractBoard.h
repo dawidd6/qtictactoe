@@ -23,7 +23,7 @@ class CAbstractBoard : public QWidget
 		int thickness;
 		int rows;
 		int columns;
-		int win;
+		volatile int win;
 	public:
 		CAbstractBoard(CWindow *window);
 		void markDisabledAll();
@@ -34,6 +34,6 @@ class CAbstractBoard : public QWidget
 		void restartBoard();
 		void paintLine(QLabel &label, int angle, int len, QPointF point);
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
-		void makeMove(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol);
+		virtual void makeMove(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol);
 		virtual void handleRestart() = 0;
 };

@@ -1,9 +1,4 @@
-#include <QPointF>
-#include <QLineF>
-#include <QIcon>
-#include <QSize>
-#include <QPainter>
-#include <QPixmap>
+#include <QtWidgets>
 
 #include "AbstractSymbol.h"
 

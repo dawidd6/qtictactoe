@@ -1,15 +1,4 @@
-#include <QPushButton>
-#include <QGridLayout>
-#include <QPainter>
-#include <QLineF>
-#include <QPixmap>
-#include <QPointF>
-#include <QIcon>
-#include <QSize>
-#include <QLabel>
-#include <QAction>
-#include <QMenuBar>
-#include <QStackedLayout>
+#include <QtWidgets>
 
 #include "Window.h"
 #include "AbstractSymbol.h"
