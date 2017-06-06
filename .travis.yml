@@ -10,7 +10,6 @@ addons:
   - qtbase5-dev
   - devscripts
   - dpkg-dev
-  - fakeroot
 
 script:
 - make travis

@@ -40,7 +40,8 @@ clean:
 
 debian:
 	@echo "$(START_COLOR)[DEBUILD]$(CLOSE_COLOR)   debian"
-	@debuild --no-tgz-check > /dev/null
+	#@debuild --no-tgz-check > /dev/null
+	@dpkg-buildpackage -uc -us -b > /dev/null
 	@dh clean > /dev/null
 
 docs:
