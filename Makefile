@@ -47,6 +47,7 @@ docs:
 	@echo "$(START_COLOR)[DOXYGEN]$(CLOSE_COLOR)   docs"
 	@rm -rf docs
 	@doxygen Doxyfile > /dev/null
+	@touch docs/.nojekyll
 
 vim:
 	@vim src/*.cpp include/*.h src/srv/*.cpp include/srv/*.h
