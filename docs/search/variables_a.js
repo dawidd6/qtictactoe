@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['win',['win',['../class_c_abstract_board.html#a4df268e26de6e20858bceb79c5fce8b9',1,'CAbstractBoard']]]
+  ['win',['win',['../class_abstract_board.html#a3a818d67fba046db72ea1de41ec83589',1,'AbstractBoard']]]
 ];

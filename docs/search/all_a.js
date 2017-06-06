@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['randomsymbol',['randomSymbol',['../class_c_board_single.html#abb9f03e52c916bb588a0bc23083248ae',1,'CBoardSingle']]],
-  ['randomturn',['randomTurn',['../class_c_board2v2.html#a005c81bc6d9583544b26eb8a3fc5ff2a',1,'CBoard2v2::randomTurn()'],['../class_c_board_single.html#a0bcaf8107ca9b36150d77a29648f1f2c',1,'CBoardSingle::randomTurn()']]],
-  ['randomturnandsymbol',['randomTurnAndSymbol',['../class_c_server.html#a70b104c47cbad99472f5e6a214e4e79d',1,'CServer']]],
-  ['restartboard',['restartBoard',['../class_c_abstract_board.html#a90e2ebf067868c852db912f6332b457b',1,'CAbstractBoard']]],
-  ['right_5fline',['right_line',['../class_c_abstract_board.html#a79c02cdcb61fb618208807450802260b',1,'CAbstractBoard']]],
-  ['rows',['rows',['../class_c_abstract_board.html#a037cff24995e731e4802540b7eb5e2aa',1,'CAbstractBoard']]]
+  ['randomsymbol',['randomSymbol',['../class_board_single.html#a520e91dd4a941ff20e29ade5f5518395',1,'BoardSingle']]],
+  ['randomturn',['randomTurn',['../class_board2v2.html#a4107b0be9c4a53c795c8b0026393c78c',1,'Board2v2::randomTurn()'],['../class_board_single.html#af2c6645d96dd71b56a8406187fd196a5',1,'BoardSingle::randomTurn()']]],
+  ['randomturnandsymbol',['randomTurnAndSymbol',['../class_server.html#a3ba84e59ad1530359a6666de6b9afd32',1,'Server']]],
+  ['restartboard',['restartBoard',['../class_abstract_board.html#ab344347bcdcae6f8b8e3baa9e01743e5',1,'AbstractBoard']]],
+  ['right_5fline',['right_line',['../class_abstract_board.html#a188a837906fff80609bb064f9421e5f2',1,'AbstractBoard']]],
+  ['rows',['rows',['../class_abstract_board.html#a76323aed875cf411d8a558b88538125c',1,'AbstractBoard']]]
 ];

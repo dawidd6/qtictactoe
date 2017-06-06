@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['button',['button',['../class_c_abstract_board.html#a2bf830a0b6e9be1b4def2eb1772840be',1,'CAbstractBoard']]],
-  ['button_5frestart',['button_restart',['../class_c_abstract_board.html#ab2167761aa93f145cb271424a9f0f2da',1,'CAbstractBoard']]],
-  ['button_5fstr',['button_str',['../class_c_abstract_board.html#aaafaccef000258af40ea2714e28fd197',1,'CAbstractBoard']]]
+  ['button',['button',['../class_abstract_board.html#a9787cca169fcf9ddcbd6b99cd0ea7169',1,'AbstractBoard']]],
+  ['button_5frestart',['button_restart',['../class_abstract_board.html#a0c328c28e7c7bd0416a28e91507ee877',1,'AbstractBoard']]],
+  ['button_5fstr',['button_str',['../class_abstract_board.html#a825310518ac15e8e9cd3f131e8bc970f',1,'AbstractBoard']]]
 ];

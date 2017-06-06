@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['painter',['painter',['../class_c_abstract_symbol.html#a99d0b89e7a016d931e77ab1c97cf05d5',1,'CAbstractSymbol']]],
-  ['pixmap',['pixmap',['../class_c_abstract_symbol.html#a97f2340a536f27f5234451d172d0bb87',1,'CAbstractSymbol']]]
+  ['painter',['painter',['../class_abstract_symbol.html#aecd11930e8495b336b8bde7627fecf64',1,'AbstractSymbol']]],
+  ['pixmap',['pixmap',['../class_abstract_symbol.html#a074336e057d9fa9aa49b63008f702ca2',1,'AbstractSymbol']]]
 ];

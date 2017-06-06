@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['icon',['icon',['../class_c_abstract_symbol.html#a01b81d58bc7e0694db0d202107b2e515',1,'CAbstractSymbol']]]
+  ['icon',['icon',['../class_abstract_symbol.html#acae92b1bb19f915dfeb9322c74166c04',1,'AbstractSymbol']]]
 ];

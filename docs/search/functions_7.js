@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['randomsymbol',['randomSymbol',['../class_c_board_single.html#abb9f03e52c916bb588a0bc23083248ae',1,'CBoardSingle']]],
-  ['randomturn',['randomTurn',['../class_c_board2v2.html#a005c81bc6d9583544b26eb8a3fc5ff2a',1,'CBoard2v2::randomTurn()'],['../class_c_board_single.html#a0bcaf8107ca9b36150d77a29648f1f2c',1,'CBoardSingle::randomTurn()']]],
-  ['randomturnandsymbol',['randomTurnAndSymbol',['../class_c_server.html#a70b104c47cbad99472f5e6a214e4e79d',1,'CServer']]],
-  ['restartboard',['restartBoard',['../class_c_abstract_board.html#a90e2ebf067868c852db912f6332b457b',1,'CAbstractBoard']]]
+  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['makecomputermove',['makeComputerMove',['../class_board_single.html#a465216efa804b5bfb861c3695ff3f95e',1,'BoardSingle']]],
+  ['makemove',['makeMove',['../class_abstract_board.html#ace79683cea3d7070e76d6f1014f0aa3d',1,'AbstractBoard::makeMove()'],['../class_board_multi.html#ae65b183357272767d647457a4cb21c04',1,'BoardMulti::makeMove()']]],
+  ['markdisabledall',['markDisabledAll',['../class_abstract_board.html#a5a6d5d5004ff0ecab24fb44d6fff73d9',1,'AbstractBoard']]],
+  ['markenabledall',['markEnabledAll',['../class_abstract_board.html#a984339a46edeaa829d41d09d5859f099',1,'AbstractBoard']]],
+  ['markenabledwhatleft',['markEnabledWhatLeft',['../class_abstract_board.html#a88da228fe24a935bd496779601b73ba0',1,'AbstractBoard']]],
+  ['menu',['Menu',['../class_menu.html#a5c1b5806361f94ad9de8d1ee72ac7384',1,'Menu']]]
 ];

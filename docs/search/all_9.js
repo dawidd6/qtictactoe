@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['paint',['paint',['../class_c_abstract_symbol.html#a2fb0872f7d4ebfd13f553158f949e940',1,'CAbstractSymbol::paint()'],['../class_c_circle.html#afc37bb0c3b27ff3b9c1b098224eb659d',1,'CCircle::paint()'],['../class_c_cross.html#aa0729b5ac44b05f38111dd96b95d237e',1,'CCross::paint()']]],
-  ['painter',['painter',['../class_c_abstract_symbol.html#a99d0b89e7a016d931e77ab1c97cf05d5',1,'CAbstractSymbol']]],
-  ['paintline',['paintLine',['../class_c_abstract_board.html#a342beabf5c8e81e038a4eedfb4dab154',1,'CAbstractBoard']]],
-  ['pixmap',['pixmap',['../class_c_abstract_symbol.html#a97f2340a536f27f5234451d172d0bb87',1,'CAbstractSymbol']]]
+  ['paint',['paint',['../class_abstract_symbol.html#abe3fb701b78186e024810def5fdb3194',1,'AbstractSymbol::paint()'],['../class_circle.html#a907d31f610a206b32ec8e930f0355222',1,'Circle::paint()'],['../class_cross.html#a9e929101acd72cdd0f8250666a678689',1,'Cross::paint()']]],
+  ['painter',['painter',['../class_abstract_symbol.html#aecd11930e8495b336b8bde7627fecf64',1,'AbstractSymbol']]],
+  ['paintline',['paintLine',['../class_abstract_board.html#a8041c3f8a6f35b1b549dcbeb7dca636c',1,'AbstractBoard']]],
+  ['pixmap',['pixmap',['../class_abstract_symbol.html#a074336e057d9fa9aa49b63008f702ca2',1,'AbstractSymbol']]]
 ];

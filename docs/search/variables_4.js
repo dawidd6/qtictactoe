@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['label_5fcurrent',['label_current',['../class_c_abstract_board.html#ae760d456a3178e34b4b48775dec9f3b5',1,'CAbstractBoard']]],
-  ['label_5fturn',['label_turn',['../class_c_abstract_board.html#a9b5567b3400d214ef76c48d4486313b8',1,'CAbstractBoard']]],
-  ['layout',['layout',['../class_c_abstract_board.html#a665d8bf52e36a400e7c94e8c5f532f4d',1,'CAbstractBoard']]],
-  ['left_5fline',['left_line',['../class_c_abstract_board.html#ac8c4cf227e40232ec2900d64082c91c5',1,'CAbstractBoard']]],
-  ['line',['line',['../class_c_abstract_board.html#a3d6d2ace8af15e6098beefa161b765db',1,'CAbstractBoard']]]
+  ['label_5fcurrent',['label_current',['../class_abstract_board.html#a0e121df1dd8d5d4aedda96f3c8c5ee92',1,'AbstractBoard']]],
+  ['label_5fturn',['label_turn',['../class_abstract_board.html#a2b010c2973529c29bc37c3116ad8cc4e',1,'AbstractBoard']]],
+  ['layout',['layout',['../class_abstract_board.html#a88bdc0b972eeb81380c6cc80e94a3077',1,'AbstractBoard']]],
+  ['left_5fline',['left_line',['../class_abstract_board.html#ae16f7c5fff5d9c5b95a34e021ff21086',1,'AbstractBoard']]],
+  ['line',['line',['../class_abstract_board.html#ad367ffbec1884f593306bac15a9f1b21',1,'AbstractBoard']]]
 ];

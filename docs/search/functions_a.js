@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['_7ecboardmulti',['~CBoardMulti',['../class_c_board_multi.html#ad1da35064dabcdd08cb8ab7e5348db92',1,'CBoardMulti']]],
-  ['_7ecgame',['~CGame',['../class_c_game.html#a4db10c09035dc16b32d6c1ef4cca2143',1,'CGame']]]
+  ['server',['Server',['../class_server.html#ad5ec9462b520e59f7ea831e157ee5e59',1,'Server']]],
+  ['setreturnenabled',['setReturnEnabled',['../class_window.html#a95dcb2d6e7293f2091e6fb9c1abf9f08',1,'Window']]],
+  ['setupconnection',['SetupConnection',['../class_setup_connection.html#a1828dc5e186d553ecf79ee16bbe27b47',1,'SetupConnection']]],
+  ['startlistening',['startListening',['../class_server.html#a174332d05b2330e5682c5c5aad8917f4',1,'Server']]]
 ];

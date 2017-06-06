@@ -1,23 +1,11 @@
 var searchData=
 [
-  ['cabstractboard',['CAbstractBoard',['../class_c_abstract_board.html',1,'CAbstractBoard'],['../class_c_abstract_board.html#a6bcd31c27799567efa471e7e8957caa7',1,'CAbstractBoard::CAbstractBoard()']]],
-  ['cabstractsymbol',['CAbstractSymbol',['../class_c_abstract_symbol.html',1,'CAbstractSymbol'],['../class_c_abstract_symbol.html#a0db12009182f3ec79b6dbdbebceb8583',1,'CAbstractSymbol::CAbstractSymbol()']]],
-  ['cboard2v2',['CBoard2v2',['../class_c_board2v2.html',1,'CBoard2v2'],['../class_c_board2v2.html#af26c5e53c1b50eb086f5025c1caae1a3',1,'CBoard2v2::CBoard2v2()']]],
-  ['cboardmulti',['CBoardMulti',['../class_c_board_multi.html',1,'CBoardMulti'],['../class_c_board_multi.html#a4ae2ffb4cc93df9d5354eba7b46bfd5e',1,'CBoardMulti::CBoardMulti()']]],
-  ['cboardsingle',['CBoardSingle',['../class_c_board_single.html',1,'CBoardSingle'],['../class_c_board_single.html#a4fed07886177e76a2d60721f799a447f',1,'CBoardSingle::CBoardSingle()']]],
-  ['ccircle',['CCircle',['../class_c_circle.html',1,'CCircle'],['../class_c_circle.html#a5555aba6843c6eec717ba482bedda062',1,'CCircle::CCircle()']]],
-  ['ccross',['CCross',['../class_c_cross.html',1,'CCross'],['../class_c_cross.html#aace368f1544331b20441d6b75bd4f366',1,'CCross::CCross()']]],
-  ['cgame',['CGame',['../class_c_game.html',1,'CGame'],['../class_c_game.html#aa0b28c798a6198998d018047e96f188e',1,'CGame::CGame()']]],
-  ['checkconditions',['checkConditions',['../class_c_abstract_board.html#afa0fbccaba1f67c22d9a56f670172997',1,'CAbstractBoard']]],
-  ['circle',['circle',['../class_c_abstract_board.html#ae2c3f3daf3e8f38d5735a17a0cb098e7',1,'CAbstractBoard']]],
+  ['checkconditions',['checkConditions',['../class_abstract_board.html#a0a6dadccc28b0f4768352a5502f2cdb4',1,'AbstractBoard']]],
+  ['circle',['Circle',['../class_circle.html',1,'Circle'],['../class_circle.html#ad1ecfcfc7bf34529c6a6d6c448bf70fe',1,'Circle::Circle()'],['../class_abstract_board.html#af9f2ee237c220749b717291ca64280b9',1,'AbstractBoard::circle()']]],
   ['circle_2ecpp',['Circle.cpp',['../_circle_8cpp.html',1,'']]],
   ['circle_2eh',['Circle.h',['../_circle_8h.html',1,'']]],
-  ['cmenu',['CMenu',['../class_c_menu.html',1,'CMenu'],['../class_c_menu.html#a190ea01e0f46f218b38aef95054be1f5',1,'CMenu::CMenu()']]],
-  ['columns',['columns',['../class_c_abstract_board.html#ab35d6345cb0d9ff6306d11b2122958ca',1,'CAbstractBoard']]],
-  ['cross',['cross',['../class_c_abstract_board.html#a17404aeeb4567d5342791dae8126b07e',1,'CAbstractBoard']]],
+  ['columns',['columns',['../class_abstract_board.html#a7f718c6fcbf1e44a88c45373a3a06df6',1,'AbstractBoard']]],
+  ['cross',['Cross',['../class_cross.html',1,'Cross'],['../class_cross.html#ac90d453da016c5553ebf0479c053c190',1,'Cross::Cross()'],['../class_abstract_board.html#a0e2933efb5a18947d4462cf7e90c2a74',1,'AbstractBoard::cross()']]],
   ['cross_2ecpp',['Cross.cpp',['../_cross_8cpp.html',1,'']]],
-  ['cross_2eh',['Cross.h',['../_cross_8h.html',1,'']]],
-  ['cserver',['CServer',['../class_c_server.html',1,'CServer'],['../class_c_server.html#aa3277fb7ded9c4d7a60747805d527c29',1,'CServer::CServer()']]],
-  ['csetupconnection',['CSetupConnection',['../class_c_setup_connection.html',1,'CSetupConnection'],['../class_c_setup_connection.html#a47455b134e2ead266cc88dabaf02bb05',1,'CSetupConnection::CSetupConnection()']]],
-  ['cwindow',['CWindow',['../class_c_window.html',1,'CWindow'],['../class_c_window.html#a9a043871ea3b8ea28dc8754e44e65407',1,'CWindow::CWindow()']]]
+  ['cross_2eh',['Cross.h',['../_cross_8h.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['drawframes',['drawFrames',['../class_c_abstract_board.html#a43bb7c61b3bfee7ab9df7a8304ec1a44',1,'CAbstractBoard']]],
-  ['drawlineongrid',['drawLineOnGrid',['../class_c_abstract_board.html#a9300fde7eece423a350f8cce19dd560b',1,'CAbstractBoard']]]
+  ['drawframes',['drawFrames',['../class_abstract_board.html#a8321c25b987d78ec0d594d2301084beb',1,'AbstractBoard']]],
+  ['drawlineongrid',['drawLineOnGrid',['../class_abstract_board.html#a2cb86b7550f8cf91b40962be9a5bde85',1,'AbstractBoard']]]
 ];
