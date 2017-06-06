@@ -1,47 +1,34 @@
-#include <QCoreApplication>
-#include <QTcpServer>
-#include <QTcpSocket>
-#include <QDateTime>
-#include <QByteArray>
-#include <QTime>
+#include <QtNetwork>
 
-#include "server.h"
+#include "Game.h"
 
-void Server::logger(QString msg)
-{
-	qDebug
-	(
-		"[%s] %s",
-		qPrintable(QDateTime().currentDateTime().toString("yyyy-MM-dd | hh:mm:ss")),
-		qPrintable(msg)
-	);
-}
+#include "Server.h"
 
-void Server::handleNewConnection()
+void CServer::handleNewConnection()
 {
 	if(connection_a == nullptr)
 	{
 		connection_a = nextPendingConnection();
-		connect(connection_a, &QTcpSocket::disconnected, this, &Server::handleDisconnection);
-		logger("Connected a");
+		connect(connection_a, &QTcpSocket::disconnected, this, &CServer::handleDisconnection);
+		CGame::logger("Connected a");
 	}
 	else if(connection_b == nullptr)
 	{
 		connection_b = nextPendingConnection();
-		connect(connection_b, &QTcpSocket::disconnected, this, &Server::handleDisconnection);
-		logger("Connected b");
+		connect(connection_b, &QTcpSocket::disconnected, this, &CServer::handleDisconnection);
+		CGame::logger("Connected b");
 	}
-	else logger("two clients connected, ignoring");
+	else CGame::logger("two clients connected, ignoring");
 
 	if(connection_a != nullptr && connection_b != nullptr)
 	{
 		randomTurnAndSymbol();
-		connect(connection_a, &QTcpSocket::readyRead, this, &Server::handleRead);
-		connect(connection_b, &QTcpSocket::readyRead, this, &Server::handleRead);
+		connect(connection_a, &QTcpSocket::readyRead, this, &CServer::handleRead);
+		connect(connection_b, &QTcpSocket::readyRead, this, &CServer::handleRead);
 	}
 }
 
-void Server::randomTurnAndSymbol()
+void CServer::randomTurnAndSymbol()
 {
 	QByteArray request_a = "r-";
 	QByteArray request_b = "r-";
@@ -69,7 +56,7 @@ void Server::randomTurnAndSymbol()
 	connection_b->write(request_b);
 }
 
-void Server::handleRead()
+void CServer::handleRead()
 {
 	if(sender() == connection_a)
 	{
@@ -80,7 +67,7 @@ void Server::handleRead()
 				randomTurnAndSymbol();
 			else
 				connection_b->write(response.toUtf8());
-			logger("Message from a to b redirected");
+			CGame::logger("Message from a to b redirected");
 		}
 		else connection_a->write("dis");
 	}
@@ -93,55 +80,48 @@ void Server::handleRead()
 				randomTurnAndSymbol();
 			else
 				connection_a->write(response.toUtf8());
-			logger("Message from b to a redirected");
+			CGame::logger("Message from b to a redirected");
 		}
 		else connection_b->write("dis");
 	}
 }
 
-void Server::handleDisconnection()
+void CServer::handleDisconnection()
 {
 	if(sender() == connection_a)
 	{
-		logger("Disconnected a");
+		CGame::logger("Disconnected a");
 		if(connection_b != nullptr)
 			connection_b->write("dis");
 		connection_a = nullptr;
 	}
 	if(sender() == connection_b)
 	{
-		logger("Disconnected b");
+		CGame::logger("Disconnected b");
 		if(connection_a != nullptr)
 			connection_a->write("dis");
 		connection_b = nullptr;
 	}
 }
 
-void Server::startListening()
+void CServer::startListening()
 {
 	if(listen(QHostAddress::Any, 60000))
-		logger("Listening...");
+		CGame::logger("Listening...");
 	else
 	{
-		logger("Could not start server");
-		logger("Exiting...");
+		CGame::logger("Could not start server");
+		CGame::logger("Exiting...");
 		exit(1);
 	}
 }
 
-Server::Server()
+CServer::CServer()
 {
 	setMaxPendingConnections(2);
 	qsrand(QTime::currentTime().msec());
 	connection_a = nullptr;
 	connection_b = nullptr;
-	connect(this, &Server::newConnection, this, &Server::handleNewConnection);
+	connect(this, &CServer::newConnection, this, &CServer::handleNewConnection);
 	startListening();
-}
-
-int main(int argc, char **argv)
-{
-	QCoreApplication a(argc, argv);
-	Server server;
-	return a.exec();
 }

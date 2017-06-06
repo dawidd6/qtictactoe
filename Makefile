@@ -10,7 +10,7 @@ DESTDIR=
 
 all: banner $(PROGRAM)
 
-travis: all server debian
+travis: all debian
 
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
@@ -36,7 +36,7 @@ uninstall:
 
 clean:
 	@echo "$(START_COLOR)[RM]$(CLOSE_COLOR)   src/*.o $(PROGRAM) ../*.deb ../*.changes"
-	@rm -rf src/*.o $(PROGRAM) server ../*.deb ../*.changes
+	@rm -rf src/*.o $(PROGRAM) ../*.deb ../*.changes
 
 debian:
 	@echo "$(START_COLOR)[DH]$(CLOSE_COLOR)   debian"
@@ -51,12 +51,7 @@ docs:
 vim:
 	@vim src/*.cpp include/*.h src/srv/*.cpp include/srv/*.h
 
-server:
-	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   server.cpp"
-	@echo "$(START_COLOR)[LD]$(CLOSE_COLOR)   server"
-	@$(COMPILER) -o server src/srv/server.cpp $(CFLAGS)
-
 banner:
 	@head -n 8 src/main.cpp |cut -d '*' -f2
 
-.PHONY: install uninstall clean debian docs vim server banner travis
+.PHONY: install uninstall clean debian docs vim banner travis

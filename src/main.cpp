@@ -9,12 +9,50 @@
  */
 
 #include <QApplication>
+#include <QCoreApplication>
+#include <QtWidgets>
+#include <QtNetwork>
 
 #include "Game.h"
+#include "Server.h"
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	CGame game;
-	return a.exec();
+	QCoreApplication *a = nullptr;
+	CGame *game = nullptr;
+	CServer *server = nullptr;
+
+	try
+	{
+		if(argc < 2)
+		{
+			a = new QApplication(argc, argv);
+			game = new CGame;
+		}
+		else if(QString(argv[1]) == "server")
+		{
+			a = new QCoreApplication(argc, argv);
+			server = new CServer;
+		}
+		else
+		{
+			qDebug("Wrong argument\n\n"
+					"\tqtictactoe server - run headless server\n"
+					"\tqtictactoe - run graphical client\n");
+			return 1;
+		}
+	}
+	catch(std::bad_alloc &ba)
+	{
+		qDebug("Exception caught: %s", ba.what());
+		abort();
+	}
+
+	QObject::connect(a, &QCoreApplication::aboutToQuit, [&game, &server]
+	{
+		if(game != nullptr) delete game;
+		if(server != nullptr) delete server;
+	});
+
+	return a->exec();
 }

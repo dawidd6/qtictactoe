@@ -1,14 +1,13 @@
 #pragma once
 
-class Server : public QTcpServer
+class CServer : public QTcpServer
 {
 	private:
 		QTcpSocket *connection_a;
 		QTcpSocket *connection_b;
 		QString response;
 	public:
-		Server();
-		void logger(QString msg);
+		CServer();
 		void startListening();
 		void handleRead();
 		void handleNewConnection();
