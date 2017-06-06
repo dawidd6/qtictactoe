@@ -35,13 +35,13 @@ uninstall:
 	@rm -rf /usr/share/applications/$(PROGRAM).desktop
 
 clean:
-	@echo "$(START_COLOR)[RM]$(CLOSE_COLOR)   src/*.o $(PROGRAM) *.deb"
-	@rm -rf src/*.o $(PROGRAM) server *.deb
+	@echo "$(START_COLOR)[RM]$(CLOSE_COLOR)   src/*.o $(PROGRAM) ../*.deb ../*.changes"
+	@rm -rf src/*.o $(PROGRAM) server ../*.deb ../*.changes
 
 debian:
-	dpkg-buildpackage -uc -us -b -tc || true
-	dh_clean
-	rm -f ../*.changes
+	@echo "$(START_COLOR)[DH]$(CLOSE_COLOR)   debian"
+	@dpkg-buildpackage -uc -us -b -nc > /dev/null 2>&1
+	@dh_clean
 
 docs:
 	@echo "$(START_COLOR)[DOXYGEN]$(CLOSE_COLOR)   docs"
