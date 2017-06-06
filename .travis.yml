@@ -10,6 +10,7 @@ addons:
   - qtbase5-dev
   - devscripts
   - dpkg-dev
+  - debhelper
 
 script:
 - make travis

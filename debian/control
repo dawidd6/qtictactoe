@@ -8,5 +8,5 @@ Homepage: https://github.com/dawidd6/qtictactoe
 
 Package: qtictactoe
 Architecture: any
-Depends: libqt5gui5, libqt5widgets5, libqt5network5, libqt5core5a
+Depends: libqt5gui5, libqt5widgets5, libqt5network5, libqt5core5a, ${shlibs:Depends}
 Description: QTicTacToe
