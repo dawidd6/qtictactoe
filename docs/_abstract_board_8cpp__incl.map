@@ -1,7 +1,7 @@
 <map id="src/AbstractBoard.cpp" name="src/AbstractBoard.cpp">
-<area shape="rect" id="node16" href="$_window_8h.html" title="Window.h" alt="" coords="1463,80,1543,107"/>
-<area shape="rect" id="node17" href="$_abstract_symbol_8h.html" title="AbstractSymbol.h" alt="" coords="1568,80,1695,107"/>
-<area shape="rect" id="node18" href="$_circle_8h.html" title="Circle.h" alt="" coords="1719,80,1786,107"/>
-<area shape="rect" id="node19" href="$_cross_8h.html" title="Cross.h" alt="" coords="1811,80,1879,107"/>
-<area shape="rect" id="node20" href="$_abstract_board_8h.html" title="AbstractBoard.h" alt="" coords="1903,80,2019,107"/>
+<area shape="rect" id="node3" href="$_window_8h.html" title="Window.h" alt="" coords="114,80,194,107"/>
+<area shape="rect" id="node4" href="$_abstract_symbol_8h.html" title="AbstractSymbol.h" alt="" coords="219,80,345,107"/>
+<area shape="rect" id="node5" href="$_circle_8h.html" title="Circle.h" alt="" coords="370,80,437,107"/>
+<area shape="rect" id="node6" href="$_cross_8h.html" title="Cross.h" alt="" coords="461,80,529,107"/>
+<area shape="rect" id="node7" href="$_abstract_board_8h.html" title="AbstractBoard.h" alt="" coords="553,80,669,107"/>
 </map>

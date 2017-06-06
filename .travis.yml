@@ -8,6 +8,7 @@ addons:
   packages:
   - build-essential
   - qtbase5-dev
+  - devscripts
 
 script:
 - make

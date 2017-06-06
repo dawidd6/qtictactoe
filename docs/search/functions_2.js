@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['drawframes',['drawFrames',['../class_c_abstract_board.html#a43bb7c61b3bfee7ab9df7a8304ec1a44',1,'CAbstractBoard']]],
-  ['drawlineongrid',['drawLineOnGrid',['../class_c_abstract_board.html#a9300fde7eece423a350f8cce19dd560b',1,'CAbstractBoard']]]
+  ['geticon',['getIcon',['../class_c_abstract_symbol.html#ae6cda83e4ad0f262d37758959155516e',1,'CAbstractSymbol']]],
+  ['getsize',['getSize',['../class_c_abstract_symbol.html#aada5f6131314316dff8ba4b01cb933cf',1,'CAbstractSymbol']]],
+  ['gimmefreeroomhorizon',['gimmeFreeRoomHorizon',['../class_c_board_single.html#ada0faf000f36db028a972bcc42089f1b',1,'CBoardSingle']]],
+  ['gimmefreeroomvertical',['gimmeFreeRoomVertical',['../class_c_board_single.html#a86a8f8c5452d176b714b0c76d6d2ea45',1,'CBoardSingle']]]
 ];

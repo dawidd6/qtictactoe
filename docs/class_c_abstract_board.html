@@ -125,6 +125,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a88c22ef0d6c1f8a0988c624b52f94c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0623b9f56517d5571a0112a4d2f57cc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a0623b9f56517d5571a0112a4d2f57cc4">markEnabledWhatLeft</a> ()</td></tr>
 <tr class="separator:a0623b9f56517d5571a0112a4d2f57cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bf230d7c3f4c989f11047d63dc5d96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#ac0bf230d7c3f4c989f11047d63dc5d96">yallGotAnyMoreOfThemButtons</a> ()</td></tr>
+<tr class="separator:ac0bf230d7c3f4c989f11047d63dc5d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa0fbccaba1f67c22d9a56f670172997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#afa0fbccaba1f67c22d9a56f670172997">checkConditions</a> ()</td></tr>
 <tr class="separator:afa0fbccaba1f67c22d9a56f670172997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43bb7c61b3bfee7ab9df7a8304ec1a44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a43bb7c61b3bfee7ab9df7a8304ec1a44">drawFrames</a> ()</td></tr>
@@ -135,6 +137,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a342beabf5c8e81e038a4eedfb4dab154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9300fde7eece423a350f8cce19dd560b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a9300fde7eece423a350f8cce19dd560b">drawLineOnGrid</a> (QLabel &amp;<a class="el" href="class_c_abstract_board.html#a3d6d2ace8af15e6098beefa161b765db">line</a>, int fromrow, int fromcolumn, int rowspan, int columnspan)</td></tr>
 <tr class="separator:a9300fde7eece423a350f8cce19dd560b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f4d1b26905776d8c1b6e662657ce59"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a30f4d1b26905776d8c1b6e662657ce59">makeMove</a> (const int &amp;x, const int &amp;y, QChar s, const <a class="el" href="class_c_abstract_symbol.html">CAbstractSymbol</a> *symbol)</td></tr>
+<tr class="separator:a30f4d1b26905776d8c1b6e662657ce59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60c841fa84276d47d823de385c007f63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a60c841fa84276d47d823de385c007f63">handleRestart</a> ()=0</td></tr>
 <tr class="separator:a60c841fa84276d47d823de385c007f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -142,8 +146,8 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a665d8bf52e36a400e7c94e8c5f532f4d"><td class="memItemLeft" align="right" valign="top">QGridLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a665d8bf52e36a400e7c94e8c5f532f4d">layout</a></td></tr>
 <tr class="separator:a665d8bf52e36a400e7c94e8c5f532f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2358dca38eac11660e8b21700b4aa630"><td class="memItemLeft" align="right" valign="top">QPushButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a2358dca38eac11660e8b21700b4aa630">restart</a></td></tr>
-<tr class="separator:a2358dca38eac11660e8b21700b4aa630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2167761aa93f145cb271424a9f0f2da"><td class="memItemLeft" align="right" valign="top">QPushButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#ab2167761aa93f145cb271424a9f0f2da">button_restart</a></td></tr>
+<tr class="separator:ab2167761aa93f145cb271424a9f0f2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bf830a0b6e9be1b4def2eb1772840be"><td class="memItemLeft" align="right" valign="top">QPushButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a2bf830a0b6e9be1b4def2eb1772840be">button</a> [3][3]</td></tr>
 <tr class="separator:a2bf830a0b6e9be1b4def2eb1772840be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaafaccef000258af40ea2714e28fd197"><td class="memItemLeft" align="right" valign="top">QChar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#aaafaccef000258af40ea2714e28fd197">button_str</a> [3][3]</td></tr>
@@ -176,8 +180,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a037cff24995e731e4802540b7eb5e2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab35d6345cb0d9ff6306d11b2122958ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#ab35d6345cb0d9ff6306d11b2122958ca">columns</a></td></tr>
 <tr class="separator:ab35d6345cb0d9ff6306d11b2122958ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f3f4f9b45c7941b0da7dc9d31938f99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a7f3f4f9b45c7941b0da7dc9d31938f99">win</a></td></tr>
-<tr class="separator:a7f3f4f9b45c7941b0da7dc9d31938f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df268e26de6e20858bceb79c5fce8b9"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_abstract_board.html#a4df268e26de6e20858bceb79c5fce8b9">win</a></td></tr>
+<tr class="separator:a4df268e26de6e20858bceb79c5fce8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -197,7 +201,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00023">23</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00010">10</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -215,7 +219,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00157">157</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00163">163</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -232,7 +236,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00126">126</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00134">134</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,7 +282,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00118">118</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00117">117</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -307,6 +311,54 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a30f4d1b26905776d8c1b6e662657ce59"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CAbstractBoard::makeMove </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QChar&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_c_abstract_symbol.html">CAbstractSymbol</a> *&#160;</td>
+          <td class="paramname"><em>symbol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00125">125</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="afcd5543e5b0770363a1e34f4a5a57033"></a>
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +372,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00099">99</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00090">90</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -337,7 +389,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00105">105</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00096">96</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +406,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00111">111</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00102">102</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -394,7 +446,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00138">138</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00144">144</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,7 +463,24 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00081">81</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00071">71</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0bf230d7c3f4c989f11047d63dc5d96"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CAbstractBoard::yallGotAnyMoreOfThemButtons </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_abstract_board_8cpp_source.html#l00109">109</a> of file <a class="el" href="_abstract_board_8cpp_source.html">AbstractBoard.cpp</a>.</p>
 
 </div>
 </div>
@@ -435,6 +504,28 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_abstract_board_8h_source.html#l00010">10</a> of file <a class="el" href="_abstract_board_8h_source.html">AbstractBoard.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2167761aa93f145cb271424a9f0f2da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPushButton CAbstractBoard::button_restart</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_abstract_board_8h_source.html#l00009">9</a> of file <a class="el" href="_abstract_board_8h_source.html">AbstractBoard.h</a>.</p>
 
 </div>
 </div>
@@ -658,28 +749,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2358dca38eac11660e8b21700b4aa630"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">QPushButton CAbstractBoard::restart</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_abstract_board_8h_source.html#l00009">9</a> of file <a class="el" href="_abstract_board_8h_source.html">AbstractBoard.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a79c02cdcb61fb618208807450802260b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -812,7 +881,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7f3f4f9b45c7941b0da7dc9d31938f99"></a>
+<a class="anchor" id="a4df268e26de6e20858bceb79c5fce8b9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -820,7 +889,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int CAbstractBoard::win</td>
+          <td class="memname">volatile int CAbstractBoard::win</td>
         </tr>
       </table>
   </td>

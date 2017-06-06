@@ -10,6 +10,8 @@ DESTDIR=
 
 all: banner $(PROGRAM)
 
+travis: all server debian
+
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
 	@$(COMPILER) -c -o $@ $< $(CFLAGS)
@@ -57,4 +59,4 @@ server:
 banner:
 	@head -n 8 src/main.cpp |cut -d '*' -f2
 
-.PHONY: install uninstall clean debian docs vim server banner
+.PHONY: install uninstall clean debian docs vim server banner travis

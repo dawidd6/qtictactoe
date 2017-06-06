@@ -4,6 +4,9 @@ var hierarchy =
       [ "CCircle", "class_c_circle.html", null ],
       [ "CCross", "class_c_cross.html", null ]
     ] ],
+    [ "QMainWindow", null, [
+      [ "CWindow", "class_c_window.html", null ]
+    ] ],
     [ "QObject", null, [
       [ "CGame", "class_c_game.html", null ]
     ] ],
@@ -17,7 +20,6 @@ var hierarchy =
         [ "CBoardSingle", "class_c_board_single.html", null ]
       ] ],
       [ "CMenu", "class_c_menu.html", null ],
-      [ "CSetupConnection", "class_c_setup_connection.html", null ],
-      [ "CWindow", "class_c_window.html", null ]
+      [ "CSetupConnection", "class_c_setup_connection.html", null ]
     ] ]
 ];

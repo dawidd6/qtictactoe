@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['paint',['paint',['../class_c_abstract_symbol.html#a2fb0872f7d4ebfd13f553158f949e940',1,'CAbstractSymbol::paint()'],['../class_c_circle.html#afc37bb0c3b27ff3b9c1b098224eb659d',1,'CCircle::paint()'],['../class_c_cross.html#aa0729b5ac44b05f38111dd96b95d237e',1,'CCross::paint()']]],
-  ['paintline',['paintLine',['../class_c_abstract_board.html#a342beabf5c8e81e038a4eedfb4dab154',1,'CAbstractBoard']]]
+  ['randomsymbol',['randomSymbol',['../class_c_board_single.html#abb9f03e52c916bb588a0bc23083248ae',1,'CBoardSingle']]],
+  ['randomturn',['randomTurn',['../class_c_board2v2.html#a005c81bc6d9583544b26eb8a3fc5ff2a',1,'CBoard2v2::randomTurn()'],['../class_c_board_single.html#a0bcaf8107ca9b36150d77a29648f1f2c',1,'CBoardSingle::randomTurn()']]],
+  ['randomturnandsymbol',['randomTurnAndSymbol',['../class_server.html#a3ba84e59ad1530359a6666de6b9afd32',1,'Server']]],
+  ['restartboard',['restartBoard',['../class_c_abstract_board.html#a90e2ebf067868c852db912f6332b457b',1,'CAbstractBoard']]]
 ];

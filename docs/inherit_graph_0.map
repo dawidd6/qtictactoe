@@ -2,7 +2,6 @@
 <area shape="rect" id="node2" href="$class_c_abstract_board.html" title="CAbstractBoard" alt="" coords="135,56,250,83"/>
 <area shape="rect" id="node6" href="$class_c_menu.html" title="CMenu" alt="" coords="161,107,225,133"/>
 <area shape="rect" id="node7" href="$class_c_setup_connection.html" title="CSetupConnection" alt="" coords="127,157,259,184"/>
-<area shape="rect" id="node8" href="$class_c_window.html" title="CWindow" alt="" coords="153,208,232,235"/>
 <area shape="rect" id="node3" href="$class_c_board2v2.html" title="CBoard2v2" alt="" coords="315,5,401,32"/>
 <area shape="rect" id="node4" href="$class_c_board_multi.html" title="CBoardMulti" alt="" coords="311,56,405,83"/>
 <area shape="rect" id="node5" href="$class_c_board_single.html" title="CBoardSingle" alt="" coords="307,107,409,133"/>
