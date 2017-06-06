@@ -5,5 +5,5 @@ var searchData=
   ['layout',['layout',['../class_c_abstract_board.html#a665d8bf52e36a400e7c94e8c5f532f4d',1,'CAbstractBoard']]],
   ['left_5fline',['left_line',['../class_c_abstract_board.html#ac8c4cf227e40232ec2900d64082c91c5',1,'CAbstractBoard']]],
   ['line',['line',['../class_c_abstract_board.html#a3d6d2ace8af15e6098beefa161b765db',1,'CAbstractBoard']]],
-  ['logger',['logger',['../class_c_game.html#ab771f68a1af8bc85c1adbaa613cb79ae',1,'CGame::logger()'],['../class_server.html#a9cf983ea4d3c59bc9a13b93f16fa0afa',1,'Server::logger()']]]
+  ['logger',['logger',['../class_c_game.html#ab771f68a1af8bc85c1adbaa613cb79ae',1,'CGame']]]
 ];

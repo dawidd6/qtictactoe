@@ -9,6 +9,7 @@ var searchData=
   ['ccross',['CCross',['../class_c_cross.html',1,'']]],
   ['cgame',['CGame',['../class_c_game.html',1,'']]],
   ['cmenu',['CMenu',['../class_c_menu.html',1,'']]],
+  ['cserver',['CServer',['../class_c_server.html',1,'']]],
   ['csetupconnection',['CSetupConnection',['../class_c_setup_connection.html',1,'']]],
   ['cwindow',['CWindow',['../class_c_window.html',1,'']]]
 ];

@@ -11,7 +11,7 @@ var hierarchy =
       [ "CGame", "class_c_game.html", null ]
     ] ],
     [ "QTcpServer", null, [
-      [ "Server", "class_server.html", null ]
+      [ "CServer", "class_c_server.html", null ]
     ] ],
     [ "QWidget", null, [
       [ "CAbstractBoard", "class_c_abstract_board.html", [

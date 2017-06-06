@@ -10,6 +10,7 @@ var searchData=
   ['cgame',['CGame',['../class_c_game.html#aa0b28c798a6198998d018047e96f188e',1,'CGame']]],
   ['checkconditions',['checkConditions',['../class_c_abstract_board.html#afa0fbccaba1f67c22d9a56f670172997',1,'CAbstractBoard']]],
   ['cmenu',['CMenu',['../class_c_menu.html#a190ea01e0f46f218b38aef95054be1f5',1,'CMenu']]],
+  ['cserver',['CServer',['../class_c_server.html#aa3277fb7ded9c4d7a60747805d527c29',1,'CServer']]],
   ['csetupconnection',['CSetupConnection',['../class_c_setup_connection.html#a47455b134e2ead266cc88dabaf02bb05',1,'CSetupConnection']]],
   ['cwindow',['CWindow',['../class_c_window.html#a9a043871ea3b8ea28dc8754e44e65407',1,'CWindow']]]
 ];

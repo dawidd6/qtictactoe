@@ -1,6 +1,5 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
-    [ "srv", "dir_40fdf46f0b8da95b7da6034eec1b1a60.html", "dir_40fdf46f0b8da95b7da6034eec1b1a60" ],
     [ "AbstractBoard.h", "_abstract_board_8h.html", [
       [ "CAbstractBoard", "class_c_abstract_board.html", "class_c_abstract_board" ]
     ] ],
@@ -27,6 +26,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     ] ],
     [ "Menu.h", "_menu_8h.html", [
       [ "CMenu", "class_c_menu.html", "class_c_menu" ]
+    ] ],
+    [ "Server.h", "_server_8h.html", [
+      [ "CServer", "class_c_server.html", "class_c_server" ]
     ] ],
     [ "SetupConnection.h", "_setup_connection_8h.html", [
       [ "CSetupConnection", "class_c_setup_connection.html", "class_c_setup_connection" ]

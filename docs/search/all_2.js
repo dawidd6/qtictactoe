@@ -17,6 +17,7 @@ var searchData=
   ['cross',['cross',['../class_c_abstract_board.html#a17404aeeb4567d5342791dae8126b07e',1,'CAbstractBoard']]],
   ['cross_2ecpp',['Cross.cpp',['../_cross_8cpp.html',1,'']]],
   ['cross_2eh',['Cross.h',['../_cross_8h.html',1,'']]],
+  ['cserver',['CServer',['../class_c_server.html',1,'CServer'],['../class_c_server.html#aa3277fb7ded9c4d7a60747805d527c29',1,'CServer::CServer()']]],
   ['csetupconnection',['CSetupConnection',['../class_c_setup_connection.html',1,'CSetupConnection'],['../class_c_setup_connection.html#a47455b134e2ead266cc88dabaf02bb05',1,'CSetupConnection::CSetupConnection()']]],
   ['cwindow',['CWindow',['../class_c_window.html',1,'CWindow'],['../class_c_window.html#a9a043871ea3b8ea28dc8754e44e65407',1,'CWindow::CWindow()']]]
 ];
