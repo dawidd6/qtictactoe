@@ -9,6 +9,8 @@ addons:
   - build-essential
   - qtbase5-dev
   - devscripts
+  - dpkg-dev
+  - fakeroot
 
 script:
 - make travis
