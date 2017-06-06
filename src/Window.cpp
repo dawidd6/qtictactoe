@@ -4,7 +4,7 @@
 
 #include "Window.h"
 
-CWindow::CWindow(CGame *game) : about("About", &menu), return_to_menu("Return to menu", &menu)
+Window::Window(Game *game) : about("About", &menu), return_to_menu("Return to menu", &menu)
 {
 	setWindowTitle("QTicTacToe");
 	move(500, 300);
@@ -18,18 +18,18 @@ CWindow::CWindow(CGame *game) : about("About", &menu), return_to_menu("Return to
 	menu.addAction(&return_to_menu);
 	menu.addAction(&about);
 
-	connect(&about, &QAction::triggered, this, &CWindow::handleAbout);
-	connect(&return_to_menu, &QAction::triggered, game, &CGame::handleReturn);
+	connect(&about, &QAction::triggered, this, &Window::handleAbout);
+	connect(&return_to_menu, &QAction::triggered, game, &Game::handleReturn);
 
 	show();
 }
 
-void CWindow::handleAbout()
+void Window::handleAbout()
 {
 	QMessageBox::about(this, "About", "QTicTacToe");
 }
 
-void CWindow::setReturnEnabled(bool enable)
+void Window::setReturnEnabled(bool enable)
 {
 	return_to_menu.setEnabled(enable);
 }

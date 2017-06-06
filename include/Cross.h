@@ -1,11 +1,11 @@
 #pragma once
 
-class CCross : public CAbstractSymbol
+class Cross : public AbstractSymbol
 {
 	private:
 		QLineF angleline;
 	public:
-		CCross();
+		Cross();
 		virtual void paint();
 };
 

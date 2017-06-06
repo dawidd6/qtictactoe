@@ -8,7 +8,7 @@
 
 #include "Board2v2.h"
 
-CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window)
+Board2v2::Board2v2(Window *window) : AbstractBoard(window)
 {
 	randomTurn();
 
@@ -29,16 +29,16 @@ CBoard2v2::CBoard2v2(CWindow *window) : CAbstractBoard(window)
 			}
 		});
 
-	connect(&button_restart, &QPushButton::clicked, this, &CBoard2v2::handleRestart);
+	connect(&button_restart, &QPushButton::clicked, this, &Board2v2::handleRestart);
 }
 
-void CBoard2v2::handleRestart()
+void Board2v2::handleRestart()
 {
 	restartBoard();
 	randomTurn();
 }
 
-void CBoard2v2::randomTurn()
+void Board2v2::randomTurn()
 {
 	if((qrand() % 2))
 	{

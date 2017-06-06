@@ -14,7 +14,7 @@
 
 #include "Game.h"
 
-void CGame::logger(QString msg)
+void Game::logger(QString msg)
 {
 	qDebug
 	(
@@ -24,21 +24,21 @@ void CGame::logger(QString msg)
 	);
 }
 
-CGame::CGame()
+Game::Game()
 {
-	window = new CWindow(this);
-	menu = new CMenu(window, this);
+	window = new Window(this);
+	menu = new Menu(window, this);
 	board = nullptr;
 }
 
-CGame::~CGame()
+Game::~Game()
 {
 	if(menu != nullptr) delete menu;
 	if(board != nullptr) delete board;
 	if(window != nullptr) delete window;
 }
 
-void CGame::handleReturn()
+void Game::handleReturn()
 {
 	if(menu == nullptr)
 	{
@@ -47,36 +47,36 @@ void CGame::handleReturn()
 			delete board;
 			board = nullptr;
 		}
-		menu = new CMenu(window, this);
+		menu = new Menu(window, this);
 	}
 }
 
-void CGame::handlePlay2v2()
+void Game::handlePlay2v2()
 {
 	if(menu != nullptr)
 	{
 		delete menu;
 		menu = nullptr;
-		board = new CBoard2v2(window);
+		board = new Board2v2(window);
 	}
 }
 
-void CGame::handlePlayMulti()
+void Game::handlePlayMulti()
 {
 	if(menu != nullptr)
 	{
 		delete menu;
 		menu = nullptr;
-		board = new CBoardMulti(window, this);
+		board = new BoardMulti(window, this);
 	}
 }
 
-void CGame::handlePlaySingle()
+void Game::handlePlaySingle()
 {
 	if(menu != nullptr)
 	{
 		delete menu;
 		menu = nullptr;
-		board = new CBoardSingle(window);
+		board = new BoardSingle(window);
 	}
 }

@@ -8,7 +8,7 @@
 
 #include "BoardSingle.h"
 
-CBoardSingle::CBoardSingle(CWindow *window) : CAbstractBoard(window)
+BoardSingle::BoardSingle(Window *window) : AbstractBoard(window)
 {
 	randomSymbol();
 	randomTurn();
@@ -22,19 +22,19 @@ CBoardSingle::CBoardSingle(CWindow *window) : CAbstractBoard(window)
 					makeComputerMove();
 		});
 
-	connect(&button_restart, &QPushButton::clicked, this, &CBoardSingle::handleRestart);
+	connect(&button_restart, &QPushButton::clicked, this, &BoardSingle::handleRestart);
 
 	label_turn.setText("Your symbol:");
 }
 
-void CBoardSingle::handleRestart()
+void BoardSingle::handleRestart()
 {
 	restartBoard();
 	randomSymbol();
 	randomTurn();
 }
 
-void CBoardSingle::randomSymbol()
+void BoardSingle::randomSymbol()
 {
 	if(qrand() % 2)
 	{
@@ -54,13 +54,13 @@ void CBoardSingle::randomSymbol()
 	label_current.setPixmap(my_symbol->getIcon().pixmap(size_current));
 }
 
-void CBoardSingle::randomTurn()
+void BoardSingle::randomTurn()
 {
 	if(qrand() % 2)
 		makeComputerMove();
 }
 
-void CBoardSingle::gimmeFreeRoomHorizon(int &x, int &y, int &xx)
+void BoardSingle::gimmeFreeRoomHorizon(int &x, int &y, int &xx)
 {
 	x = xx;
 	for(y = 0; y < 3; y++)
@@ -68,7 +68,7 @@ void CBoardSingle::gimmeFreeRoomHorizon(int &x, int &y, int &xx)
 			break;
 }
 
-void CBoardSingle::gimmeFreeRoomVertical(int &x, int &y, int &yy)
+void BoardSingle::gimmeFreeRoomVertical(int &x, int &y, int &yy)
 {
 	y = yy;
 	for(x = 0; x < 3; x++)
@@ -76,7 +76,7 @@ void CBoardSingle::gimmeFreeRoomVertical(int &x, int &y, int &yy)
 			break;
 }
 
-void CBoardSingle::makeComputerMove()
+void BoardSingle::makeComputerMove()
 {
 	int xx = -1;
 	int yy = -1;

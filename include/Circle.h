@@ -1,8 +1,8 @@
 #pragma once
 
-class CCircle : public CAbstractSymbol
+class Circle : public AbstractSymbol
 {
 	public:
-		CCircle();
+		Circle();
 		virtual void paint();
 };

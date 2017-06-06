@@ -1,8 +1,8 @@
 #pragma once
 
-class CGame;
+class Game;
 
-class CWindow : public QMainWindow
+class Window : public QMainWindow
 {
 	private:
 		QMenuBar menubar;
@@ -10,7 +10,7 @@ class CWindow : public QMainWindow
 		QAction about;
 		QAction return_to_menu;
 	public:
-		CWindow(CGame *game);
+		Window(Game *game);
 		void handleAbout();
 		void setReturnEnabled(bool enable);
 };

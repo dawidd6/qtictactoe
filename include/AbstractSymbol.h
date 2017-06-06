@@ -1,6 +1,6 @@
 #pragma once
 
-class CAbstractSymbol
+class AbstractSymbol
 {
 	protected:
 		QIcon icon;
@@ -9,7 +9,7 @@ class CAbstractSymbol
 		QPainter painter;
 		int thickness;
 	public:
-		CAbstractSymbol();
+		AbstractSymbol();
 		QIcon getIcon() const;
 		QSize getSize() const;
 		virtual void paint() = 0;

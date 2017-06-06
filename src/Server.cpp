@@ -4,31 +4,31 @@
 
 #include "Server.h"
 
-void CServer::handleNewConnection()
+void Server::handleNewConnection()
 {
 	if(connection_a == nullptr)
 	{
 		connection_a = nextPendingConnection();
-		connect(connection_a, &QTcpSocket::disconnected, this, &CServer::handleDisconnection);
-		CGame::logger("Connected a");
+		connect(connection_a, &QTcpSocket::disconnected, this, &Server::handleDisconnection);
+		Game::logger("Connected a");
 	}
 	else if(connection_b == nullptr)
 	{
 		connection_b = nextPendingConnection();
-		connect(connection_b, &QTcpSocket::disconnected, this, &CServer::handleDisconnection);
-		CGame::logger("Connected b");
+		connect(connection_b, &QTcpSocket::disconnected, this, &Server::handleDisconnection);
+		Game::logger("Connected b");
 	}
-	else CGame::logger("two clients connected, ignoring");
+	else Game::logger("two clients connected, ignoring");
 
 	if(connection_a != nullptr && connection_b != nullptr)
 	{
 		randomTurnAndSymbol();
-		connect(connection_a, &QTcpSocket::readyRead, this, &CServer::handleRead);
-		connect(connection_b, &QTcpSocket::readyRead, this, &CServer::handleRead);
+		connect(connection_a, &QTcpSocket::readyRead, this, &Server::handleRead);
+		connect(connection_b, &QTcpSocket::readyRead, this, &Server::handleRead);
 	}
 }
 
-void CServer::randomTurnAndSymbol()
+void Server::randomTurnAndSymbol()
 {
 	QByteArray request_a = "r-";
 	QByteArray request_b = "r-";
@@ -56,7 +56,7 @@ void CServer::randomTurnAndSymbol()
 	connection_b->write(request_b);
 }
 
-void CServer::handleRead()
+void Server::handleRead()
 {
 	if(sender() == connection_a)
 	{
@@ -67,7 +67,7 @@ void CServer::handleRead()
 				randomTurnAndSymbol();
 			else
 				connection_b->write(response.toUtf8());
-			CGame::logger("Message from a to b redirected");
+			Game::logger("Message from a to b redirected");
 		}
 		else connection_a->write("dis");
 	}
@@ -80,48 +80,48 @@ void CServer::handleRead()
 				randomTurnAndSymbol();
 			else
 				connection_a->write(response.toUtf8());
-			CGame::logger("Message from b to a redirected");
+			Game::logger("Message from b to a redirected");
 		}
 		else connection_b->write("dis");
 	}
 }
 
-void CServer::handleDisconnection()
+void Server::handleDisconnection()
 {
 	if(sender() == connection_a)
 	{
-		CGame::logger("Disconnected a");
+		Game::logger("Disconnected a");
 		if(connection_b != nullptr)
 			connection_b->write("dis");
 		connection_a = nullptr;
 	}
 	if(sender() == connection_b)
 	{
-		CGame::logger("Disconnected b");
+		Game::logger("Disconnected b");
 		if(connection_a != nullptr)
 			connection_a->write("dis");
 		connection_b = nullptr;
 	}
 }
 
-void CServer::startListening()
+void Server::startListening()
 {
 	if(listen(QHostAddress::Any, 60000))
-		CGame::logger("Listening...");
+		Game::logger("Listening...");
 	else
 	{
-		CGame::logger("Could not start server");
-		CGame::logger("Exiting...");
+		Game::logger("Could not start server");
+		Game::logger("Exiting...");
 		exit(1);
 	}
 }
 
-CServer::CServer()
+Server::Server()
 {
 	setMaxPendingConnections(2);
 	qsrand(QTime::currentTime().msec());
 	connection_a = nullptr;
 	connection_b = nullptr;
-	connect(this, &CServer::newConnection, this, &CServer::handleNewConnection);
+	connect(this, &Server::newConnection, this, &Server::handleNewConnection);
 	startListening();
 }

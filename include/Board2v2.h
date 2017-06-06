@@ -1,11 +1,11 @@
 #pragma once
 
-class CBoard2v2 : public CAbstractBoard
+class Board2v2 : public AbstractBoard
 {
 	private:
 		int xnow;
 	public:
-		CBoard2v2(CWindow *window);
+		Board2v2(Window *window);
 		void randomTurn();
 		virtual void handleRestart();
 };

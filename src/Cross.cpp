@@ -4,12 +4,12 @@
 
 #include "Cross.h"
 
-CCross::CCross()
+Cross::Cross()
 {
 	paint();
 }
 
-void CCross::paint()
+void Cross::paint()
 {
 	angleline.setLine(7, 7, 93, 93);
 	painter.drawLine(angleline);

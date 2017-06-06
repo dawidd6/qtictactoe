@@ -19,20 +19,20 @@
 int main(int argc, char *argv[])
 {
 	QCoreApplication *a = nullptr;
-	CGame *game = nullptr;
-	CServer *server = nullptr;
+	Game *game = nullptr;
+	Server *server = nullptr;
 
 	try
 	{
 		if(argc < 2)
 		{
 			a = new QApplication(argc, argv);
-			game = new CGame;
+			game = new Game;
 		}
 		else if(QString(argv[1]) == "server")
 		{
 			a = new QCoreApplication(argc, argv);
-			server = new CServer;
+			server = new Server;
 		}
 		else
 		{

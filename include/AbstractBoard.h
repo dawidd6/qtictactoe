@@ -2,7 +2,7 @@
 
 class Window;
 
-class CAbstractBoard : public QWidget
+class AbstractBoard : public QWidget
 {
 	protected:
 		QGridLayout layout;
@@ -10,8 +10,8 @@ class CAbstractBoard : public QWidget
 		QPushButton button[3][3];
 		QChar button_str[3][3];
 		QChar smb[2];
-		CCross cross;
-		CCircle circle;
+		Cross cross;
+		Circle circle;
 		QFrame line[4];
 		QLabel left_line;
 		QLabel right_line;
@@ -25,7 +25,7 @@ class CAbstractBoard : public QWidget
 		int columns;
 		volatile int win;
 	public:
-		CAbstractBoard(CWindow *window);
+		AbstractBoard(Window *window);
 		void markDisabledAll();
 		void markEnabledAll();
 		void markEnabledWhatLeft();
@@ -35,6 +35,6 @@ class CAbstractBoard : public QWidget
 		void restartBoard();
 		void paintLine(QLabel &label, int angle, int len, QPointF point);
 		void drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan);
-		virtual void makeMove(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol);
+		virtual void makeMove(const int &x, const int &y, QChar s, const AbstractSymbol *symbol);
 		virtual void handleRestart() = 0;
 };

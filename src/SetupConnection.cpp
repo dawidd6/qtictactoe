@@ -5,7 +5,7 @@
 
 #include "SetupConnection.h"
 
-CSetupConnection::CSetupConnection(CWindow *window, QTcpSocket &socket)
+SetupConnection::SetupConnection(Window *window, QTcpSocket &socket)
 {
 	window->setCentralWidget(this);
 

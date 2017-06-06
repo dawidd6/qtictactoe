@@ -7,7 +7,7 @@
 
 #include "AbstractBoard.h"
 
-CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), rows(0), columns(0), win(0)
+AbstractBoard::AbstractBoard(Window *window) : smb{'x', 'o'}, thickness(8), rows(0), columns(0), win(0)
 {
 	window->setCentralWidget(this);
 	window->setReturnEnabled(true);
@@ -68,7 +68,7 @@ CAbstractBoard::CAbstractBoard(CWindow *window) : smb{'x', 'o'}, thickness(8), r
 	window->adjustSize();
 }
 
-void CAbstractBoard::restartBoard()
+void AbstractBoard::restartBoard()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -87,26 +87,26 @@ void CAbstractBoard::restartBoard()
 	win = 0;
 }
 
-void CAbstractBoard::markDisabledAll()
+void AbstractBoard::markDisabledAll()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		button[x][y].setDisabled(true);
 }
 
-void CAbstractBoard::markEnabledAll()
+void AbstractBoard::markEnabledAll()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		button[x][y].setEnabled(true);
 }
 
-void CAbstractBoard::markEnabledWhatLeft()
+void AbstractBoard::markEnabledWhatLeft()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		if(button_str[x][y] == '0')
 			button[x][y].setEnabled(true);
 }
 
-bool CAbstractBoard::yallGotAnyMoreOfThemButtons()
+bool AbstractBoard::yallGotAnyMoreOfThemButtons()
 {
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 		if(button_str[x][y] == '0')
@@ -114,7 +114,7 @@ bool CAbstractBoard::yallGotAnyMoreOfThemButtons()
 	return false;
 }
 
-void CAbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
+void AbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, int rowspan, int columnspan)
 {
 	markDisabledAll();
 	layout.addWidget(&line, fromrow, fromcolumn, rowspan, columnspan, Qt::AlignJustify);
@@ -122,7 +122,7 @@ void CAbstractBoard::drawLineOnGrid(QLabel &line, int fromrow, int fromcolumn, i
 	win = 1;
 }
 
-void CAbstractBoard::makeMove(const int &x, const int &y, QChar s, const CAbstractSymbol *symbol)
+void AbstractBoard::makeMove(const int &x, const int &y, QChar s, const AbstractSymbol *symbol)
 {
 	button[x][y].setDisabled(true);
 	button[x][y].setIcon(symbol->getIcon());
@@ -131,7 +131,7 @@ void CAbstractBoard::makeMove(const int &x, const int &y, QChar s, const CAbstra
 	checkConditions();
 }
 
-void CAbstractBoard::drawFrames()
+void AbstractBoard::drawFrames()
 {
 	line[0].setFrameShape(QFrame::HLine);
 	line[1].setFrameShape(QFrame::HLine);
@@ -141,7 +141,7 @@ void CAbstractBoard::drawFrames()
 		line[i].setLineWidth(2);
 }
 
-void CAbstractBoard::paintLine(QLabel &label, int angle, int len, QPointF point)
+void AbstractBoard::paintLine(QLabel &label, int angle, int len, QPointF point)
 {
 	QPicture pic;
 	QLineF angleline;
@@ -160,7 +160,7 @@ void CAbstractBoard::paintLine(QLabel &label, int angle, int len, QPointF point)
 	label.setPicture(pic);
 }
 
-void CAbstractBoard::checkConditions()
+void AbstractBoard::checkConditions()
 {
 	for(int i = 0; i < 2; i++)
 	if(button_str[0][0] == smb[i] && button_str[0][1] == smb[i] && button_str[0][2] == smb[i])

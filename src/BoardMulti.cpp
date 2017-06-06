@@ -11,11 +11,11 @@
 
 #include "BoardMulti.h"
 
-CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window), w(window), g(game)
+BoardMulti::BoardMulti(Window *window, Game *game) : AbstractBoard(window), w(window), g(game)
 {
 	hide();
 	w->centralWidget()->setParent(0);
-	setup_connection = new CSetupConnection(window, socket);
+	setup_connection = new SetupConnection(window, socket);
 
 	for(int x = 0; x < 3; x++) for(int y = 0; y < 3; y++)
 	{
@@ -28,15 +28,15 @@ CBoardMulti::CBoardMulti(CWindow *window, CGame *game) : CAbstractBoard(window),
 		});
 	}
 
-	connect(&socket, &QTcpSocket::connected, this, &CBoardMulti::handleConnection);
-	connect(&button_restart, &QPushButton::clicked, this, &CBoardMulti::handleRestart);
+	connect(&socket, &QTcpSocket::connected, this, &BoardMulti::handleConnection);
+	connect(&button_restart, &QPushButton::clicked, this, &BoardMulti::handleRestart);
 
 	statusbar.setSizeGripEnabled(false);
 	layout.setRowMinimumHeight(7, 30);
 	layout.addWidget(&statusbar, 7, 0, 1, 5);
 }
 
-CBoardMulti::~CBoardMulti()
+BoardMulti::~BoardMulti()
 {
 	if(socket.state() == QAbstractSocket::ConnectedState)
 		socket.disconnectFromHost();
@@ -44,10 +44,10 @@ CBoardMulti::~CBoardMulti()
 		delete setup_connection;
 }
 
-void CBoardMulti::handleRead()
+void BoardMulti::handleRead()
 {
 	response = socket.readAll().data();
-	CGame::logger("Received: " + response);
+	Game::logger("Received: " + response);
 	if(setup_connection != nullptr)
 	{
 		setup_connection->hide();
@@ -108,7 +108,7 @@ void CBoardMulti::handleRead()
 	}
 }
 
-void CBoardMulti::makeMove(const int &x, const int &y, const CAbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message)
+void BoardMulti::makeMove(const int &x, const int &y, const AbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message)
 {
 	button[x][y].setDisabled(true);
 	button[x][y].setIcon(symbol->getIcon());
@@ -123,20 +123,20 @@ void CBoardMulti::makeMove(const int &x, const int &y, const CAbstractSymbol *sy
 		statusbar.showMessage("DRAW");
 }
 
-void CBoardMulti::handleConnection()
+void BoardMulti::handleConnection()
 {
-	CGame::logger("Connected");
+	Game::logger("Connected");
 
-	connect(&socket, &QTcpSocket::readyRead, this, &CBoardMulti::handleRead);
-	connect(&socket, &QTcpSocket::disconnected, this, &CBoardMulti::handleDisconnection);
+	connect(&socket, &QTcpSocket::readyRead, this, &BoardMulti::handleRead);
+	connect(&socket, &QTcpSocket::disconnected, this, &BoardMulti::handleDisconnection);
 }
 
-void CBoardMulti::handleDisconnection()
+void BoardMulti::handleDisconnection()
 {
-	CGame::logger("Disconnected");
+	Game::logger("Disconnected");
 }
 
-void CBoardMulti::handleRestart()
+void BoardMulti::handleRestart()
 {
 	markDisabledAll();
 	button_restart.setDisabled(true);
@@ -144,7 +144,7 @@ void CBoardMulti::handleRestart()
 	statusbar.showMessage("Waiting for response");
 }
 
-void CBoardMulti::handleRandom()
+void BoardMulti::handleRandom()
 {
 	turn = response[2].digitValue();
 	symbol_char_my = response[3];

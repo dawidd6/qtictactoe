@@ -2,7 +2,7 @@
 
 #include "AbstractSymbol.h"
 
-CAbstractSymbol::CAbstractSymbol() : size(100, 100), pixmap(size), thickness(8)
+AbstractSymbol::AbstractSymbol() : size(100, 100), pixmap(size), thickness(8)
 {
 	pixmap.fill(Qt::transparent);
 	painter.begin(&pixmap);
@@ -10,12 +10,12 @@ CAbstractSymbol::CAbstractSymbol() : size(100, 100), pixmap(size), thickness(8)
 	painter.setRenderHint(QPainter::Antialiasing);
 }
 
-QIcon CAbstractSymbol::getIcon() const
+QIcon AbstractSymbol::getIcon() const
 {
 	return icon;
 }
 
-QSize CAbstractSymbol::getSize() const
+QSize AbstractSymbol::getSize() const
 {
 	return size;
 }

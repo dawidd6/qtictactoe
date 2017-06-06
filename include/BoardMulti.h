@@ -1,13 +1,13 @@
 #pragma once
 
-class CBoardMulti : public CAbstractBoard
+class BoardMulti : public AbstractBoard
 {
 	private:
-		CSetupConnection *setup_connection;
-		CWindow *w;
-		CGame *g;
-		CAbstractSymbol *symbol_my;
-		CAbstractSymbol *symbol_enemy;
+		SetupConnection *setup_connection;
+		Window *w;
+		Game *g;
+		AbstractSymbol *symbol_my;
+		AbstractSymbol *symbol_enemy;
 		QTcpSocket socket;
 		QStatusBar statusbar;
 		QString response;
@@ -15,9 +15,9 @@ class CBoardMulti : public CAbstractBoard
 		QChar symbol_char_enemy;
 		volatile int turn;
 	public:
-		CBoardMulti(CWindow *window, CGame *game);
-		~CBoardMulti();
-		void makeMove(const int &x, const int &y, const CAbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message);
+		BoardMulti(Window *window, Game *game);
+		~BoardMulti();
+		void makeMove(const int &x, const int &y, const AbstractSymbol *symbol, QChar symbol_char, bool isMyTurn, QString message);
 		void handleRead();
 		void handleConnection();
 		void handleDisconnection();

@@ -1,14 +1,14 @@
 #pragma once
 
-class CBoardSingle : public CAbstractBoard
+class BoardSingle : public AbstractBoard
 {
 	private:
-		CAbstractSymbol *my_symbol;
-		CAbstractSymbol *computer_symbol;
+		AbstractSymbol *my_symbol;
+		AbstractSymbol *computer_symbol;
 		QChar symbol_char_my;
 		QChar symbol_char_computer;
 	public:
-		CBoardSingle(CWindow *window);
+		BoardSingle(Window *window);
 		void makeComputerMove();
 		void randomSymbol();
 		void randomTurn();

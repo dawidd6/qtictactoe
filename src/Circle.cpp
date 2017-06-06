@@ -4,12 +4,12 @@
 
 #include "Circle.h"
 
-CCircle::CCircle()
+Circle::Circle()
 {
 	paint();
 }
 
-void CCircle::paint()
+void Circle::paint()
 {
 	painter.drawEllipse(QPointF(50, 50), 45, 45);
 

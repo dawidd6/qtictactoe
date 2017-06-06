@@ -1,6 +1,6 @@
 #pragma once
 
-class CSetupConnection : public QWidget
+class SetupConnection : public QWidget
 {
 	private:
 		QGridLayout layout;
@@ -8,5 +8,5 @@ class CSetupConnection : public QWidget
 		QStatusBar statusbar;
 		QPushButton button_connect;
 	public:
-		CSetupConnection(CWindow *window, QTcpSocket &socket);
+		SetupConnection(Window *window, QTcpSocket &socket);
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CMenu : public QWidget
+class Menu : public QWidget
 {
 	private:
 		QGridLayout layout;
@@ -8,5 +8,5 @@ class CMenu : public QWidget
 		QPushButton play_2v2;
 		QPushButton play_multi;
 	public:
-		CMenu(CWindow *window, CGame *game);
+		Menu(Window *window, Game *game);
 };
