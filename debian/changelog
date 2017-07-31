@@ -1,5 +1,5 @@
-qtictactoe (0.1-1) xenial; urgency=medium
+qtictactoe (0.5.2) xenial; urgency=medium
 
-  * Package
+  * RELEASE 0.5.2
 
- -- Dawid Dziurla <dawidd0811@gmail.com>  Thu, 28 Apr 2016 20:59:03 +0200
+ -- Dawid Dziurla <dawidd0811@gmail.com>  Mon, 31 Jul 2017 15:16:57 +0200
