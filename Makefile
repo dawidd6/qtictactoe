@@ -10,8 +10,6 @@ DESTDIR=
 
 all: banner $(PROGRAM)
 
-travis: all debian
-
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
 	@$(COMPILER) -c -o $@ $< $(CFLAGS)

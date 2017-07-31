@@ -11,9 +11,10 @@ addons:
   - devscripts
   - dpkg-dev
   - debhelper
+  - fakeroot
 
 script:
-- make travis
+- make debian
 
 notifications:
  email: false
