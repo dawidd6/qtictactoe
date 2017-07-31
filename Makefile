@@ -38,7 +38,7 @@ clean:
 
 debian:
 	@echo "$(START_COLOR)[DH]$(CLOSE_COLOR)   debian"
-	@debuild
+	@debuild -us -uc
 	@debuild clean
 
 docs:
