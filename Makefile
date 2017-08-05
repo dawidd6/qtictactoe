@@ -48,7 +48,7 @@ docs:
 	@touch docs/.nojekyll
 
 vim:
-	@vim src/*.cpp include/*.h src/srv/*.cpp include/srv/*.h
+	@vim src/*.cpp include/*.h
 
 banner:
 	@head -n 8 src/main.cpp |cut -d '*' -f2
