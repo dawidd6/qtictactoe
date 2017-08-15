@@ -2,8 +2,3 @@
 
 %:
 	dh $@ --parallel
-
-get-orig-source:
-	$(eval VERSION=$(shell head -n 1 debian/changelog |cut -d'(' -f2 |cut -d')' -f1))
-	@echo "Fetching tarball $(VERSION)"
-	@wget https://github.com/dawidd6/qtictactoe/archive/$(VERSION).tar.gz -O ../qtictactoe_$(VERSION).orig.tar.gz > /dev/null 2>&1
