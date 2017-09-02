@@ -14,7 +14,7 @@ addons:
   - fakeroot
 
 script:
-- make debian
+- make -f make.mk debian
 
 notifications:
  email: false
