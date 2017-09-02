@@ -1,12 +1,12 @@
 #Assembled by dawidd6
 COMPILER=g++
-CFLAGS=-Wall -fPIC -std=c++11 $(shell pkg-config --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Test) -Iinclude -Iinclude/srv
+PKG_CONFIG=pkg-config
+CFLAGS=-Wall -fPIC -std=c++11 $(shell $(PKG_CONFIG) --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Test) -Iinclude -Iinclude/srv
 PROGRAM=qtictactoe
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
 START_COLOR=\033[0;33m
 CLOSE_COLOR=\033[m
-DESTDIR=
 
 all: banner $(PROGRAM)
 
@@ -53,4 +53,4 @@ vim:
 banner:
 	@head -n 8 src/main.cpp |cut -d '*' -f2
 
-.PHONY: install uninstall clean debian docs vim banner travis
+.PHONY: install uninstall clean debian docs vim banner
