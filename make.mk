@@ -1,7 +1,7 @@
 #Assembled by dawidd6
 COMPILER=g++
 PKG_CONFIG=pkg-config
-CFLAGS=-Wall -fPIC -std=c++11 $(shell $(PKG_CONFIG) --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Test) -Iinclude -Iinclude/srv
+CXXFLAGS=-Wall -fPIC -std=c++11 $(shell $(PKG_CONFIG) --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Test) -Iinclude -Iinclude/srv
 PROGRAM=qtictactoe
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
@@ -12,11 +12,11 @@ all: banner $(PROGRAM)
 
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
-	@$(COMPILER) -c -o $@ $< $(CFLAGS)
+	@$(COMPILER) -c -o $@ $< $(CXXFLAGS)
 
 $(PROGRAM): $(OBJ)
 	@echo "$(START_COLOR)[LD]$(CLOSE_COLOR)   $@"
-	@$(COMPILER) -o $@ $^ $(CFLAGS)
+	@$(COMPILER) -o $@ $^ $(CXXFLAGS)
 
 install:
 	@echo "$(START_COLOR)[INSTALL]$(CLOSE_COLOR)   /usr/bin/$(PROGRAM)"

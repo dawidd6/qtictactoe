@@ -1,3 +1,10 @@
 qtictactoe
 server
 *.o
+release
+debug
+*stash
+Makefile*
+*plugin_import.cpp
+*Debug
+*Release
