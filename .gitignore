@@ -3,8 +3,10 @@ server
 *.o
 release
 debug
-*stash
-Makefile*
-*plugin_import.cpp
-*Debug
-*Release
+.qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
+qtictactoe_plugin_import.cpp
+object_script.qtictactoe.Release
+object_script.qtictactoe.Debug

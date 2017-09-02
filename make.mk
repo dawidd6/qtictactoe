@@ -53,4 +53,10 @@ vim:
 banner:
 	@head -n 8 src/main.cpp |cut -d '*' -f2
 
-.PHONY: install uninstall clean debian docs vim banner
+win:
+	$(eval export PATH=/home/dawidd6/git/mxe/usr/bin:$(PATH))
+	i686-w64-mingw32.static-qmake-qt5
+	make -f Makefile
+	@cat .gitignore |grep -v release| xargs rm -rf
+
+.PHONY: install uninstall clean debian docs vim banner win
