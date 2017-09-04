@@ -1,10 +1,17 @@
 #Assembled by dawidd6
+PROGRAM=qtictactoe
 COMPILER=g++
 PKG_CONFIG=pkg-config
-CXXFLAGS=-Wall -fPIC -std=c++11 $(shell $(PKG_CONFIG) --libs --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Test) -Iinclude -Iinclude/srv
-PROGRAM=qtictactoe
+
+CXXFLAGS=-Wall -fPIC -std=c++11
+INCLUDES=$(shell $(PKG_CONFIG) --cflags Qt5Core Qt5Gui Qt5Network Qt5Widgets) -Iinclude -Iinclude/srv
+
+LIBS=-lQt5Widgets -lQt5Gui -lQt5Core -lQt5Network
+LDFLAGS=
+
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
+
 START_COLOR=\033[0;33m
 CLOSE_COLOR=\033[m
 
@@ -12,11 +19,11 @@ all: banner $(PROGRAM)
 
 src/%.o: src/%.cpp
 	@echo "$(START_COLOR)[CXX]$(CLOSE_COLOR)   $<"
-	@$(COMPILER) -c -o $@ $< $(CXXFLAGS)
+	@$(COMPILER) -c -o $@ $< $(CXXFLAGS) $(INCLUDES)
 
 $(PROGRAM): $(OBJ)
 	@echo "$(START_COLOR)[LD]$(CLOSE_COLOR)   $@"
-	@$(COMPILER) -o $@ $^ $(CXXFLAGS)
+	@$(COMPILER) -o $@ $^ $(LIBS) $(LDFLAGS)
 
 install:
 	@echo "$(START_COLOR)[INSTALL]$(CLOSE_COLOR)   /usr/bin/$(PROGRAM)"
