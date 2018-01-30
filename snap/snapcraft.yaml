@@ -1,0 +1,30 @@
+name: qtictactoe
+version: "0.6+git"
+summary: Tic Tac Toe game in QT
+description: desc
+
+grade: devel
+confinement: devmode
+
+apps:
+    qtictactoe:
+        command: desktop-launch qtictactoe
+        desktop: usr/share/applications/qtictactoe.desktop
+        plugs:
+            - unity7
+            - desktop
+            - home
+            - x11
+
+parts:
+    main:
+        source: .
+        plugin: make
+        makefile: "make.mk"
+        stage-packages:
+            - libqt5gui5
+        after:
+            - desktop-qt5
+        build-packages:
+            - qtbase5-dev
+            - pkg-config
