@@ -4,7 +4,7 @@ summary: Tic Tac Toe game in QT
 description: desc
 
 grade: devel
-confinement: devmode
+confinement: strict
 
 apps:
     qtictactoe:
