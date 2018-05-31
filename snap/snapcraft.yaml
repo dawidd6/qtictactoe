@@ -1,9 +1,9 @@
 name: qtictactoe
-version: "0.6+git"
+version: 0.5.3
 summary: Tic Tac Toe game in QT
 description: desc
 
-grade: devel
+grade: stable
 confinement: strict
 
 apps:
@@ -18,9 +18,9 @@ apps:
 
 parts:
     main:
-        source: .
+        source: https://github.com/dawidd6/qtictactoe.git
+        source-tag: 0.5.3
         plugin: make
-        makefile: "make.mk"
         stage-packages:
             - libqt5gui5
         after:
