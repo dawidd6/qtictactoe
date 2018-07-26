@@ -1,0 +1,6 @@
+build_task:
+    container:
+        image: msrd0/cmake-qt5:ubuntu
+    build_script:
+        - cmake .
+        - make

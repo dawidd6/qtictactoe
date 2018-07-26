@@ -1,12 +1,2 @@
-qtictactoe
-server
-*.o
-release
-debug
-.qmake.stash
-Makefile
-Makefile.Debug
-Makefile.Release
-qtictactoe_plugin_import.cpp
-object_script.qtictactoe.Release
-object_script.qtictactoe.Debug
+.idea
+cmake-*
